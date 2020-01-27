@@ -1,0 +1,212 @@
+I1 - starting room : key3
+key required to go west
+light required to go east
+
+after looking through I5 south window book31 appears here
+
+I2 - sitting room : book18, after rain book32 in chair leg
+I3 - foyer : book11
+cortyard key required to go east
+I4 - Living room : after aquireing gun book12 appears in fireplace
+key required to go north
+I5 - small dining room : light gun 3xammo book25
+hammer required to go east
+I6 - dark corridor :
+light required to enter
+key required to enter bathroom
+I7 - bathroom : key2 book14 lighter behind mirror
+rain stops after entering
+I8 - Large dining room : bathroom room key, book17
+only door to outside
+I9 - courtyard : book13 key5
+I10 - kitchen : can only be entered from the window
+I11 - stairway up :
+I12 - room :
+east door requires basementstairkey
+I13 - stairway down :
+I14 - shed : hammer book113
+requires key to enter
+
+
+
+|-------------------------------------------------------------------------------------------------|     ____shed_____
+|#####################################################^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^|    |            |
+|#            |             |             |             |             |             |            ^|    |    I14     |
+|#     E31    |    E32      |     E33     |     E34     |     E35     |   E36       |     E37    ^|    |     i      |
+|#            |             |             |             |             |             |            ^|    |            |
+|#        a   |         a   |      a      |   a         |       a     |        a    |   a        ^|    | a          |
+|#____________|_____________|_____________|_____________|_____________|_____________|____________^|    |_____d-k____|
+|#            |             |             |             |             |             |            ^|
+|#        ^   |             | ^           |             |   ^         |             |    E30     ^|
+|#   E24      |     E25     |    E26      |     E27     |     E28     |     E29     |    W s     ^|
+|#            |             |             |             |             |             |            ^|
+|#        a   |       a     |     a       |      a      |     a       |       a     |      a     ^|
+|#____________|_____________|_____________|_____________|_____________|_____________|____________^|
+|#            |S            |             |            S|             |             |            ^|
+|#            |             |             |             |             |             |            ^|
+|#   E20      w       I11   |      I12    |     I13     |     E21     |    E22      |    E23     ^|
+|#            |        a    d            d-k            |             |        ^    |            ^|          |------------------|
+|#        a   |             |     a       |      a      |      a      |   a         |     a      ^|          |legend            |
+|#____________|______d-k____|_____________|_____________|_____________|_____________|____________^|          |w - window        |
+|#            |             |             |             |             |             |            ^|          |d - door          |
+|#            |             |             |             |             |             |            ^|          |i - item          |
+|#  E16       |*     I4     |       I5    w1    I10    *|     E17     |     E18     |    E19     ^|          |E* - exteriorcell |
+|#        a   |             d      i      |     a       |      a      |             |            ^|          |I* - interiorcell | 
+|#            |     a       |        a    |             |    ^        |      a      |     a      ^|          |s - shed          |
+|#____________|_______d_____|___w2________|_____________|_____________|_____________|____________^|          |W - wolf          |
+|#            |             |             |             |             |             |            ^|          |# - hedgerow      |
+|#            |             |             |             w             |             |            ^|          |^ - tree          |  
+|H  E12       d        I3  d-k     I9     w      I8     d    E13      |    E14      |    E15     ^|          |S - stairs        |
+|#      a     |   a    i    |     i       |      i      w       a     |             |            ^|          |* - fireplace     |
+|#            |             |    a        |      a      |             |     a       |      a     ^|          |a - artwork done  |
+|#____________|________d____|__________w__|___________d_|_____________|_____________|____________^|          |------------------|
+|#            |             |             |         |   |             |             |            ^|
+|#            |             |             | a  I7   |   |             |     a       |            ^|
+|#  E8        w       I2    |      I1     |   i     |   |    E9       |     E10     |      E11   ^|
+|#     ^      |     i       |     i       |___d-k___|   |             |             |            ^|
+|#     a      |   a        d-k      a     d  a        I6|   a         |       ^     |      a     #|
+|#____________|_____________|_____________|_____________|_____________|_____________|____________#|
+|#            |             |             |             |             |             |            #|
+|#            |             |             |             |             |             |      a     #|
+|#   E1    a  |    E2       |     E3   ^  |     E4      |    E5       |     E6      |   E7       #|
+|#            |          a  |    a        |    a        |  a          |             |            #|
+|#            |             |             |             |             |  a          |            #|
+|##################################################################################################
+
+
+
+
+
+Basement
+|-----------------------------------------|
+|             |             |           S |
+|             |             |             |
+|     I17     d      I16    d      I15    |
+|             |             |             |
+|             |             |             |
+|_______d_____|_____________|_____________|
+|             |             |             |
+|             |             |             |
+|     I18     d    I19     d-k     I20    |
+|             |             |             |
+|             |             |             |
+|_____________|_____________|_____d-s_____|
+                            |             |
+                            |             |
+                            |      I21    |
+                            |             |
+                            |             |
+                            |_____________|
+
+Upstairs
+|---------------------------------w-------|
+| S   I33     |    I34      |  |          |
+|___________d_d_____________dI d          |
+w       I22|I |      I23    |35| I24      w
+|          d39d             |  |          |
+|  bath    |  |             |  |          |
+|__________|d_|_____________|_d|__________|
+|          |  |             |  |          |
+|          |I |             |I |          |
+|    I25   d40d     I26     |36d  I27     |
+|*         |  |             |  |         *|
+|          |  |             |  |          |
+|__________|d_|______w______|_d|__________|
+|          |  |             |  |          |
+|          |I |             |I |          |
+w     I28  d41w    empty    w37d I29      w
+|          |  |             |  |          |
+|          |  |             |  |          |
+|__________|d_|_____________|_d|__________|
+|          |  |             |I |          |
+|          |I |             |38|          |
+|     I30  d42d-k  I31      |  d   I32    |
+w          |  |             |  |          w
+|          |  |             |  |          |
+|_____w____|__|______w______|__|___w______|
+
+
+atic
+|-------------|
+|             |
+|             |
+|   I43       |
+|             |
+|             |
+|_____________|
+
+
+items:
+light - I5
+bullets - I5
+gun - I5
+hammer - I14
+lighter - I7
+pendant - I12
+
+#keys
+key1 - I8 - opens door in I6
+key2 - I7 - opens door in room I3
+key3 - I1 - opens door in room I1
+key4 - I9- opens door in I19
+key5 - E12 - opens door in room I4
+key6 - I23- opens door in I42 - after wolf
+key7 - E10- opens door in I12 - after wolf
+key8 - I4 - opens door in E30
+clockkey - E8 - after I21 
+
+#clockparts
+cog - I28
+gear - I11
+mainspringbarrel - I31
+sprocket - I16
+
+#books
+book11 - I3
+book12 - I4 
+book13 - I9
+book14 - I7
+book15 - I11
+book16 - E25
+book17 - I8 
+book18 - e19
+book19 - E31
+book110 - I23 - after sleep 2
+book111 - E22 - ent encounter
+book112 - I19
+book113 - I14
+book21 - E32
+book22 - E24 - after wolf
+book23 - I22 
+book24 - I28 - after sleep 1
+book25 - I5
+book26 - E16
+book27 - I27
+book28 - I43
+book31 - I1
+book32 - I2
+book33 - I12 - after sleep 3
+book34 - I21
+book35 - I25
+book36 - I38
+book37 - I6
+book38 - I10
+
+E22 riddles:
+hole
+time
+secret
+
+I38 safe:09-15-48
+I19 safe: 07-20-43
+
+
+deaths: 
+utils
+mkbld
+
+I 
+1 2 7 8 10a 22 24 26 27 28 29 30 31 32 37  41
+
+E
+22 30a

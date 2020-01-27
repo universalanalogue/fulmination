@@ -1,0 +1,338 @@
+#!/bin/bash
+
+function background() {
+
+if [ $focus -eq 0 ]
+then
+./utils.sh colorset 4
+image=$(block/$block/./graphics.sh ${cell}pic1a)
+echo "$image"
+if [ $key3 -eq 0 ] ; then ./utils.sh overlay key1 28 15 0 ; fi
+if [ $book31 -eq 0 ] ; then ./utils.sh overlay book1 28 15 0 ; fi
+if [ $i1window -eq 1 ] ; then ./utils.sh overlay win1 34 3 0 ; fi
+fi
+
+if [ $focus -eq 1 ]
+then
+./utils.sh colorset 1
+if [ $rain -eq 1 ]
+then
+image=$(block/$block/./graphics.sh ${cell}pic2b)
+else
+image=$(block/$block/./graphics.sh ${cell}pic2a)
+fi
+echo "$image"
+if [ $i9box -eq 1 ] ; then ./utils.sh overlay box1 5 6 0 ; fi
+if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win1 14 3 0 ; fi
+if [ $i1window -eq 1 ] ; then ./utils.sh overlay win1b 3 3 1 ; fi
+fi
+}
+
+function vars() {
+#inventory
+ammo=$(grep 'ammo=' status | cut -d "=" -f2)
+book31=$(grep 'book31=' status | cut -d "=" -f2)
+gun=$(grep 'gun=' status | cut -d "=" -f2)
+hammer=$(grep 'hammer=' status | cut -d "=" -f2)
+key3=$(grep 'key3=' status | cut -d "=" -f2)
+light=$(grep 'light=' status | cut -d "=" -f2)
+lighter=$(grep 'lighter=' status | cut -d "=" -f2)
+
+#variables
+block=$(grep "block=" status | cut -d "=" -f2)
+burnie=$(grep 'burnie=' status | cut -d "=" -f2)
+cell=$(grep "cell=" status | cut -d "=" -f2)
+focus=$(grep 'focus=' status | cut -d "=" -f2)
+greed=$(grep 'greed=' status | cut -d "=" -f2)
+i02=$(grep 'i02=' status | cut -d "=" -f2)
+i06=$(grep 'i06=' status | cut -d "=" -f2)
+i9box=$(grep 'i9box=' status | cut -d "=" -f2)
+i1window=$(grep 'i1window=' status | cut -d "=" -f2)
+i5bwindow=$(grep 'i5bwindow=' status | cut -d "=" -f2)
+rain=$(grep 'rain=' status | cut -d "=" -f2)
+}
+helpcount=0
+intro=0
+sed -i '/focus=/c\focus=0' status
+
+
+block=$(grep "block=" status | cut -d "=" -f2)
+cell=$(grep "cell=" status | cut -d "=" -f2)
+mvnt1=$(grep "mvnt1=" status | cut -d "=" -f2)
+
+sed -i '/${block}${cell}=/c\\${block}${cell}=1' status
+if [ $mvnt1 -eq 0 ]
+then
+sed -i '/mvnt2=/c\mvnt2=0' status
+else
+sed -i '/mvnt2=/c\mvnt2=0' status
+fi
+
+#sleep
+
+
+
+while true ; do
+
+./utils.sh events
+cell=$(grep "cell=" status | cut -d "=" -f2)
+if [[ $cell == null ]] ; then break ; fi
+
+if [ $intro -eq 2 ] ; then vars ; fi
+
+if [ $intro -lt 2 ]
+then
+if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+vars
+printf "\e[0;0H"
+background
+intro=2
+fi
+./utils.sh prompt "$last" "$bar" "$output" 4
+read case1
+last=("$case1")
+case1=$(./utils.sh parser1 "$case1")
+
+if [ $focus -eq 0 ]
+then
+case $case1 in
+
+#room commands
+
+[g][e][t][b][o][o][k]) if [ $book31 -eq 2 ] 
+then
+output=$(./utils.sh blockform uni get1) 
+fi
+if [ "$book31" -eq 0 ]
+then
+sed -i '/book31/c\book31=1' status
+intro=1
+output=$(./utils.sh blockform uni get2 book)
+fi
+if [ "$book31" -eq 1 ]
+then
+output=$(./utils.sh blockform uni get3 book)
+fi ;;
+
+[g][e][t][k][e][y]) if [ $key3 -eq 0 ] 
+then
+sed -i '/key3=/c\key3=1' status
+intro=1
+output=$(./utils.sh blockform uni get2 key)
+else
+output=$(./utils.sh blockform uni get3 key)
+fi ;;
+
+[g][o][e][a][s][t]) if [ $light -eq 1 ] ; then
+sed -i '/cell=/c\cell=06' status
+break
+else
+./utils.sh cutscene i1a Death logo
+./utils.sh setdeath
+break
+fi ;;
+
+[g][o][n][o][r][t][h]) if [ $i1window -eq 1 ] ; then 
+sed -i '/cell=/c\cell=09' status
+sed -i '/focus=/c\focus=0' status
+break
+else output=$(./utils.sh blockform uni go) ; fi ;;
+
+[g][o][w][e][s][t]) if [ $key3 -eq 1 ] 
+then
+sed -i '/cell=/c\cell=02' status
+break 
+else
+output=$(./utils.sh blockform uni doorlock)
+fi ;;
+
+[l][o][o][k]) output=$(./utils.sh blockform looki i01 key1 $key3 book1 $book31 window1 $i1window) ;;
+
+[l][o][o][k][b][o][o][k]) if [ $book31 -eq 0 ] || [ $book31 -eq 1 ] 
+then
+output=$(./utils.sh blockform uni book)
+else
+output=$(./utils.sh blockform uni look)
+fi ;;
+
+[l][o][o][k][e][a][s][t][c][o][r][r][i][d][o][r]) output=$(./utils.sh blockform looki corridor1 $i06) ;;
+
+[l][o][o][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh blockform lookdoor door1 door2 $i02 $key3) ;;
+
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor1 0) ;;
+
+[l][o][o][k][k][e][y]) ./lib.sh key3a
+if [ $key3 -eq 0 ] ; then output=$(./utils.sh blockform lookkey i01) ; fi
+if [ $key3 -eq 1 ] ; then output=$(./utils.sh blockform uni get3 key) ; fi ;;
+
+[l][o][o][k][l][o][c][k]) ./lib.sh key3b
+if [ $key3 -eq 0 ] 
+then
+output=$(./utils.sh blockform uni doorlock)
+else
+output=$(./utils.sh blockform uni doorunlock)
+fi ;;
+
+[l][o][o][k][t][a][b][l][e]) output=$(./utils.sh blockform looki null table1 0 key1 $key3 book1 $book31) ;;
+
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall1 0) ;;
+
+[l][o][o][k][w][i][n][d][o][w]) sed -i '/focus=/c\focus=1' status
+intro=1
+if [ $rain -eq 1 ] ; then
+output=$(./utils.sh blockform looki null window2 0 rain1 0)
+else
+output=$(./utils.sh blockform looki null window2 0 rain2 0 box1 $i9box window7 $i1window)
+fi ;;
+
+[o][p][e][n][w][i][n][d][o][w]) output=$(./utils.sh blockform uni openwin) ;;
+
+[r][e][a][d][b][o][o][k]) if [ $book31 -eq 0 ] || [ $book31 -eq 1 ]
+then
+./utils.sh reader book31r
+intro=0
+else
+output=$(./utils.sh blockform uni read)
+fi ;;
+
+[s][m][a][s][h][w][i][n][d][o][w]) if [ $hammer -eq 1 ]
+then
+if [ $i1window -eq 0 ]
+then
+sed -i '/i1window=/c\i1window=1' status
+intro=1
+output=$(./utils.sh blockform uni smashwin1)
+else
+output=$(./utils.sh blockform uni smashwin2)
+fi
+else
+output=$(./utils.sh blockform uni smash)
+fi ;;
+
+#olfactory
+
+[l][i][c][k][b][o][o][k]) if [ $book31 -eq 0 ] || [ $book31 -eq 1 ]
+then
+output=$(./utils.sh blockform lick book)
+else
+output=$(./utils.sh blockform uni lick1)
+fi ;;
+
+[l][i][c][k][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floori) ;;
+
+[l][i][c][k][k][e][y]) if [ $key3 -eq 0 ] || [ $key3 -eq 1 ]
+then
+ouput=$(./utils.sh blockform lick key)
+else
+output=$(./utils.sh blockform uni lick1)
+fi ;;
+
+[l][i][c][k][t][a][b][l][e]) output=$(./utils.sh blockform lick table) ;;
+
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall) ;;
+
+[l][i][c][k][w][i][n][d][o][w]) output=$(./utils.sh blockform lick window) ;;
+
+[s][m][e][l][l]) if [ $book31 -ne 0 ]
+then
+output=$(./utils.sh blockform smell i01 $i1window)
+else
+output=$(./utils.sh blockform smell book3)
+fi ;;
+
+[s][m][e][l][l][b][o][o][k]) if [ $book31 -eq 0 ] || [ $book31 -eq 1 ]
+then
+output=$(./utils.sh blockform smell book)
+else
+output=$(./utils.sh blockform uni smell)
+fi ;;
+
+[s][m][e][l][l][c][o][r][r][i][d][o][o][r]) output=$(./utils.sh blockform smell corridor1) ;;
+
+[s][m][e][l][l][d][o][o][r]) output=$(./utils.sh blockform smell door) ;;
+
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floori) ;;
+
+[s][m][e][l][l][k][e][y]) if [ $key3 -eq 0 ] || [ $key3 -eq 1 ]
+then
+output=$(./utils.sh blockform smell key)
+else
+output=$(./utils.sh blockform uni smell)
+fi ;;
+
+[s][m][e][l][l][t][a][b][l][e]) output=$(./utils.sh blockform smell table) ;;
+
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall) ;;
+
+[s][m][e][l][l][w][i][n][d][o][w]) output=$(./utils.sh blockform smell window) ;;
+
+#constantcomm
+esac
+fi
+
+if [ $focus -eq 1 ]
+then
+case $case1 in
+
+#room commands
+
+[g][o][n][o][r][t][h]) if [ $i1window -eq 1 ] ; then 
+sed -i '/cell=/c\cell=09' status
+break
+else output=$(./utils.sh blockform uni go) ; fi ;;
+
+[l][o][o][k])if [ $rain -eq 1 ] ; then
+output=$(./utils.sh blockform looki null window2 0 rain1 0)
+else
+output=$(./utils.sh blockform looki null window2 0 rain2 0 box1 $i9box window7 $i1window)
+fi ;;
+
+[l][o][o][k]) output=$(./utils.sh blockform looki null window1 $rain $i1window $i5bwindow $i9box) ;;
+
+[l][o][o][k][b][o][x]) output=$(./utils.sh blockform looki null box2 0 box1 $i9box) ;;
+
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor2 0) ;;
+
+[l][o][o][k][r][a][i][n]) if [ $rain -eq 1 ]
+then
+output=$(./utils.sh blockform looki null rain3 0)
+else
+output=$(./utils.sh blockform looki null rain4 0)
+fi ;;
+
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall5 0) ;;
+
+[l][o][o][k][w][i][n][d][o][w]) output=$(./utils.sh blockform looki null window22 0 window7 $i5bwindow) ;;
+
+[o][p][e][n][w][i][n][d][o][w]) output=$(./utils.sh blockform uni openwin) ;;
+
+[s][m][a][s][h][w][i][n][d][o][w]) if [ $hammer -eq 1 ]
+then
+if [ $i1window -eq 0 ]
+then
+sed -i '/i1window=/c\i1window=1' status
+intro=1
+output=$(./utils.sh blockform uni smashwin1)
+else
+output=$(./utils.sh blockform uni smashwin2)
+fi
+else
+output=$(./utils.sh blockform uni smash)
+fi ;;
+
+#olfactory
+
+[l][i][c][k][w][i][n][d][o][w]) output=$(./utils.sh blockform lick window) ;;
+
+[s][m][e][l][l]) output=$(./utils.sh blockform smell window) ;;
+
+[s][m][e][l][l][w][i][n][d][o][w]) output=$(./utils.sh blockform smell window) ;;
+
+#constantcomm
+esac
+fi
+
+done
+

@@ -78,5 +78,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 # Credits
+
 Riddles by fantasynamegenerators.com
+
 Dedicated to my co workers who told me I couldn't do it.

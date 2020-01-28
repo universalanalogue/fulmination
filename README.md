@@ -41,7 +41,6 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
    my beta testers either didn't understand adventure games or were me.  Should be less
    glitchy than the day one Assasins Creed Unity.
    
-# Riddles by fantasynamegenerators.com
 
 # General Disclaimer
 Disclaimer of engine inefficiencies;  This game uses the 1.0 version of the engine.
@@ -77,3 +76,7 @@ LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE A
 NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+# Credits
+Riddles by fantasynamegenerators.com
+Dedicated to my co workers who told me I couldn't do it.

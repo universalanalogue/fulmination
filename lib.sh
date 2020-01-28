@@ -2002,7 +2002,7 @@ my beloved Steven goes and gets drafted.  I hope he teaches those
 damn Japanese a lesson they wont forget.  I will wait for him forever.
 ....
 
-The rest is torn off"	
+The rest is torn off"
 }
 
 function book12 () {

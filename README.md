@@ -55,7 +55,8 @@ as well as in the next adventure game I am currently working on.  I know there i
 of room for improvement, and alot of it already has.  After I finish with the inventory
 streamlines I have planned, I will release the SDK.  
 
-TL;DR: I will fix whats there, however I will not be adding to it, as I want to move on
+TL;DR: I will fix whats there, however I will not be adding to it.  The game has been done
+for 7 months, and I've just been trying to get up the nerve to post it.I want to move on
 to better things, and better things are in production.
 
 # License: MIT

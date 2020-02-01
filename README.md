@@ -9,14 +9,13 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
    isn't any, so its not really needed yet)
 5) 74x42 monospace characters terminal (would probably have it be atleast 75x43 in case of
    overrun in proccessing)
+6) an ssh client if playing over ssh.
 
-6a) an ssh client if playing over ssh.
+7) a serial terminal client if playing over serial.
 
-6b) a serial terminal client if playing over serial.
+8) a terminal emulator if playing in a gui.
 
-6c) a terminal emulator if playing in a gui.
-
-6d) a monitor and keyboard if playing on local console.
+9) a monitor and keyboard if playing on local console.
 
 
 # Installation

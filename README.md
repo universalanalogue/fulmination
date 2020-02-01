@@ -55,7 +55,9 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
    
 
 # General Disclaimer
-Disclaimer of engine inefficiencies;  This game uses the 1.0 version of the engine.
+>Disclaimer of engine inefficiencies
+
+This game uses the 1.0 version of the engine.
 It will not recive Feature updates such as streamlined inventory module, or updated
 overlays module.  The game received 6 months more of feature updates to get it to
 what I would consider to be a stable professional state.  I could honestly go back and

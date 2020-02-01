@@ -20,26 +20,39 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
 
 
 # Installation
+>LINUX
 1) move to the directory after it downloads/unpacks.
 
-2a) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
-
-2b) if this is being run on freebsd, please install gsed, then move the bsd.sh file from reffiles to the
-    main directory.  then run it with ./bsd.sh.  I have tested it to make sure it patches right, however
-    if you experiance any issues with it please let me know, it has had less testing than the rest
-    of the game
+2) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
  
-2c) run ./mkbld.sh to install the program.
+3) run ./mkbld.sh to install the program.
 
-3) run ./start.sh to play the game.
+4) run ./start.sh to play the game.
 
-4) Enjoy
+5) Enjoy
 
-5) if you dont enjoy, please give feedback so I know what doesn't work for the next game.
+6) if you dont enjoy, please give feedback so I know what doesn't work for the next game.
 
-6) report bugs so I can fix them.  I consider this to be a production level game, however
+7) report bugs so I can fix them.  I consider this to be a production level game, however
    my beta testers either didn't understand adventure games or were me.  Should be less
    glitchy than the day one Assasins Creed Unity.
+
+>FREEBSD
+1) Have bash installed and linked to /bin/bash (ln /usr/local/bin/bash /bin/bash)
+
+2) have gsed installed
+
+3) move to the directory after it downloads/unpacks.
+
+4) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
+ 
+5) copy bsd.sh from reffiles to the fulmination root directory, then run it ./bsd.sh
+
+6) rest the same as linux.
+
+>MACOS
+
+1) Will probably work with all the freebsd instructions, however I lack a MAC, so I can't test it 
    
 
 # General Disclaimer

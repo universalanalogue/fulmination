@@ -58,17 +58,19 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
 >Disclaimer of engine inefficiencies
 
 This game uses the 1.0 version of the engine.
+Bugs and general story things I am willing to work on or fix as needed. 
 It will not recive Feature updates such as streamlined inventory module, or updated
 overlays module.  The game received 6 months more of feature updates to get it to
 what I would consider to be a stable professional state.  I could honestly go back and
 give it every new feature it would never take advantage of as I consider it a finished
-product.  I will continue to support bugs, however as far as active development goes,
-the main focus is the SDK for the engine so others can make adventure games in it,
+product.  I will continue to support engine bugs, however as far as active development
+goes, the main focus is the SDK for the engine so others can make adventure games in it,
 as well as in the next adventure game I am currently working on.  I know there is alot
 of room for improvement, and alot of it already has.  After I finish with the inventory
-streamlines I have planned, I will release the SDK.  
+streamlines I have planned, I will release the SDK. 
 
-TL;DR: I will fix whats there, however I will not be adding to it.  The game has been done
+TL;DR: I will fix whats there, however I will not be modifing the engine any further.
+I will howver fix bugs and story issues as needed.  The game has been done
 for 7 months, and I've just been trying to get up the nerve to post it.I want to move on
 to better things, and better things are in production.
 

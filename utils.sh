@@ -168,7 +168,7 @@ sed -i "/focus=/c\focus=0" status
 
 function cutscene(){
 printf "\e[0;0H"
-./lib.sh $3
+if [[ $3 != null ]] ; then ./lib.sh $3 ; fi
 output=$(blockform ./lib.sh $1)
 printf "\e[23;0H"
 a=$(printf '%-70s' "$2")

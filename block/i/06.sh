@@ -100,7 +100,7 @@ then
 if [ $rain -eq 1 ]
 then
 ./utils.sh cutscene bathroom1 Intermission "graphpass i 07pic2a 6 4"
-./utils.sh cutscene bathroom2 Intermission "graphpass i 07pic2a 6 4"
+./utils.sh cutscene bathroom2 Intermission "null"
 sed -i '/rain=/c\rain=0' status
 ./lib.sh journal1 3
 sed -i '/book32=/c\book32=0' status

@@ -648,7 +648,8 @@ echo "$object, the wolf eats you"
 
 function wolf2(){
 if [[ $1 == 1 ]] ; then object=("there is a wolf approaching you from the north") ; fi
-if [[ $1 == 2 ]] ; then object=("you shoot at it and kill it.") ; fi
+if [[ $1 == 2 ]] ; then object=("The silver bullet ripped into the the wolf.
+It slumpped over and disolved into the air.") ; fi
 if [[ $1 == 3 ]] ; then object=("you shoot at it and miss") ; fi
 if [[ $1 == 4 ]] ; then object=("you fumble through you pack, but you can't focus as
 the wolf impedes on you") ; fi

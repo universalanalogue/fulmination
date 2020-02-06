@@ -1816,7 +1816,7 @@ read -p '##################################################
 # Created by: Universal Analogue  #              #
 # License: MIT                    #              #
 # Makebuild Engine Ver 1.0        #              #
-# Fulmination Ver 1.0.01          #              #
+# Fulmination Ver 1.0.03          #              #
 ##################################################'
 
 }

@@ -5,14 +5,12 @@ function background() {
 if [ $focus -eq 0 ] 
 then
 ./utils.sh colorset 4
-if [ $rain -eq 1 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic1a)
-else
-image=$(block/$block/./graphics.sh ${cell}pic1b)
-fi
+image=$(block/$block/./graphics.sh ${cell}pic1a
+if [ $rain -eq 0 ] ; then ./utils.sh overlay chair1 21 14 0 ; fi
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+if [ $i2window -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 ; fi)
 echo "$image"
-if [ $i2window -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 ; fi
 fi
 
 if [ $focus -eq 1 ]
@@ -20,23 +18,26 @@ then
 ./utils.sh colorset 1
 if [ $rain -eq 0 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic2a)
+image=$(block/$block/./graphics.sh ${cell}pic2a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0
+if [ $i2window -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
 else
-image=$(block/$block/./graphics.sh ${cell}pic2b)
+image=$(block/$block/./graphics.sh ${cell}pic2b
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0
+if [ $i2window -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
 fi
 echo "$image"
-if [ $i2window -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi
 fi
 
 if [ $focus -eq 2 ]
 then
-if [ $book32 -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic3a)
-else
-image=$(block/$block/./graphics.sh ${cell}pic3b)
-fi
+image=$(block/$block/./graphics.sh ${cell}pic3a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 echo "$image"
+if [ $book32 -eq 0 ] ; then ./utils.sh overlay book11 24 6 0 ; fi
 fi
 }
 
@@ -91,7 +92,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -118,37 +119,37 @@ sed -i '/block=/c\block=e' status
 sed -i '/cell=/c\cell=08' status
 break
 else
-output=$(./utils.sh blockform uni go)
+output=$(./utils.sh form uni go)
 fi ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i02 window1 $i2window) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i02 window1 $i2window) ;;
 
-[l][o][o][k][b][o][o][k][c][a][s][e]) output=$(./utils.sh blockform looki null bookcase1 0) ;;
+[l][o][o][k][b][o][o][k][c][a][s][e]) output=$(./utils.sh form looki null bookcase1 0) ;;
 
 [l][o][o][k][c][h][a][i][r]) if [ $rain -eq 1 ]
 then
-output=$(./utils.sh blockform looki null chair1 0)
+output=$(./utils.sh form looki null chair1 0)
 else
 if [ $book32 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null chair2 0)
+output=$(./utils.sh form looki null chair2 0)
 else
-output=$(./utils.sh blockform looki null chair3 0)
+output=$(./utils.sh form looki null chair3 0)
 fi
 fi ;;
 
-[l][o][o][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh blockform lookdoor door1 door3 $i01 1) ;;
+[l][o][o][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh form lookdoor door1 door3 $i01 1) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book32 -eq 1 ] 
 then
-output=$(./utils.sh blockform looki null book5 0)
+output=$(./utils.sh form looki null book5 0)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor1 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor1 0) ;;
 
 [l][o][o][k][l][e][g]) if [ $rain -eq 1 ]
 then
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 else
 if [ $focus -eq 0 ]
 then
@@ -156,26 +157,26 @@ sed -i '/focus=/c\focus=2' status
 intro=1
 if [ $book32 -eq 0 ] 
 then
-output=$(./utils.sh blockform looki null chair4 0)
+output=$(./utils.sh form looki null chair4 0)
 else
-output=$(./utils.sh blockform looki null chair5 0)
+output=$(./utils.sh form looki null chair5 0)
 fi
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi
 fi ;;
 
-[l][o][o][k][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh blockform lookdoor door1 door4 $i03 1) ;;
+[l][o][o][k][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form lookdoor door1 door4 $i03 1) ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall1 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall1 0) ;;
 
 [l][o][o][k][w][i][n][d][o][w]) sed -i '/focus=/c\focus=1' status
 intro=1
 if [ $rain -eq 1 ] 
 then
-output=$(./utils.sh blockform looki null window3 0 rain1 0 window7 $i2window)
+output=$(./utils.sh form looki null window3 0 rain1 0 window7 $i2window)
 else
-output=$(./utils.sh blockform looki null window3 0 rain2 0 window7 $i2window)
+output=$(./utils.sh form looki null window3 0 rain2 0 window7 $i2window)
 fi ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book32 -eq 1 ]
@@ -183,12 +184,12 @@ then
 ./utils.sh reader book32r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 [s][i][t][c][h][a][i][r]) if [ $rain -eq 0 ]
 then 
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 break
 else
 ./utils.sh cutscene sit2 Death logo
@@ -196,7 +197,7 @@ else
 break
 fi ;;
 
-[o][p][e][n][w][i][n][d][o][w]) output=$(./utils.sh blockform uni openwin) ;;
+[o][p][e][n][w][i][n][d][o][w]) output=$(./utils.sh form uni openwin) ;;
 
 [s][m][a][s][h][w][i][n][d][o][w]) if [ $hammer -eq 1 ] 
 then
@@ -204,61 +205,61 @@ if [ $i2window -eq 0 ]
 then
 sed -i '/i2window=/c\i2window=1' status
 intro=1
-output=$(./utils.sh blockform uni smashwin1)
+output=$(./utils.sh form uni smashwin1)
 else
-output=$(./utils.sh blockform uni smashwin2)
+output=$(./utils.sh form uni smashwin2)
 fi
 else
-output=$(./utils.sh blockform uni smash)
+output=$(./utils.sh form uni smash)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book32 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][b][o][o][k][c][a][s][e]) output=$(./utils.sh blockform lick forest) ;;
+[l][i][c][k][b][o][o][k][c][a][s][e]) output=$(./utils.sh form lick forest) ;;
 
-[l][i][c][k][c][h][a][i][r]) output=$(./utils.sh blockform lick chair1) ;;
+[l][i][c][k][c][h][a][i][r]) output=$(./utils.sh form lick chair1) ;;
 
-[l][i][c][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+[l][i][c][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
 
-[l][i][c][k][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+[l][i][c][k][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form lick door) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floori) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floori) ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall) ;;
 
-[l][i][c][k][w][i][n][d][o][w]) output=$(./utils.sh blockform lick window) ;;
+[l][i][c][k][w][i][n][d][o][w]) output=$(./utils.sh form lick window) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i01 null $i2window) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i01 null $i2window) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book32 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][b][o][o][k][c][a][s][e]) output=$(./utils.sh blockform smell forreste) ;;
+[s][m][e][l][l][b][o][o][k][c][a][s][e]) output=$(./utils.sh form smell forreste) ;;
 
-[s][m][e][l][l][c][h][a][i][r]) output=$(./utils.sh blockform smell chair1) ;;
+[s][m][e][l][l][c][h][a][i][r]) output=$(./utils.sh form smell chair1) ;;
 
-[s][m][e][l][l][e][a][s][t][d][o][o][r]) output=$(./utils.sh blockform smell door) ;;
+[s][m][e][l][l][e][a][s][t][d][o][o][r]) output=$(./utils.sh form smell door) ;;
 
-[s][m][e][l][l][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh blockform smell door) ;;
+[s][m][e][l][l][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form smell door) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floori) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floori) ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall) ;;
 
-[s][m][e][l][l][w][i][n][d][o][w]) output=$(./utils.sh blockform smell window) ;;
+[s][m][e][l][l][w][i][n][d][o][w]) output=$(./utils.sh form smell window) ;;
 
-#constantcomm
+*) case1=(system${case1}) ;;
 
 esac
 fi
@@ -276,34 +277,34 @@ sed -i '/block=/c\block=e' status
 sed -i '/cell=/c\cell=08' status
 break
 else
-output=$(./utils.sh blockform uni go)
+output=$(./utils.sh form uni go)
 fi ;;
 
 [l][o][o][k]) if [ $rain -eq 1 ] 
 then
-output=$(./utils.sh blockform looki null window3 0 rain1 0 window7 $i2window)
+output=$(./utils.sh form looki null window3 0 rain1 0 window7 $i2window)
 else
-output=$(./utils.sh blockform looki null window3 0 rain2 0 window7 $i2window)
+output=$(./utils.sh form looki null window3 0 rain2 0 window7 $i2window)
 fi ;;
 
-[l][o][o][k][d][r][i][v][e]) output=$(./utils.sh blockform looki null drive1 0) ;;
+[l][o][o][k][d][r][i][v][e]) output=$(./utils.sh form looki null drive1 0) ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor2 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor2 0) ;;
 
-[l][o][o][k][g][a][t][e]) output=$(./utils.sh blockform looki null gate1 0) ;;
+[l][o][o][k][g][a][t][e]) output=$(./utils.sh form looki null gate1 0) ;;
 
-[l][o][o][k][h][e][d][g][e]) output=$(./utils.sh blockform looki null hedge1 0) ;;
+[l][o][o][k][h][e][d][g][e]) output=$(./utils.sh form looki null hedge1 0) ;;
 
 [l][o][o][k][r][a][i][n]) if [ $rain -eq 1 ]
 then
-output=$(./utils.sh blockform looki null rain3 0)
+output=$(./utils.sh form looki null rain3 0)
 else
-output=$(./utils.sh blockform looki null rain4 0)
+output=$(./utils.sh form looki null rain4 0)
 fi ;;
 
-[l][o][o][k][t][r][e][e]) output=$(./utils.sh blockform looki null tree1 0) ;;
+[l][o][o][k][t][r][e][e]) output=$(./utils.sh form looki null tree1 0) ;;
 
-[o][p][e][n][w][i][n][d][o][w]) output=$(./utils.sh blockform uni openwin) ;;
+[o][p][e][n][w][i][n][d][o][w]) output=$(./utils.sh form uni openwin) ;;
 
 [s][m][a][s][h][w][i][n][d][o][w]) if [ $hammer -eq 1 ] 
 then
@@ -311,21 +312,21 @@ if [ $i2window -eq 0 ]
 then
 sed -i '/i2window=/c\i2window=1' status
 intro=1
-output=$(./utils.sh blockform uni smashwin1)
+output=$(./utils.sh form uni smashwin1)
 else
-output=$(./utils.sh blockform uni smashwin2)
+output=$(./utils.sh form uni smashwin2)
 fi
 else
-output=$(./utils.sh blockform uni smash)
+output=$(./utils.sh form uni smash)
 fi ;;
 
 #olfactory
 
-[l][i][c][k][w][i][n][d][o][w]) output=$(./utils.sh blockform lick window) ;;
+[l][i][c][k][w][i][n][d][o][w]) output=$(./utils.sh form lick window) ;;
 
-[s][m][e][l][l][w][i][n][d][o][w]) output=$(./utils.sh blockform smell window) ;;
+[s][m][e][l][l][w][i][n][d][o][w]) output=$(./utils.sh form smell window) ;;
 
-#constantcomm
+*) case1=(system${case1}) ;;
 
 esac
 fi
@@ -341,78 +342,89 @@ case $case1 in
 then
 sed -i '/book32=/c\book32=1' status
 intro=1
-output=$(./utils.sh blockform uni get2 book) 
+output=$(./utils.sh form uni get2 book) 
 else
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [l][o][o][k]) if [ $book32 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null chair4 0)
+output=$(./utils.sh form looki null chair4 0)
 else
-output=$(./utils.sh blockform looki null chair5 0)
+output=$(./utils.sh form looki null chair5 0)
 fi ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book32 -eq 0 ] 
 then
-output=$(./utils.sh blockform looki null book4 0)
+output=$(./utils.sh form looki null book4 0)
 fi
 if [ $book32 -eq 1 ] 
 then
-output=$(./utils.sh blockform looki null book5 0)
+output=$(./utils.sh form looki null book5 0)
 fi ;;
 
 [l][o][o][k][c][h][a][i][r]) if [ $book32 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null chair2 0)
+output=$(./utils.sh form looki null chair2 0)
 else
-output=$(./utils.sh blockform looki null chair3 0)
+output=$(./utils.sh form looki null chair3 0)
 fi ;;
 
 [l][o][o][k][l][e][g]) sed -i '/focus=/c\focus=2' status
 intro=1
 if [ $book32 -eq 0 ] 
 then
-output=$(./utils.sh blockform looki null chair4 0)
+output=$(./utils.sh form looki null chair4 0)
 else
-output=$(./utils.sh blockform looki null chair5 0)
+output=$(./utils.sh form looki null chair5 0)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor1 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor1 0) ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book32 -eq 0 ] || [ $book32 -eq 1 ]
 then
 ./utils.sh reader book32r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book32 -eq 0 ] || [ $book32 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][c][h][a][i][r]) output=$(./utils.sh blockform lick chair1) ;;
+[l][i][c][k][c][h][a][i][r]) output=$(./utils.sh form lick chair1) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floori) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floori) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book32 -eq 0 ] || [ $book32 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book) 
+output=$(./utils.sh form smell book) 
 fi ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floori) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floori) ;;
 
-[s][m][e][l][l][c][h][a][i][r]) output=$(./utils.sh blockform smell chair1) ;;
+[s][m][e][l][l][c][h][a][i][r]) output=$(./utils.sh form smell chair1) ;;
+
+*) case1=(system${case1}) ;;
+
+esac
+fi
+
+if [[ $case1 == *"system"* ]]
+then
+case1=$(sed "s/system//" <<< $case1)
+case $case1 in
 
 #constantcomm
 
 esac
 fi
+
 done
 

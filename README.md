@@ -1,5 +1,5 @@
 # Fulmination
-Scriptures of Fulmination.  A small adventure game in the makebuild engine as a proof of concept.
+Scriptures of Fulmination, or how I learned to stop worrying, and just love urxvt.
 
 # Requirements
 1) Bash
@@ -16,6 +16,9 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
 8) a terminal emulator if playing in a gui.
 
 9) a monitor and keyboard if playing on local console.
+
+10) some storage medium to store the game.  game will fit and run on a 1.44mb floppy,
+you have to move the game without gitfiles for it to fit. floppy must be ext2
 
 
 # Installation
@@ -54,10 +57,28 @@ Scriptures of Fulmination.  A small adventure game in the makebuild engine as a 
 1) Will probably work with all the freebsd instructions, however I lack a MAC, so I can't test it 
    
 
+# whats new in V1.5.00
+
+why v1.5.00.  The jump in version is due to me backporting all of the
+changes from v2.0.00 of the engine, that didn't break general compatablity
+and requiring big rewrites, hence why that version of the engine is 2.0.00.
+
+Unified Logic Cells.  Large blocks of similar cells that have been combined.
+
+Massivly overhauled overlays performance.
+
+Massivly implemented overlays to reduce duplicate graphical entries.
+
+General efficiency things
+
+Lots of bugs fixed.
+
+Probably more added.
+
 # General Disclaimer
 >Disclaimer of engine inefficiencies
 
-This game uses the 1.0 version of the engine.
+<s> This game uses the 1.0 version of the engine.
 Bugs and general story things I am willing to work on or fix as needed. 
 It will not recive Feature updates such as streamlined inventory module, or updated
 overlays module.  The game received 6 months more of feature updates to get it to
@@ -66,8 +87,12 @@ give it every new feature it would never take advantage of as I consider it a fi
 product.  I will continue to support engine bugs, however as far as active development
 goes, the main focus is the SDK for the engine so others can make adventure games in it,
 as well as in the next adventure game I am currently working on.  I know there is alot
-of room for improvement, and alot of it already has.  After I finish with the inventory
-streamlines I have planned, I will release the SDK. 
+of room for improvement, and alot of it already has. 
+  
+OK, I'm a hypocryte.   I've updated a fair bit of the games code to help reduce its total
+size.  It isn't fully up to date with the current build of the engine, it is however
+much better than it was.  It took a week, however it will now fit on floppy.
+After I finish with the inventory streamlines I have planned, I will release the SDK.
 
 TL;DR: I will fix whats there, however I will not be modifing the engine any further.
 I will howver fix bugs and story issues as needed.  The game has been done

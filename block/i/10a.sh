@@ -3,11 +3,15 @@
 function background() {
 if [ $focus -eq 0 ]
 then
-image=$(block/$block/./graphics.sh 10pic3a)
+image=$(block/$block/./graphics.sh 10pic3a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 1" 56 4 0)
 fi
 if [ $focus -eq 1 ]
 then
-image=$(block/$block/./graphics.sh 10pic4a)
+image=$(block/$block/./graphics.sh 10pic4a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0)
 fi
 echo "$image"
 }
@@ -118,7 +122,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -141,20 +145,20 @@ then
 ./utils.sh setdeath
 break 
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 [g][o][w][e][s][t]) ./utils.sh cutscene "ghost1 walk" Death "graphpass i 10pic3a 2 2 "
 ./utils.sh setdeath
 break ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i10a) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i10a) ;;
 
-[l][o][o][k][g][h][o][s][t]) output=$(./utils.sh blockform ghost1 look) ;;
+[l][o][o][k][g][h][o][s][t]) output=$(./utils.sh form ghost1 look) ;;
 
 [l][o][o][k][f][i][r][e][p][l][a][c][e]) sed -i '/focus=/c\focus=1' status
 intro=1
-output=$(./utils.sh blockform looki null fireplace1 0) ;;
+output=$(./utils.sh form looki null fireplace1 0) ;;
 
 [s][h][o][o][t][g][h][o][s][t]) if [ $gun -eq 1 ]
 then
@@ -169,7 +173,7 @@ else
 break
 fi 
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 [s][m][a][s][h][g][h][o][s][t]) ./utils.sh cutscene "ghost1 smash" Death "graphpass i 10pic3a 2 2"
@@ -183,9 +187,9 @@ break ;;
 ./utils.sh setdeath
 break ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i10) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i10) ;;
 
-[s][m][e][l][l][g][h][o][s][t]) output=$(./utils.sh blockform ghost1 smell) ;;
+[s][m][e][l][l][g][h][o][s][t]) output=$(./utils.sh form ghost1 smell) ;;
 
 #constants
 
@@ -199,7 +203,7 @@ then
 break
 fi
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 [h][e][l][p]) ./utils.sh reader help1
@@ -212,7 +216,7 @@ then
 break
 fi ;;
 
-[l][o][a][d]) output=$(./utils.sh blockform uni loadfail) ;;
+[l][o][a][d]) output=$(./utils.sh form uni loadfail) ;;
 
 [s][a][v][e]) ./utils.sh save
 intro=0 ;;
@@ -220,67 +224,67 @@ intro=0 ;;
 [e][x][i][t]) ./utils.sh setdeath
 break ;;
 
-[s][m][e][l][l][m][e]) output=$(./utils.sh blockform uni smellme) ;;
+[s][m][e][l][l][m][e]) output=$(./utils.sh form uni smellme) ;;
 
-[w][h][o][a][m][i]) output=$(./utils.sh blockform uni whoami) ;;
+[w][h][o][a][m][i]) output=$(./utils.sh form uni whoami) ;;
 
-[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh blockform uni whoareyou) ;;
+[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh form uni whoareyou) ;;
 
 [b][u][r][n]*) if [ $lighter -eq 1 ]
 then
 burnie=$(( $burnie + 1 ))
 sed -i "/burnie=/c\\burnie=$burnie" status
-output=$(./utils.sh blockform uni burn)
+output=$(./utils.sh form uni burn)
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 [g][e][t]*) greed=$(( $greed + 1 ))
 sed -i "/greed=/c\\greed=$greed" status
-output=$(./utils.sh blockform uni get1) ;;
+output=$(./utils.sh form uni get1) ;;
 
-[g][o]*) output=$(./utils.sh blockform uni go) ;;
+[g][o]*) output=$(./utils.sh form uni go) ;;
 
-[l][o][o][k]*) output=$(./utils.sh blockform ghost1 look2) ;;
+[l][o][o][k]*) output=$(./utils.sh form ghost1 look2) ;;
 
-[l][i][c][k]*) output=$(./utils.sh blockform ghost1 lick3) ;;
+[l][i][c][k]*) output=$(./utils.sh form ghost1 lick3) ;;
 
-[p][l][a][c][e]*) output=$(./utils.sh blockform uni place) ;;
+[p][l][a][c][e]*) output=$(./utils.sh form uni place) ;;
 
-[o][p][e][n]*) output=$(./utils.sh blockform uni open) ;;
+[o][p][e][n]*) output=$(./utils.sh form uni open) ;;
 
-[r][e][a][d]*) output=$(./utils.sh blockform uni read) ;;
+[r][e][a][d]*) output=$(./utils.sh form uni read) ;;
 
-[s][i][t]*) output=$(./utils.sh blockform uni sit) ;;
+[s][i][t]*) output=$(./utils.sh form uni sit) ;;
 
 [s][h][o][o][t]*) if [ $gun -eq 1 ]
 then
 if [ $ammo -gt 0 ]
 then
-output=$(./utils.sh blockform uni shoot1)
+output=$(./utils.sh form uni shoot1)
 ammo=$(( $ammo - 1 ))
 sed -i "/ammo=/c\\ammo=$ammo" status
 else
-output=$(./utils.sh blockform uni shoot2)
+output=$(./utils.sh form uni shoot2)
 fi
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
-[s][l][e][e][p]*) output=$(./utils.sh blockform uni sleep) ;;
+[s][l][e][e][p]*) output=$(./utils.sh form uni sleep) ;;
 
-[s][m][a][s][h]*) output=$(./utils.sh blockform uni smash) ;;
+[s][m][a][s][h]*) output=$(./utils.sh form uni smash) ;;
 
-[s][m][e][l][l]*) output=$(./utils.sh blockform ghost1 smell2) ;;
+[s][m][e][l][l]*) output=$(./utils.sh form ghost1 smell2) ;;
 
-[w][i][n][d]*) output=$(./utils.sh blockform uni wind) ;;
+[w][i][n][d]*) output=$(./utils.sh form uni wind) ;;
 
 #debug
 [i][d][k][f][a]) inv=$(sed -n "/^#inveta/,/^#invetb/p;/^#invetb/q" status | sed "/#/d" | sed "/^[[:space:]]*$/d" | cut -d "=" -f1)
 for i in $inv ; do sed -i "/$i=/c\\\\$i=1" status ; done
-output=$(./utils.sh blockform debugfill);;
+output=$(./utils.sh form debugfill);;
 
-[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh blockform debughelp) ;;
+[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh form debughelp) ;;
 
 [m][o][v][e]*) debug1=$(echo "$case1" | sed "s/move//")
 debug2=$(echo "$debug1" | cut -d "-" -f1)
@@ -291,13 +295,13 @@ sed -i "/cell=/c\\cell=$debug3" status
 sed -i "/block=/c\\block=$debug2" status
 break
 else
-output=$(./utils.sh blockform debugmove)
+output=$(./utils.sh form debugmove)
 fi ;;
 
 [s][t][a][t][e]*) debug1=$(echo "$case1" | sed "s/state//")
 debug2=$(cat status | grep "$debug1=" | cut -d "=" -f2)
 debug3=$(eval "echo \$${debug1}")
-output=$(./utils.sh blockform debugstate $debug1 $debug2 $debug3) ;;
+output=$(./utils.sh form debugstate $debug1 $debug2 $debug3) ;;
 
 [s][e][t][g][l][o][b][a][l]*) debug1=$(echo "$case1" | sed "s/set//")
 debug1=$(echo "$debug1" | sed "s/global//")
@@ -308,10 +312,10 @@ sed -i "/$debug2=/c\\\\$debug2=$debug3" status ;;
 *) helpcount=$(( $helpcount + 1 ))
 if [ $helpcount -gt 5 ]
 then
-output=$(./utils.sh blockform uni help2)
+output=$(./utils.sh form uni help2)
 helpcount=0
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 esac
@@ -321,7 +325,7 @@ if [ $focus -eq 1 ]
 then
 case $case1 in
 
-[l][o][o][k]) output=$(./utils.sh blockform looki null fireplace8 0) ;;
+[l][o][o][k]) output=$(./utils.sh form looki null fireplace8 0) ;;
 
 [b][u][r][n][b][o][o][k]) if [ $lighter -eq 1 ]
 then
@@ -343,7 +347,7 @@ else
 break
 fi
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 #constants
@@ -358,7 +362,7 @@ then
 break
 fi
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 [h][e][l][p]) ./utils.sh reader help1
@@ -371,7 +375,7 @@ intro=0 ;;
 ./utils.sh setdeath
 break ;;
 
-[l][o][a][d]) output=$(./utils.sh blockform uni loadfail) ;;
+[l][o][a][d]) output=$(./utils.sh form uni loadfail) ;;
 
 [s][a][v][e]) ./utils.sh save
 intro=0 ;;
@@ -379,67 +383,67 @@ intro=0 ;;
 [e][x][i][t]) ./utils.sh setdeath
 break ;;
 
-[s][m][e][l][l][m][e]) output=$(./utils.sh blockform uni smellme) ;;
+[s][m][e][l][l][m][e]) output=$(./utils.sh form uni smellme) ;;
 
-[w][h][o][a][m][i]) output=$(./utils.sh blockform uni whoami) ;;
+[w][h][o][a][m][i]) output=$(./utils.sh form uni whoami) ;;
 
-[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh blockform uni whoareyou) ;;
+[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh form uni whoareyou) ;;
 
 [b][u][r][n]*) if [ $lighter -eq 1 ]
 then
 burnie=$(( $burnie + 1 ))
 sed -i "/burnie=/c\\burnie=$burnie" status
-output=$(./utils.sh blockform uni burn)
+output=$(./utils.sh form uni burn)
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 [g][e][t]*) greed=$(( $greed + 1 ))
 sed -i "/greed=/c\\greed=$greed" status
-output=$(./utils.sh blockform uni get1) ;;
+output=$(./utils.sh form uni get1) ;;
 
-[g][o]*) output=$(./utils.sh blockform uni go) ;;
+[g][o]*) output=$(./utils.sh form uni go) ;;
 
-[l][o][o][k]*) output=$(./utils.sh blockform ghost1 look2) ;;
+[l][o][o][k]*) output=$(./utils.sh form ghost1 look2) ;;
 
-[l][i][c][k]*) output=$(./utils.sh blockform ghost1 lick3) ;;
+[l][i][c][k]*) output=$(./utils.sh form ghost1 lick3) ;;
 
-[p][l][a][c][e]*) output=$(./utils.sh blockform uni place) ;;
+[p][l][a][c][e]*) output=$(./utils.sh form uni place) ;;
 
-[o][p][e][n]*) output=$(./utils.sh blockform uni open) ;;
+[o][p][e][n]*) output=$(./utils.sh form uni open) ;;
 
-[r][e][a][d]*) output=$(./utils.sh blockform uni read) ;;
+[r][e][a][d]*) output=$(./utils.sh form uni read) ;;
 
-[s][i][t]*) output=$(./utils.sh blockform uni sit) ;;
+[s][i][t]*) output=$(./utils.sh form uni sit) ;;
 
 [s][h][o][o][t]*) if [ $gun -eq 1 ]
 then
 if [ $ammo -gt 0 ]
 then
-output=$(./utils.sh blockform uni shoot1)
+output=$(./utils.sh form uni shoot1)
 ammo=$(( $ammo - 1 ))
 sed -i "/ammo=/c\\ammo=$ammo" status
 else
-output=$(./utils.sh blockform uni shoot2)
+output=$(./utils.sh form uni shoot2)
 fi
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
-[s][l][e][e][p]*) output=$(./utils.sh blockform uni sleep) ;;
+[s][l][e][e][p]*) output=$(./utils.sh form uni sleep) ;;
 
-[s][m][a][s][h]*) output=$(./utils.sh blockform uni smash) ;;
+[s][m][a][s][h]*) output=$(./utils.sh form uni smash) ;;
 
-[s][m][e][l][l]*) output=$(./utils.sh blockform ghost1 smell2) ;;
+[s][m][e][l][l]*) output=$(./utils.sh form ghost1 smell2) ;;
 
-[w][i][n][d]*) output=$(./utils.sh blockform uni wind) ;;
+[w][i][n][d]*) output=$(./utils.sh form uni wind) ;;
 
 #debug
 [i][d][k][f][a]) inv=$(sed -n "/^#inveta/,/^#invetb/p;/^#invetb/q" status | sed "/#/d" | sed "/^[[:space:]]*$/d" | cut -d "=" -f1)
 for i in $inv ; do sed -i "/$i=/c\\\\$i=1" status ; done
-output=$(./utils.sh blockform debugfill);;
+output=$(./utils.sh form debugfill);;
 
-[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh blockform debughelp) ;;
+[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh form debughelp) ;;
 
 [m][o][v][e]*) debug1=$(echo "$case1" | sed "s/move//")
 debug2=$(echo "$debug1" | cut -d "-" -f1)
@@ -450,13 +454,13 @@ sed -i "/cell=/c\\cell=$debug3" status
 sed -i "/block=/c\\block=$debug2" status
 break
 else
-output=$(./utils.sh blockform debugmove)
+output=$(./utils.sh form debugmove)
 fi ;;
 
 [s][t][a][t][e]*) debug1=$(echo "$case1" | sed "s/state//")
 debug2=$(cat status | grep "$debug1=" | cut -d "=" -f2)
 debug3=$(eval "echo \$${debug1}")
-output=$(./utils.sh blockform debugstate $debug1 $debug2 $debug3) ;;
+output=$(./utils.sh form debugstate $debug1 $debug2 $debug3) ;;
 
 [s][e][t][g][l][o][b][a][l]*) debug1=$(echo "$case1" | sed "s/set//")
 debug1=$(echo "$debug1" | sed "s/global//")
@@ -467,10 +471,10 @@ sed -i "/$debug2=/c\\\\$debug2=$debug3" status ;;
 *) helpcount=$(( $helpcount + 1 ))
 if [ $helpcount -gt 5 ]
 then
-output=$(./utils.sh blockform uni help2)
+output=$(./utils.sh form uni help2)
 helpcount=0
 else
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi ;;
 
 

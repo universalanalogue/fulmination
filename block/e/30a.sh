@@ -1,19 +1,20 @@
 #!/bin/bash
 
 function background() {
-if [ $wolf -eq 0 ]
-then
-image=$(block/$block/./graphics.sh 30pic1a)
-fi
 if [ $wolf -eq 1 ]
 then
-image=$(block/$block/./graphics.sh 30pic1c)
+image=$(block/$block/./graphics.sh 30pic1c
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 fi
 if [ $wolf -eq 2 ]
 then
-image=$(block/$block/./graphics.sh 30pic1b)
+image=$(block/$block/./graphics.sh 30pic1b
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 fi
 echo "$image"
+
 }
 
 function vars() {
@@ -66,7 +67,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -105,7 +106,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni doorlock)
+output=$(./utils.sh form uni doorlock)
 fi ;;
 
 [g][o][d][o][o][r]) if [ $wolf -eq 1 ]
@@ -119,7 +120,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni doorlock)
+output=$(./utils.sh form uni doorlock)
 fi ;;
 
 [l][o][o][k]) if [ $wolf -eq 1 ]
@@ -133,7 +134,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elook 30 wolf $wolf) 
+output=$(./utils.sh form elook 30 wolf $wolf) 
 fi ;;
 
 [l][o][o][k][d][o][o][r]) if [ $wolf -eq 1 ]
@@ -147,7 +148,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elooka door3)
+output=$(./utils.sh form elooka door3)
 fi ;;
 
 [l][o][o][k][e][a][s][t]) if [ $wolf -eq 1 ]
@@ -161,7 +162,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elookdir east 1 9) ; fi ;;
+output=$(./utils.sh form elookdir east 1 9) ; fi ;;
 
 [l][o][o][k][n][o][r][t][h]) if [ $wolf -eq 1 ]
 then
@@ -174,7 +175,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elookdir north $e37 3) ; fi ;;
+output=$(./utils.sh form elookdir north $e37 3) ; fi ;;
 
 [l][o][o][k][s][o][u][t][h]) ./utils.sh clear
 if [ $wolf -eq 1 ]
@@ -188,7 +189,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elookdir south $e23 1) ; fi ;;
+output=$(./utils.sh form elookdir south $e23 1) ; fi ;;
 
 [l][o][o][k][w][e][s][t]) if [ $wolf -eq 1 ]
 then
@@ -201,7 +202,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elookdir $e29 1) ; fi ;;
+output=$(./utils.sh form elookdir $e29 1) ; fi ;;
 
 [l][o][o][k][f][l][o][o][r]) if [ $wolf -eq 1 ]
 then
@@ -214,7 +215,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elooka floor) ; fi ;;
+output=$(./utils.sh form elooka floor) ; fi ;;
 
 [l][o][o][k][f][o][r][e][s][t]) if [ $wolf -eq 1 ]
 then
@@ -227,7 +228,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elooka forest)
+output=$(./utils.sh form elooka forest)
 fi ;;
 
 [l][o][o][k][h][o][u][s][e]) if [ $wolf -eq 1 ]
@@ -255,7 +256,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform  elooka shed1)
+output=$(./utils.sh form  elooka shed1)
 fi ;;
 
 [l][o][o][k][w][o][l][f]) if [ $wolf -eq 1 ]
@@ -269,7 +270,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform elooka wolf1)
+output=$(./utils.sh form elooka wolf1)
 fi ;;
 
 [s][h][o][o][t][w][o][l][f]) if [ $gun -eq 1 ]
@@ -287,7 +288,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni shoot2)
+output=$(./utils.sh form uni shoot2)
 fi
 fi
 if [ $ammo -gt 0 ]
@@ -329,7 +330,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi
 fi ;;
 #olfactory
@@ -345,7 +346,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform lick door3 0)
+output=$(./utils.sh form lick door3 0)
 fi ;;
 
 [l][i][c][k][f][l][o][o][r]) if [ $wolf -eq 1 ]
@@ -359,7 +360,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform lick floor)
+output=$(./utils.sh form lick floor)
 fi ;;
 
 [l][i][c][k][f][o][r][e][s][t]) if [ $wolf -eq 1 ]
@@ -373,7 +374,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform lick forest)
+output=$(./utils.sh form lick forest)
 fi ;;
 
 [l][i][c][k][s][h][e][d]) if [ $wolf -eq 1 ]
@@ -387,7 +388,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform lick shed)
+output=$(./utils.sh form lick shed)
 fi ;;
 
 
@@ -409,7 +410,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni far)
+output=$(./utils.sh form uni far)
 fi ;;
 
 [s][m][e][l][l][d][o][o][r]) if [ $wolf -eq 1 ]
@@ -423,7 +424,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform smell blank blank blank 0)
+output=$(./utils.sh form smell blank blank blank 0)
 fi ;;
 
 [s][m][e][l][l][f][l][o][o][r]) if [ $wolf -eq 1 ]
@@ -437,7 +438,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform smell floore)
+output=$(./utils.sh form smell floore)
 fi ;;
 
 [s][m][e][l][l][f][o][r][e][s][t]) if [ $wolf -eq 1 ]
@@ -451,7 +452,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform smell foreste)
+output=$(./utils.sh form smell foreste)
 fi ;;
 
 [s][m][e][l][l][s][h][e][d]) if [ $wolf -eq 1 ]
@@ -465,7 +466,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform smell shede)
+output=$(./utils.sh form smell shede)
 fi ;;
 
 [s][m][e][l][l][w][o][l][f]) if [ $wolf -eq 1 ]
@@ -479,7 +480,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni far)
+output=$(./utils.sh form uni far)
 fi ;;
 
 #constants
@@ -498,7 +499,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform wolf3 1)
+output=$(./utils.sh form wolf3 1)
 fi ;;
 
 [l][i][c][k][m][e]) if [ $lickme -lt 2 ]
@@ -514,11 +515,11 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform wolf3 2)
+output=$(./utils.sh form wolf3 2)
 fi
 fi ;;
 
-[l][o][a][d]) output=$(./utils.sh blockform uni loadfail) ;;
+[l][o][a][d]) output=$(./utils.sh form uni loadfail) ;;
 
 [s][a][v][e]) ./utils.sh save
 intro=0 ;;
@@ -537,7 +538,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni smellme)
+output=$(./utils.sh form uni smellme)
 fi ;;
 
 [w][h][o][a][m][i]) if [ $wolf -eq 1 ]
@@ -551,7 +552,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni whoami)
+output=$(./utils.sh form uni whoami)
 fi ;;
 
 [w][h][o][a][r][e][y][o][u]) if [ $wolf -eq 1 ]
@@ -565,7 +566,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni whoareyou)
+output=$(./utils.sh form uni whoareyou)
 fi;;
 
 [g][e][t]*) if [ $wolf -eq 1 ]
@@ -581,7 +582,7 @@ sed -i "/wolf=/c\wolf=1" status
 intro=1
 greed=$(( $greed + 1 ))
 sed -i "/greed=/c\greed=$greed" status
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [g][o]*) if [ $wolf -eq 1 ]
@@ -595,7 +596,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni go)
+output=$(./utils.sh form uni go)
 fi ;;
 
 [l][o][o][k]*) if [ $wolf -eq 1 ]
@@ -609,7 +610,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./untils.sh blockform uni look)
+output=$(./untils.sh form uni look)
 fi ;;
 
 [l][i][c][k]*) if [ $lickme -lt 2 ]
@@ -625,7 +626,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi
 fi ;;
 
@@ -644,7 +645,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni shoot2)
+output=$(./utils.sh form uni shoot2)
 fi
 fi
 if [ $ammo -gt 0 ]
@@ -662,7 +663,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni shoot1)
+output=$(./utils.sh form uni shoot1)
 ammo=$(( $ammo - 1 ))
 sed -i "/ammo=/c\ammo=$ammo" status
 fi
@@ -679,7 +680,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 fi
 fi ;;
 
@@ -694,7 +695,7 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
 *) if [ $wolf -eq 1 ]
@@ -708,11 +709,11 @@ if [ $wolf -eq 2 ]
 then
 sed -i "/wolf=/c\wolf=1" status
 intro=1
-output=$(./utils.sh blockform uni ic)
+output=$(./utils.sh form uni ic)
 helpcount=$(( $helpcount + 1 ))
 if [ $helpcount -gt 5 ]
 then
-output=$(./utils.sh blockform uni help2)
+output=$(./utils.sh form uni help2)
 helpcount=0
 fi 
 fi ;;

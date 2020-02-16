@@ -2,10 +2,12 @@
 
 function background() {
 ./utils.sh colorset 8
-image=$(block/$block/./graphics.sh ${cell}pic1a)
-echo "$image"
+image=$(block/$block/./graphics.sh ${cell}pic1a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0
 if [ $hammer -eq 0 ] ; then ./utils.sh overlay hammer1 48 11 0 ; fi
-if [ $book113 -eq 0 ] ; then ./utils.sh overlay book7 13 7 0 ; fi
+if [ $book113 -eq 0 ] ; then ./utils.sh overlay book7 13 7 0 ; fi)
+echo "$image"
 }
 
 function vars() {
@@ -55,7 +57,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -79,98 +81,98 @@ break ;;
 then
 sed -i '/book113=/c\book113=1' status
 intro=1
-output=$(./utils.sh blockform uni get2 book)
+output=$(./utils.sh form uni get2 book)
 ./lib.sh journal1 2
 else
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [g][e][t][h][a][m][m][e][r]) if [ $hammer -eq 0 ]
 then
 sed -i '/hammer=/c\hammer=1' status
 intro=1
-output=$(./utils.sh blockform uni get2 hammer)
+output=$(./utils.sh form uni get2 hammer)
 else
-output=$(./utils.sh blockform uni get3 hammer)
+output=$(./utils.sh form uni get3 hammer)
 fi ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i14 book2 $book113 hammer1 $hammer) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i14 book2 $book113 hammer1 $hammer) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book113 -eq 0 ] || [ $book113 -eq 1 ]
 then
-output=$(./utils.sh blockform uni book)
+output=$(./utils.sh form uni book)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor5 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor5 0) ;;
 
 [l][o][o][k][h][a][m][m][e][r]) if [ $hammer -eq 0 ] || [ $hammer -eq 1 ]
 then
-output=$(./utils.sh blockform looki null hammer2 0)
+output=$(./utils.sh form looki null hammer2 0)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
 [l][o][o][k][s][o][u][t][h][d][o][o][r]) 
-output=$(./utils.sh blockform lookdoor door16 door12 $e30 $key2) ;;
+output=$(./utils.sh form lookdoor door16 door12 $e30 $key2) ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall6 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall6 0) ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book113 -eq 0 ] || [ $book113 -eq 1 ]
 then
 ./utils.sh reader book113r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book113 -eq 0 ] || [ $book113 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
 [l][i][c][k][h][a][m][m][e][r]) ./utils.sh blockclear
 
 if [ $hammer -eq 0 ] || [ $hammer -eq 1 ]
 then
-output=$(./utils.sh blockform lick hammer1)
+output=$(./utils.sh form lick hammer1)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][s][o][u][t][d][o][o][r]) output=$(./utils.sh blockform lick door3) ;;
+[l][i][c][k][s][o][u][t][d][o][o][r]) output=$(./utils.sh form lick door3) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floor3) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor3) ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick door3) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick door3) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i14) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i14) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book31 -eq 0 ] || [ $book31 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
 [s][m][e][l][l][h][a][m][m][e][r]) ./utils.sh blockclear
 if [ $hammer -eq 0 ] || [ $hammer -eq 1 ]
 then
-output=$(./utils.sh blockform smell hammer)
+output=$(./utils.sh form smell hammer)
 else
-output=$(./utils.sh blockform uni smell )
+output=$(./utils.sh form uni smell )
 fi ;;
 
-[s][m][e][l][l][s][o][u][t][d][o][o][r]) output=$(./utils.sh blockform smell doore) ;;
+[s][m][e][l][l][s][o][u][t][d][o][o][r]) output=$(./utils.sh form smell doore) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floor4) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floor4) ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall4) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall4) ;;
 
 #constantcomm
 

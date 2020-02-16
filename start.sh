@@ -15,7 +15,7 @@ fi
 
 ./utils.sh colorset 4
 ./utils.sh clear
-output=$(./utils.sh blockform)
+output=$(./utils.sh form)
 ./utils.sh cutscene2 logo "Scriptures of Fulmination" "$output"
 if [[ $(tty) == *"ttyS"* ]] || [[ $(tty) == *"ttyUSB"* ]]
 then
@@ -37,7 +37,7 @@ printf "\e[0;0H"
 echo "$image"
 intro=2
 fi
-output=$(./utils.sh blockform openingui)
+output=$(./utils.sh form openingui)
 ./utils.sh menu "$output" "Scriptures of Fulmination"
 read case1
 
@@ -64,7 +64,7 @@ a=$(grep "save.1" <<< "$load1") ; b=$(grep "save.2" <<< "$load1")
 c=$(grep "save.3" <<< "$load1") ; d=$(grep "save.4" <<< "$load1")
 e=$(grep "save.5" <<< "$load1")
 while true; do
-output=$(./utils.sh blockform loadsave load $a $b $c $d $e)
+output=$(./utils.sh form loadsave load $a $b $c $d $e)
 ./utils.sh menu "$output" "Load"
 
 
@@ -103,7 +103,7 @@ intro=1 ;;
 intro=1 ;;
 
 [4]) while true ; do
-output=$(./utils.sh blockform options1)
+output=$(./utils.sh form options1)
 ./utils.sh menu "$output" "Options 1"
 
 read case2
@@ -111,7 +111,7 @@ read case2
 case $case2 in
 
 [1]) while true ; do
-output=$(./utils.sh blockform options2)
+output=$(./utils.sh form options2)
 ./utils.sh menu "$output" "Options 2"
 
 read case3

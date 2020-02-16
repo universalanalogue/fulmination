@@ -2,7 +2,9 @@
 
 function background() {
 ./utils.sh colorset 7
-image=$(block/$block/./graphics.sh ${cell}pic1)
+image=$(block/$block/./graphics.sh ${cell}pic1
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0)
 echo "$image"
 }
 
@@ -53,7 +55,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -76,35 +78,35 @@ sed -i '/cell=/c\cell=13' status ; break ;;
 [g][o][u][p][s][t][a][i][r][s]) sed -i '/color=/c\color=4' status
 sed -i '/cell=/c\cell=13' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i15) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i15) ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor5 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor5 0) ;;
 
 [l][o][o][k][w][e][s][t][d][o][o][r]) 
-output=$(./utils.sh blockform lookdoor door1 door15 $i12 1) ;;
+output=$(./utils.sh form lookdoor door1 door15 $i12 1) ;;
 
-[l][o][o][k][s][t][a][i][r][s]) output=$(./utils.sh blockform looki null stairs1 0) ;;
+[l][o][o][k][s][t][a][i][r][s]) output=$(./utils.sh form looki null stairs1 0) ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall7 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall7 0) ;;
 
 
 #olfactory
 
-[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floor3) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor3) ;;
 
-[l][i][c][k][s][t][a][i][r][s]) output=$(./utils.sh blockform lick stairs1) ;;
+[l][i][c][k][s][t][a][i][r][s]) output=$(./utils.sh form lick stairs1) ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall3) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall3) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i15) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i15) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floor4) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floor4) ;;
 
-[s][m][e][l][l][s][t][a][i][r][s]) output=$(./utils.sh blockform smell stairs1) ;;
+[s][m][e][l][l][s][t][a][i][r][s]) output=$(./utils.sh form smell stairs1) ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall5) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall5) ;;
 
 #constantcomm
 

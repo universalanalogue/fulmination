@@ -4,19 +4,19 @@ function background() {
 
 if [ $focus -eq 0 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic1)
+image=$(block/$block/./graphics.sh ${cell}pic1
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 echo "$image"
 fi
 
 if [ $focus -eq 1 ]
 then
-if [ $book19 -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic2b)
-else
-image=$(block/$block/./graphics.sh ${cell}pic2a)
-fi
+image=$(block/$block/./graphics.sh ${cell}pic2
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 echo "$image"
+if [ $book19 -eq 0 ] ; then ./utils.sh overlay book9 21 13 0 ; fi
 fi
 
 }
@@ -71,7 +71,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -90,40 +90,41 @@ case $case1 in
 
 [g][o][e][a][s][t]) sed -i '/cell=/c\cell=32' status ; break ;;
 
-[g][o][n][o][r][t][h]) output=$(./utils.sh blockform elooka hedge3) ;;
+[g][o][n][o][r][t][h]) output=$(./utils.sh form elooka hedge3) ;;
 
-[g][o][s][o][u][t][h]) sed -i '/cell=/c\cell=24' status ; break ;;
+[g][o][s][o][u][t][h]) sed -i '/cella=/c\cella=24' status
+sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
-[g][o][w][e][s][t]) output=$(./utils.sh blockform elooka hedge3) ;;
+[g][o][w][e][s][t]) output=$(./utils.sh form elooka hedge3) ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform elook 31) ;;
+[l][o][o][k]) output=$(./utils.sh form elook 31) ;;
 
-[l][o][o][k][e][a][s][t]) output=$(./utils.sh blockform elookdir east $e32 1) ;;
+[l][o][o][k][e][a][s][t]) output=$(./utils.sh form elookdir east $e32 1) ;;
 
-[l][o][o][k][n][o][r][t][h]) output=$(./utils.sh blockform elookdir north 1 2) ;;
+[l][o][o][k][n][o][r][t][h]) output=$(./utils.sh form elookdir north 1 2) ;;
 
-[l][o][o][k][s][o][u][t][h]) output=$(./utils.sh blockform elookdir south $e24 3) ;;
+[l][o][o][k][s][o][u][t][h]) output=$(./utils.sh form elookdir south $e24 3) ;;
 
-[l][o][o][k][w][e][s][t]) output=$(./utils.sh blockform elookdir west 1 2) ;;
+[l][o][o][k][w][e][s][t]) output=$(./utils.sh form elookdir west 1 2) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book19 -eq 1 ]
 then
-output=$(./utils.sh blockform uni book)
+output=$(./utils.sh form uni book)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
-[l][o][o][k][h][e][d][g][e]) output=$(./utils.sh blockform elooka hedge2) ;;
+[l][o][o][k][h][e][d][g][e]) output=$(./utils.sh form elooka hedge2) ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform elooka floor) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form elooka floor) ;;
 
 [l][o][o][k][h][o][l][e]) sed -i '/focus=/c\focus=1' status
 intro=1
 if [ $book19 -eq 0 ]
 then
-output=$(./utils.sh blockform elooka hole1)
+output=$(./utils.sh form elooka hole1)
 else
-output=$(./utils.sh blockform elooka hole2)
+output=$(./utils.sh form elooka hole2)
 fi ;;
 
 [l][o][o][k][h][o][u][s][e]) ./utils.sh cutscene "elooka house south" "Look House" side
@@ -134,36 +135,36 @@ then
 ./utils.sh reader book19r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book19 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][h][e][d][g][e]) output=$(./utils.sh blockform lick hedge) ;;
+[l][i][c][k][h][e][d][g][e]) output=$(./utils.sh form lick hedge) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floor) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell e) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell e) ;;
 
-[s][m][e][l][l][h][e][d][g][e]) output=$(./utils.sh blockform smell hedgee) ;;
+[s][m][e][l][l][h][e][d][g][e]) output=$(./utils.sh form smell hedgee) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book19 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floore) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floore) ;;
 
-#constantcomm
+*) case1=(system${case1}) ;;
 
 esac
 fi
@@ -178,33 +179,33 @@ case $case1 in
 [g][e][t][b][o][o][k]) if [ $book19 -eq 0 ]
 then
 sed -i '/book19=/c\book19=1' status
-output=$(./utils.sh blockform uni get2 book)
+output=$(./utils.sh form uni get2 book)
 intro=1
 else
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [l][o][o][k]) if [ $book19 -eq 0 ]
 then
-output=$(./utils.sh blockform elooka hole1)
+output=$(./utils.sh form elooka hole1)
 else
-output=$(./utils.sh blockform elooka hole2)
+output=$(./utils.sh form elooka hole2)
 fi ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book19 -eq 0 ] || [ $book19 -eq 1 ]
 then
-output=$(./utils.sh blockform uni book)
+output=$(./utils.sh form uni book)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
-[l][o][o][k][h][e][d][g][e]) output=$(./utils.sh blockform elooka hedge2) ;;
+[l][o][o][k][h][e][d][g][e]) output=$(./utils.sh form elooka hedge2) ;;
 
 [l][o][o][k][h][o][l][e]) if [ $book19 -eq 0 ]
 then
-output=$(./utils.sh blockform elooka hole1)
+output=$(./utils.sh form elooka hole1)
 else
-output=$(./utils.sh blockform elooka hole2)
+output=$(./utils.sh form elooka hole2)
 fi ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book19 -eq 0 ] || [ $book19 -eq 1 ]
@@ -212,30 +213,40 @@ then
 ./utils.sh reader book19r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book19 -eq 0 ] || [ $book19 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][h][e][d][g][e]) output=$(./utils.sh blockform lick hedge) ;;
+[l][i][c][k][h][e][d][g][e]) output=$(./utils.sh form lick hedge) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell e) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell e) ;;
 
-[s][m][e][l][l][h][e][d][g][e]) output=$(./utils.sh blockform smell hedgee) ;;
+[s][m][e][l][l][h][e][d][g][e]) output=$(./utils.sh form smell hedgee) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book19 -eq 0 ] || [ $book19 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
+
+*) case1=(system${case1}) ;;
+
+esac
+fi
+
+if [[ $case1 == *"system"* ]]
+then
+case1=$(sed "s/system//" <<< $case1)
+case $case1 in
 
 #constantcomm
 

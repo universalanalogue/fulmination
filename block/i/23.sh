@@ -1,13 +1,12 @@
 #!/bin/bash
 
 function background() {
-if [ $book110 -ne 0 ] 
-then
-image=$(block/$block/./graphics.sh ${cell}pic1a)
-else
-image=$(block/$block/./graphics.sh ${cell}pic1b)
-fi
+image=$(block/$block/./graphics.sh ${cell}pic1a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 1" 56 4 0)
 echo "$image"
+if [ $book110 -eq 0 ] ; then ./utils.sh overlay "scuff" 37 11 0 ; fi
+
 }
 
 function vars() {
@@ -59,7 +58,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -77,77 +76,78 @@ case $case1 in
 [g][e][t][b][o][o][k]) if [ $book110 -eq 0 ]
 then
 sed -i '/book110=/c\book110=1' status
-output=$(./utils.sh blockform uni get2 book)
+output=$(./utils.sh form uni get2 book)
 intro=1
 else
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [g][e][t][k][e][y]) if [ $key6 -eq 1 ]
 then
-output=$(./utils.sh blockform uni get3 key)
+output=$(./utils.sh form uni get3 key)
 fi
 if [ $key6 -eq 2 ] 
 then
 greed=$(( $greed + 1 ))
 sed -i "/greed=/c\greed=$greed" status
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 else
 if [ $key6 -eq 0 ]
 then
 sed -i '/key6=/c\key6=1' status
-output=$(./utils.sh blockform uni get2 key)
+output=$(./utils.sh form uni get2 key)
 fi 
 fi ;;
 
-[g][o][w][e][s][t]) sed -i '/cell=/c\cell=39' status ; break ;;
+[g][o][w][e][s][t]) sed -i '/cell=/c\cell=ulc1' status
+sed -i '/cella=/c\cella=39' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i23) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i23) ;;
 
 [l][o][o][k][w][e][s][t][d][o][o][r]) 
-output=$(./utils.sh blockform lookdoor door1 door15 $i39 1) ;;
+output=$(./utils.sh form lookdoor door1 door15 $i39 1) ;;
 
-[l][o][o][k][b][e][d]) output=$(./utils.sh blockform looki null bed1 0) ;;
+[l][o][o][k][b][e][d]) output=$(./utils.sh form looki null bed1 0) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book110 -eq 0 ] || [ $book110 -eq 1 ]
 then
-output=$(./utils.sh blockform uni book)
+output=$(./utils.sh form uni book)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
 [l][o][o][k][b][o][o][k][c][a][s][e]) if [ $book110 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null bookcase2 0)
+output=$(./utils.sh form looki null bookcase2 0)
 else
-output=$(./utils.sh blockform looki null bookcase1 0)
+output=$(./utils.sh form looki null bookcase1 0)
 fi ;;
 
 [l][o][o][k][d][r][a][w][e][r][s]) if [ $key6 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null drawer1 0)
+output=$(./utils.sh form looki null drawer1 0)
 else 
-output=$(./utils.sh blockform looki null drawer2 0)
+output=$(./utils.sh form looki null drawer2 0)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor7 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor7 0) ;;
 
 [l][o][o][k][k][e][y]) if [ $key6 -ne 2 ]
 then
 ./lib.sh key6a
 fi
-if [ $key6 -eq 0 ] ; then output=$(./utils.sh blockform lookkey i23) ; fi
-if [ $key6 -eq 1 ] ; then output=$(./utils.sh blockform uni get3 key) ; fi 
-if [ $key6 -eq 2 ] ; then output=$(./utils.sh blockform uni look) ; fi ;;
+if [ $key6 -eq 0 ] ; then output=$(./utils.sh form lookkey i23) ; fi
+if [ $key6 -eq 1 ] ; then output=$(./utils.sh form uni get3 key) ; fi 
+if [ $key6 -eq 2 ] ; then output=$(./utils.sh form uni look) ; fi ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall1 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall1 0) ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book110 -eq 0 ] || [ $book110 -eq 1 ]
 then
 ./utils.sh reader book110r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #bedtime
@@ -155,59 +155,59 @@ fi ;;
 
 #olfactory
 
-[l][i][c][k][b][e][d]) output=$(./utils.sh blockform lick bed1) ;;
+[l][i][c][k][b][e][d]) output=$(./utils.sh form lick bed1) ;;
 
 [l][i][c][k][b][o][o][k]) if [ $book110 -eq 0 ] || [ $book110 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][b][o][o][k][c][a][s][e]) output=$(./utils.sh blockform lick forest) ;;
+[l][i][c][k][b][o][o][k][c][a][s][e]) output=$(./utils.sh form lick forest) ;;
 
-[l][i][c][k][d][r][a][w][e][r][s]) output=$(./utils.sh blockform lick forest) ;;
+[l][i][c][k][d][r][a][w][e][r][s]) output=$(./utils.sh form lick forest) ;;
 
-[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floor5) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor5) ;;
 
 [l][i][c][k][k][e][y]) if [ $key6 -eq 0 ] || [ $key6 -eq 1 ]
 then
-output=$(./utils.sh blockform uni lickkey)
+output=$(./utils.sh form uni lickkey)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i23) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i23) ;;
 
-[s][m][e][l][l][w][e][s][t][d][o][o][r]) output=$(./utils.sh blockform smell door) ;;
+[s][m][e][l][l][w][e][s][t][d][o][o][r]) output=$(./utils.sh form smell door) ;;
 
-[s][m][e][l][l][b][e][d]) output=$(./utils.sh blockform smell bed1) ;;
+[s][m][e][l][l][b][e][d]) output=$(./utils.sh form smell bed1) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book110 -eq 0 ] || [ $book110 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][b][o][o][k][c][a][s][e]) output=$(./utils.sh blockform smell foreste) ;;
+[s][m][e][l][l][b][o][o][k][c][a][s][e]) output=$(./utils.sh form smell foreste) ;;
 
-[s][m][e][l][l][d][r][a][w][e][r][s]) output=$(./utils.sh blockform smell foreste) ;;
+[s][m][e][l][l][d][r][a][w][e][r][s]) output=$(./utils.sh form smell foreste) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floor5) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floor5) ;;
 
 [s][m][e][l][l][k][e][y]) if [ $key2 -eq 0 ] || [ $key2 -eq 1 ]
 then
-output=$(./utils.sh blockform uni smellkey)
+output=$(./utils.sh form uni smellkey)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall) ;;
 
 #constantcomm
 

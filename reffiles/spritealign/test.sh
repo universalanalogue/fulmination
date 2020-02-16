@@ -45,8 +45,9 @@ a=$(awk {'print$1'} <<< $var1)
 b=$(awk {'print$2'} <<< $var1)
 c=$(awk {'print$3'} <<< $var1)
 block/$block/./graphics.sh $pic
+overlay "blank 3 1" 56 1 0
 
-overlay $over $a $b $c
+overlay "$over" $a $b $c
 
 printf "\e[23;1H"
 echo "overlay  Xaxis   Yaxis   trans

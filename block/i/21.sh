@@ -2,7 +2,9 @@
 
 function background() {
 
-image=$(block/$block/./graphics.sh ${cell}pic1a)
+image=$(block/$block/./graphics.sh 14pic1a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 2" 56 4 0)
 echo "$image"
 if [ $book34 -eq 0 ]
 then 
@@ -58,7 +60,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -77,80 +79,80 @@ case $case1 in
 then
 sed -i '/book34=/c\book34=1' status
 sed -i '/clockkey=/c\clockkey=0' status
-output=$(./utils.sh blockform uni get2 book)
+output=$(./utils.sh form uni get2 book)
 intro=1
 else
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [g][o][n][o][r][t][h]) sed -i '/cell=/c\cell=20' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i21) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i21) ;;
 
-[l][o][o][k][b][o][x]) output=$(./utils.sh blockform looki null box10 0) ;;
+[l][o][o][k][b][o][x]) output=$(./utils.sh form looki null box10 0) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book34 -eq 0 ] 
 then
-output=$(./utils.sh blockform looki null book8 0)
+output=$(./utils.sh form looki null book8 0)
 fi 
 if [ $book34 -eq 1 ] 
 then
-output=$(./utils.sh blockform looki null book9 0)
+output=$(./utils.sh form looki null book9 0)
 fi
 if [ $book34 -eq 2 ]
 then
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
 [l][o][o][k][f][l][o][o][r])
-output=$(./utils.sh blockform looki null floor5 0 book8 $book34) ;;
+output=$(./utils.sh form looki null floor5 0 book8 $book34) ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall1 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall1 0) ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book34 -eq 0 ] || [ $book34 -eq 1 ]
 then
 ./utils.sh reader book34r
 intro=1
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book34 -eq 0 ] || [ $book34 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][b][o][x]) output=$(./utils.sh blockform lick box4) ;;
+[l][i][c][k][b][o][x]) output=$(./utils.sh form lick box4) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floor4) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor4) ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall3) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall3) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i15) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i15) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book34 -eq 0 ] || [ $book34 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][b][o][x]) output=$(./utils.sh blockform smell hole) ;;
+[s][m][e][l][l][b][o][x]) output=$(./utils.sh form smell hole) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floor4) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floor4) ;;
 
 [s][m][e][l][l][k][e][y]) if [ $sitkey -eq 0 ] || [ $sitkey -eq 1 ]
 then
-output=$(./utils.sh blockform smell key)
+output=$(./utils.sh form smell key)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall5) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall5) ;;
 
 #constantcomm
 

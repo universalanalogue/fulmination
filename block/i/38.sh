@@ -4,18 +4,12 @@ function background() {
 
 if [ $focus -eq 0 ]
 then
-if [ $i38painting -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic1a)
-fi
-if [ $i38painting -eq 1 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic1b)
-fi
-if [ $i38safe -eq 1 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic1c)
-fi
+
+image=$(block/$block/./graphics.sh ${cell}pic1a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 2" 56 4 0
+if [ $i38painting -eq 1 ] ; then ./utils.sh overlay safe3 32 7 0 ; fi
+if [ $i38safe -eq 1 ] ; then ./utils.sh overlay safe4 32 7 0 ; fi)
 echo "$image"
 fi
 
@@ -28,15 +22,17 @@ echo "$image"
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 0 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic2b)
+image=$(block/$block/./graphics.sh 19pic2b)
 echo "$image"
 fi
 if [ $i38safe -eq 1 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic2c)
+image=$(block/$block/./graphics.sh 19pic2c)
 echo "$image"
 if [ $book36 -eq 0 ] ; then ./utils.sh overlay book4 25 15 0 ; fi
 fi
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0
 fi
 
 }
@@ -93,7 +89,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -114,67 +110,67 @@ case $case1 in
 
 [g][o][n][o][r][t][h]) sed -i '/cell=/c\cell=37' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i38) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i38) ;;
 
-[l][o][o][k][e][a][s][t]) output=$(./utils.sh blockform lookdoor door1 door19 $i32 1) ;;
+[l][o][o][k][e][a][s][t]) output=$(./utils.sh form lookdoor door1 door19 $i32 1) ;;
 
-[l][o][o][k][n][o][r][t][h]) output=$(./utils.sh blockform lookdoor corridor4 corridor7 $i37) ;;
+[l][o][o][k][n][o][r][t][h]) output=$(./utils.sh form looki null corridor4 0 corridor7 $i37) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform uni book)
+output=$(./utils.sh form uni book)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor1 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor1 0) ;;
 
 [l][o][o][k][p][a][i][n][t][i][n][g]) sed -i '/focus=/c\focus=1' status
 intro=1
 if [ $i38painting -eq 0 ]
 then
-output=$(./utils.sh blockform looki null painting1 0)
+output=$(./utils.sh form looki null painting1 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 0 ]
 then
-output=$(./utils.sh blockform looki null painting2 0 painting6 0)
+output=$(./utils.sh form looki null painting2 0 painting6 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 1 ]
 then
-output=$(./utils.sh blockform looki null painting3 0)
+output=$(./utils.sh form looki null painting3 0)
 fi ;;
 
 [l][o][o][k][s][a][f][e]) if [ $i38painting -eq 0 ]
 then
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 else
 sed -i '/focus=/c\focus=1' status
 intro=1
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 0 ]
 then
-output=$(./utils.sh blockform looki null safe1 0)
+output=$(./utils.sh form looki null safe1 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 1 ] && [ $book36 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null safe2 0)
+output=$(./utils.sh form looki null safe2 0)
 fi 
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 1 ] && [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform looki null safe3 0)
+output=$(./utils.sh form looki null safe3 0)
 fi
 fi ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall8 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall8 0) ;;
 
 [o][p][e][n][p][a][i][n][t][i][n][g]) if [ $i38painting -eq 1 ]
 then
-output=$(./utils.sh blockform looki null painting4 0)
+output=$(./utils.sh form looki null painting4 0)
 fi
 if [ $i38painting -eq 0 ]
 then
 sed -i "/i38painting=/c\i38painting=1" status
 intro=1
-output=$(./utils.sh blockform looki null painting5 0)
+output=$(./utils.sh form looki null painting5 0)
 fi ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book36 -eq 1 ]
@@ -182,60 +178,60 @@ then
 ./utils.sh reader book36r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform lick book)
+output=$(./utils.sh form lick book)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floori) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floori) ;;
 
-[l][i][c][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+[l][i][c][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
 
-[l][i][c][k][p][a][i][n][t][i][n][g]) output=$(./utils.sh blockform lick painting2) ;;
+[l][i][c][k][p][a][i][n][t][i][n][g]) output=$(./utils.sh form lick painting2) ;;
 
 [l][i][c][k][s][a][f][e]) if [ $i38painting -eq 1 ]
 then
-output=$(./utils.sh blockform lick safe1)
+output=$(./utils.sh form lick safe1)
 else
-output=$(./utils.sh blockform uni lick1)
+output=$(./utils.sh form uni lick1)
 fi ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell 33) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell 33) ;;
 
-[s][m][e][l][l][e][a][s][t][d][o][o][r]) output=$(./utils.sh blockform smell door) ;;
+[s][m][e][l][l][e][a][s][t][d][o][o][r]) output=$(./utils.sh form smell door) ;;
 
-[s][m][e][l][l][n][o][r][t][h][c][o][r][r][i][d][o][o][r]) output=$(./utils.sh blockform smell corridor3) ;;
+[s][m][e][l][l][n][o][r][t][h][c][o][r][r][i][d][o][o][r]) output=$(./utils.sh form smell corridor3) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $i38safe -eq 1 ] && [ $book36 -eq 0 ] || [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floori) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floori) ;;
 
-[s][m][e][l][l][p][a][i][n][t][i][n][g]) output=$(./utils.sh blockform smell painting2) ;;
+[s][m][e][l][l][p][a][i][n][t][i][n][g]) output=$(./utils.sh form smell painting2) ;;
 
 [s][m][e][l][l][s][a][f][e]) if [ $i38painting -eq 1 ]
 then
-output=$(./utils.sh blockform smell safe1)
+output=$(./utils.sh form smell safe1)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall) ;;
 
-#constantcomm
+*) case1=(system${case1}) ;;
 
 esac
 fi
@@ -252,84 +248,84 @@ then
 if [ $book36 -eq 0 ]
 then
 sed -i '/book36=/c\book36=1' status
-output=$(./utils.sh blockform uni get2 book)
+output=$(./utils.sh form uni get2 book)
 intro=1
 else
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi 
 else
 greed=$(( $greed + 1 ))
 sed -i "/greed=/c\greed=$greed" status
-output=$(./utils.sh blockform uni get1)
+output=$(./utils.sh form uni get1)
 fi ;;
 
 [l][o][o][k][b][o][o][k]) if [ $i38safe -eq 1 ] && [ $book36 -eq 0 ] || [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform uni book)
+output=$(./utils.sh form uni book)
 else
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 fi ;;
 
 [l][o][o][k][p][a][i][n][t][i][n][g]) if [ $i38painting -eq 0 ]
 then
-output=$(./utils.sh blockform looki null painting1 0)
+output=$(./utils.sh form looki null painting1 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 0 ]
 then
-output=$(./utils.sh blockform looki null painting2 0 painting6 0)
+output=$(./utils.sh form looki null painting2 0 painting6 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 1 ]
 then
-output=$(./utils.sh blockform looki null painting3 0)
+output=$(./utils.sh form looki null painting3 0)
 fi ;;
 
 [l][o][o][k][s][a][f][e]) if [ $i38painting -eq 0 ]
 then
-output=$(./utils.sh blockform uni look)
+output=$(./utils.sh form uni look)
 else
 sed -i '/focus=/c\focus=1' status
 intro=1
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 0 ]
 then
-output=$(./utils.sh blockform looki null safe1 0)
+output=$(./utils.sh form looki null safe1 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 1 ] && [ $book36 -eq 0 ]
 then
-output=$(./utils.sh blockform looki null safe2 0)
+output=$(./utils.sh form looki null safe2 0)
 fi 
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 1 ] && [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform looki null safe3 0)
+output=$(./utils.sh form looki null safe3 0)
 fi
 fi ;;
 
 [o][p][e][n][p][a][i][n][t][i][n][g]) if [ $i38painting -eq 1 ]
 then
-output=$(./utils.sh blockform looki null painting4 0)
+output=$(./utils.sh form looki null painting4 0)
 fi
 if [ $i38painting -eq 0 ]
 then
 sed -i "/i38painting=/c\i38painting=1" status
 intro=1
-output=$(./utils.sh blockform looki null painting5 0)
+output=$(./utils.sh form looki null painting5 0)
 fi ;;
 
 [o][p][e][n][s][a][f][e]) if [ $i38safe -eq 1 ]
 then
-output=$(./utils.sh blockform looki null safe4 0)
+output=$(./utils.sh form looki null safe4 0)
 fi
 if [ $i38safe -eq 0 ]
 then
 while true ; do
-output=$(./utils.sh blockform looki null safe5 0)
+output=$(./utils.sh form looki null safe5 0)
 ./utils.sh menu "$output" Passcode
 read case2
 case $case2 in
 [0][9][-][1][5][-][4][8]) sed -i "/i38safe=/c\i38safe=1" status
 intro=1
-output=$(./utils.sh blockform looki null safe6 0) ;;
+output=$(./utils.sh form looki null safe6 0) ;;
 
-*) output=$(./utils.sh blockform looki null safe7 0) ;;
+*) output=$(./utils.sh form looki null safe7 0) ;;
 esac
 break
 done
@@ -340,26 +336,36 @@ then
 ./utils.sh reader book18r
 intro=0
 else
-output=$(./utils.sh blockform uni read)
+output=$(./utils.sh form uni read)
 fi ;;
 
 #olfactory
 
 [s][m][e][l][l][b][o][o][k]) if [ $i38safe -eq 1 ] && [ $book36 -eq 0 ] || [ $book36 -eq 1 ]
 then
-output=$(./utils.sh blockform smell book)
+output=$(./utils.sh form smell book)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
 
-[s][m][e][l][l][p][a][i][n][t][i][n][g]) output=$(./utils.sh blockform smell painting2) ;;
+[s][m][e][l][l][p][a][i][n][t][i][n][g]) output=$(./utils.sh form smell painting2) ;;
 
 [s][m][e][l][l][s][a][f][e]) if [ $i38painting -eq 1 ]
 then
-output=$(./utils.sh blockform smell safe1)
+output=$(./utils.sh form smell safe1)
 else
-output=$(./utils.sh blockform uni smell)
+output=$(./utils.sh form uni smell)
 fi ;;
+
+*) case1=(system${case1}) ;;
+
+esac
+fi
+
+if [[ $case1 == *"system"* ]]
+then
+case1=$(sed "s/system//" <<< $case1)
+case $case1 in
 
 #constantcomm
 

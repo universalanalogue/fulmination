@@ -169,7 +169,7 @@ sed -i "/focus=/c\focus=0" status
 function cutscene(){
 printf "\e[0;0H"
 if [[ $3 != null ]] ; then ./lib.sh $3 ; fi
-output=$(blockform ./lib.sh $1)
+output=$(form ./lib.sh $1)
 printf "\e[23;0H"
 a=$(printf '%-70s' "$2")
 echo "# $a #
@@ -226,6 +226,29 @@ var1=$(./block/./overlay.sh $1 | sed 's|\\|\\\\|g')
 
 var1=$(awk 1 ORS='nwlne' <<< "$var1" | sed 's/nwlne/\\e[#layer;#xaxisH/g')
 var1=$(sed "s/#xaxis/$xaxis/g" <<< "$var1")
+mat=$(grep -o '#layer' <<< "$var1" | wc -l )
+
+var1=$(awk -v yaxis="$yaxis" -v v=1 -v mat="$mat" '{while( v < mat)if($x~/#layer/){sub(/#layer/,v++ + yaxis)}}1' <<< "$var1")
+
+if [ $4 -eq 1 ] ; then var1=$(sed 's/ /\\e[1C/g' <<< "$var1") ; fi
+
+if [[ "$var1" == *"#layer"* ]]
+then
+var1=$(sed "s/\[#layer;${xaxis}H//" <<< "$var1" | sed 's/\(.*\)\\e/\1/')
+fi
+
+printf "\e[${yaxis};${xaxis}H${var1}"
+}
+
+function overlayold(){
+#$1 image $2 xaxis start $3 yaxis start $4 transparency
+xaxis=$2
+yaxis=$3
+
+var1=$(./block/./overlay.sh $1 | sed 's|\\|\\\\|g')
+
+var1=$(awk 1 ORS='nwlne' <<< "$var1" | sed 's/nwlne/\\e[#layer;#xaxisH/g')
+var1=$(sed "s/#xaxis/$xaxis/g" <<< "$var1")
 match=$(grep -o '#layer' <<< "$var1" | wc -l )
 match=$((match+yaxis))
 count=$yaxis
@@ -249,7 +272,7 @@ b=$(grep .save.2 <<< "$save1")
 c=$(grep .save.3 <<< "$save1")
 d=$(grep .save.4 <<< "$save1")
 e=$(grep .save.5 <<< "$save1")
-output=$(./utils.sh blockform loadsave save $a $b $c $d $e)
+output=$(./utils.sh form loadsave save $a $b $c $d $e)
 ./utils.sh menu "$output" Save
 read case1
 
@@ -264,32 +287,18 @@ esac
 done
 }
 
-function blockform() {
+function form() {
 text=$(./lib.sh "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9" "${10}")
-a1=$(sed '1q;d' <<< "$text") && a1=$(printf '%-70s' "$a1")
-b1=$(sed '2q;d' <<< "$text") && b1=$(printf '%-70s' "$b1")
-c1=$(sed '3q;d' <<< "$text") && c1=$(printf '%-70s' "$c1")
-d1=$(sed '4q;d'<<< "$text") && d1=$(printf '%-70s' "$d1")
-e1=$(sed '5q;d'<<< "$text") && e1=$(printf '%-70s' "$e1")
-f1=$(sed '6q;d'<<< "$text") && f1=$(printf '%-70s' "$f1")
-g1=$(sed '7q;d'<<< "$text") && g1=$(printf '%-70s' "$g1")
-h1=$(sed '8q;d'<<< "$text") && h1=$(printf '%-70s' "$h1")
-i1=$(sed '9q;d'<<< "$text") && i1=$(printf '%-70s' "$i1")
-j1=$(sed '10q;d'<<< "$text") && j1=$(printf '%-70s' "$j1")
-k1=$(sed '11q;d'<<< "$text") && k1=$(printf '%-70s' "$k1")
-
-echo "# $a1 #
-# $b1 #
-# $c1 #
-# $d1 #
-# $e1 #
-# $f1 #
-# $g1 #
-# $h1 #
-# $i1 #
-# $j1 #
-# $k1 #
-##########################################################################"
+total=11
+count=1
+form=$(while [ $count -le $total ] ; do
+a1=$(printf '%-70s' "$(sed "${count}q;d" <<< "$text")")
+printf "# $a1 #\n"
+count=$((count+1))
+done)
+bar1=$(printf "%-74s" | tr ' ' "#")
+echo "$form
+$bar1"
 }
 
 function reader () {
@@ -297,79 +306,27 @@ text=$(./lib.sh $1 | sed "1d")
 givenname=$(./lib.sh $1 | sed '1q;d')
 givenname=$(printf '%-71s' "$givenname")
 fill=$(printf '%-54s')
-while true ; do 
+while true ; do
 printf "\e[0;0H"
 page5=$(wc -l <<< "$text")
 page2=$(wc -w <<< "$page1")
-if [ $page2 -eq 0 ]
-then
-page1=1
-fi
-page3=$(($page1 * 28))
-page6=$(head -n $page3 <<< "$text" | tail -n 28)
-a1=$(sed '1q;d' <<< "$page6") && a1=$(printf '%-70s' "$a1")
-b1=$(sed '2q;d' <<< "$page6") && b1=$(printf '%-70s' "$b1")
-c1=$(sed '3q;d' <<< "$page6") && c1=$(printf '%-70s' "$c1")
-d1=$(sed '4q;d' <<< "$page6") && d1=$(printf '%-70s' "$d1")
-e1=$(sed '5q;d' <<< "$page6") && e1=$(printf '%-70s' "$e1")
-f1=$(sed '6q;d' <<< "$page6") && f1=$(printf '%-70s' "$f1")
-g1=$(sed '7q;d' <<< "$page6") && g1=$(printf '%-70s' "$g1")
-h1=$(sed '8q;d' <<< "$page6") && h1=$(printf '%-70s' "$h1")
-i1=$(sed '9q;d' <<< "$page6") && i1=$(printf '%-70s' "$i1")
-j1=$(sed '10q;d' <<< "$page6") && j1=$(printf '%-70s' "$j1")
-k1=$(sed '11q;d' <<< "$page6") && k1=$(printf '%-70s' "$k1")
-l1=$(sed '12q;d' <<< "$page6") && l1=$(printf '%-70s' "$l1")
-m1=$(sed '13q;d' <<< "$page6") && m1=$(printf '%-70s' "$m1")
-n1=$(sed '14q;d' <<< "$page6") && n1=$(printf '%-70s' "$n1")
-o1=$(sed '15q;d' <<< "$page6") && o1=$(printf '%-70s' "$o1")
-p1=$(sed '16q;d' <<< "$page6") && p1=$(printf '%-70s' "$p1")
-q1=$(sed '17q;d' <<< "$page6") && q1=$(printf '%-70s' "$q1")
-r1=$(sed '18q;d' <<< "$page6") && r1=$(printf '%-70s' "$r1")
-s1=$(sed '19q;d' <<< "$page6") && s1=$(printf '%-70s' "$s1")
-t1=$(sed '20q;d' <<< "$page6") && t1=$(printf '%-70s' "$t1")
-u1=$(sed '21q;d' <<< "$page6") && u1=$(printf '%-70s' "$u1")
-v1=$(sed '22q;d' <<< "$page6") && v1=$(printf '%-70s' "$v1")
-w1=$(sed '23q;d' <<< "$page6") && w1=$(printf '%-70s' "$w1")
-x1=$(sed '24q;d' <<< "$page6") && x1=$(printf '%-70s' "$x1")
-y1=$(sed '25q;d' <<< "$page6") && y1=$(printf '%-70s' "$y1")
-z1=$(sed '26q;d' <<< "$page6") && z1=$(printf '%-70s' "$z1")
-aa1=$(sed '27q;d' <<< "$page6") && aa1=$(printf '%-70s' "$aa1")
-ab1=$(sed '28q;d' <<< "$page6") && ab1=$(printf '%-70s' "$ab1")
+if [ $page2 -eq 0 ] ; then page1=1 ; fi
+total=28
+count=1
+page3=$((page1 * total))
+page6=$(head -n $page3 <<< "$text" | tail -n "$total")
+form=$(while [ $count -le $total ] ; do
+a1=$(printf '%-70s' "$(sed "${count}q;d" <<< "$page6")")
+printf "# $a1 # \n"
+count=$((count+1))
+done)
 page1p=$(printf '%-2s' "$page1")
-page5p=$(((page5 / 28) + 1))
-page5p=$(printf '%-2s' "$page5p") 
+page5p=$(printf '%-2s' $(((page5 / total)+1)))
 
 echo "##########################################################################
 # $givenname#
 ##########################################################################
-# $a1 #
-# $b1 #
-# $c1 #
-# $d1 #
-# $e1 #
-# $f1 #
-# $g1 #
-# $h1 #
-# $i1 #
-# $j1 #
-# $k1 #
-# $l1 #
-# $m1 #
-# $n1 #
-# $o1 #
-# $p1 #
-# $q1 #
-# $r1 #
-# $s1 #
-# $t1 #
-# $u1 #
-# $v1 #
-# $w1 #
-# $x1 #
-# $y1 #
-# $z1 #
-# $aa1 #
-# $ab1 #
+$form
 ##########################################################################
 # page: $page1p / $page5p  # $fill#
 ##########################################################################
@@ -575,87 +532,35 @@ function journal () {
 fill=$(printf '%-54s')
 ./utils.sh clear
 while true ; do 
-text=$(sed -n '/^#journala/,/^#journalb/p;/^#journalb/q' status | sed '/#/d' )
+text=$(sed -n '/^#journala/,/^#journalb/p;/^#journalb/q' status | sed '/#/d')
 page5=$(wc -l <<< "$text")
-page2=$(wc -w <<< "$page1" )
-if [ $page2 -eq 0 ]
-then
-page1=1
-fi
-page3=$(($page1 * 28))
-page6=$(echo "$text" | head -n $page3 | tail -n 28)
-a1=$(sed '1q;d' <<< "$page6") && a1=$(printf '%-70s' "$a1")
-b1=$(sed '2q;d' <<< "$page6") && b1=$(printf '%-70s' "$b1")
-c1=$(sed '3q;d' <<< "$page6") && c1=$(printf '%-70s' "$c1")
-d1=$(sed '4q;d' <<< "$page6") && d1=$(printf '%-70s' "$d1")
-e1=$(sed '5q;d' <<< "$page6") && e1=$(printf '%-70s' "$e1")
-f1=$(sed '6q;d' <<< "$page6") && f1=$(printf '%-70s' "$f1")
-g1=$(sed '7q;d' <<< "$page6") && g1=$(printf '%-70s' "$g1")
-h1=$(sed '8q;d' <<< "$page6") && h1=$(printf '%-70s' "$h1")
-i1=$(sed '9q;d' <<< "$page6") && i1=$(printf '%-70s' "$i1")
-j1=$(sed '10q;d' <<< "$page6") && j1=$(printf '%-70s' "$j1")
-k1=$(sed '11q;d' <<< "$page6") && k1=$(printf '%-70s' "$k1")
-l1=$(sed '12q;d' <<< "$page6") && l1=$(printf '%-70s' "$l1")
-m1=$(sed '13q;d' <<< "$page6") && m1=$(printf '%-70s' "$m1")
-n1=$(sed '14q;d' <<< "$page6") && n1=$(printf '%-70s' "$n1")
-o1=$(sed '15q;d' <<< "$page6") && o1=$(printf '%-70s' "$o1")
-p1=$(sed '16q;d' <<< "$page6") && p1=$(printf '%-70s' "$p1")
-q1=$(sed '17q;d' <<< "$page6") && q1=$(printf '%-70s' "$q1")
-r1=$(sed '18q;d' <<< "$page6") && r1=$(printf '%-70s' "$r1")
-s1=$(sed '19q;d' <<< "$page6") && s1=$(printf '%-70s' "$s1")
-t1=$(sed '20q;d' <<< "$page6") && t1=$(printf '%-70s' "$t1")
-u1=$(sed '21q;d' <<< "$page6") && u1=$(printf '%-70s' "$u1")
-v1=$(sed '22q;d' <<< "$page6") && v1=$(printf '%-70s' "$v1")
-w1=$(sed '23q;d' <<< "$page6") && w1=$(printf '%-70s' "$w1")
-x1=$(sed '24q;d' <<< "$page6") && x1=$(printf '%-70s' "$x1")
-y1=$(sed '25q;d' <<< "$page6") && y1=$(printf '%-70s' "$y1")
-z1=$(sed '26q;d' <<< "$page6") && z1=$(printf '%-70s' "$z1")
-aa1=$(sed '27q;d' <<< "$page6") && aa1=$(printf '%-70s' "$aa1")
-ab1=$(sed '28q;d' <<< "$page6") && ab1=$(printf '%-70s' "$ab1")
+page2=$(wc -w <<< "$page1")
+if [ $page2 -eq 0 ] ; then page1=1 ; fi
+total=28
+count=1
+page3=$((page1 * total))
+page6=$(echo "$text" | head -n $page3 | tail -n $total)
+form=$(while [ $count -le $total ] ; do
+a1=$(printf '%-70s' "$(sed "${count}q;d" <<< "$page6")")
+printf "# $a1 # \n"
+count=$((count+1))
+done)
 page1p=$(printf '%-2s' "$page1")
-page5p=$(((page5 / 28) + 1))
-page5p=$(printf '%-2s' "$page5p")
+page5p=$(printf '%-2s' $(((page5 / total)+1)))
 
-lineremove=$((linep + (28 * page1p)))
+lineremove=$((linep + (total * page1p)))
 
 echo "##########################################################################
 # Journal                                                                #
 ##########################################################################
-# $a1 #
-# $b1 #
-# $c1 #
-# $d1 #
-# $e1 #
-# $f1 #
-# $g1 #
-# $h1 #
-# $i1 #
-# $j1 #
-# $k1 #
-# $l1 #
-# $m1 #
-# $n1 #
-# $o1 #
-# $p1 #
-# $q1 #
-# $r1 #
-# $s1 #
-# $t1 #
-# $u1 #
-# $v1 #
-# $w1 #
-# $x1 #
-# $y1 #
-# $z1 #
-# $aa1 #
-# $ab1 #
+$form
 ##########################################################################
 # page: $page1p / $page5p  # $fill#
 ##########################################################################
-# Commands: n) next page # p) previous page # d) Done Writing   h) Help  #
+# Commands: n) next page # p) previous page # d) Done Writing h) Help    #
 ##########################################################################
 # :                                                                      #
-##########################################################################" 
+##########################################################################"
 printf "\e[37;5H" 
 read -n 69 -e case1
 if ! [[ "$case1" =~ ^(n|p|d|h| |)$ ]]
@@ -668,7 +573,7 @@ case $case1 in
 ./utils.sh clear ;;
 [p]) if [ $page1 -ne 1 ] ; then page1=$(($page1 -1)) ; fi 
 ./utils.sh clear ;;
-[h]) ./utils.sh cutscene journalhelp Journal logo
+[h]) ui null " " Journal journalhelp 4 2
 ./utils.sh clear ;;
 [d]) break ;;
 *) ./utils.sh clear ;;

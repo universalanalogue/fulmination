@@ -1,12 +1,10 @@
 #!/bin/bash
 
 function background() {
-if [ $i20box -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic1a)
-else
-image=$(block/$block/./graphics.sh ${cell}pic1b)
-fi
+image=$(block/$block/./graphics.sh ${cell}pic1a
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 2" 56 4 0
+if [ $i20box -eq 1 ] ; then ./utils.sh overlay box3 22 11 0 ; fi)
 echo "$image"
 }
 
@@ -58,7 +56,7 @@ if [[ $cell == null ]] ; then break ; fi
 
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh blockform) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
 vars
 printf "\e[0;0H"
 background
@@ -75,7 +73,7 @@ case $case1 in
 
 [g][o][s][o][u][t][h]) if [ $i20box -eq 0 ]
 then
-output=$(./utils.sh blockform uni go)
+output=$(./utils.sh form uni go)
 else
 sed -i '/cell=/c\cell=21' status
 break 
@@ -83,51 +81,51 @@ fi ;;
 
 [g][o][w][e][s][t]) sed -i '/cell=/c\cell=19' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh blockform looki i20 box1 $i20box) ;;
+[l][o][o][k]) output=$(./utils.sh form looki i20 box1 $i20box) ;;
 
 [l][o][o][k][w][e][s][t][d][o][o][r]) 
-output=$(./utils.sh blockform lookdoor door1 door8 $i19 $key1) ;;
+output=$(./utils.sh form lookdoor door1 door8 $i19 $key1) ;;
 
 [l][o][o][k][b][o][x]) if [ $i20box -eq 0 ]
 then
-output=$(./utils.sh blockform looki null box7 0)
+output=$(./utils.sh form looki null box7 0)
 else
-output=$(./utils.sh blockform looki null box11 0 door26 $i21)
+output=$(./utils.sh form looki null box11 0 door26 $i21)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh blockform looki null floor5 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor5 0) ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh blockform looki null wall7 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall7 0) ;;
 
 [o][p][e][n][b][o][x]) if [ $i20box -eq 1 ]
 then
-output=$(./utils.sh blockform looki null box11 0)
+output=$(./utils.sh form looki null box11 0)
 else
 sed -i "/i20box=/c\i20box=1" status
 intro=1
-output=$(./utils.sh blockform looki null box9 0)
+output=$(./utils.sh form looki null box9 0)
 fi ;;
 
 
 #olfactory
 
-[l][i][c][k][b][o][x]) output=$(./utils.sh blockform lick box4) ;;
+[l][i][c][k][b][o][x]) output=$(./utils.sh form lick box4) ;;
 
-[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh blockform lick door) ;;
+[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh blockform lick floor3) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor3) ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh blockform lick wall3) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall3) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh blockform smell i15) ;;
+[s][m][e][l][l]) output=$(./utils.sh form smell i15) ;;
 
-[s][m][e][l][l][b][o][x]) output=$(./utils.sh blockform smell hole) ;;
+[s][m][e][l][l][b][o][x]) output=$(./utils.sh form smell hole) ;;
 
-[s][m][e][l][l][w][e][s][t][d][o][o][r]) output=$(./utils.sh blockform smell door) ;;
+[s][m][e][l][l][w][e][s][t][d][o][o][r]) output=$(./utils.sh form smell door) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh blockform smell floor4) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floor4) ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh blockform smell wall5) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall5) ;;
 
 #constantcomm
 

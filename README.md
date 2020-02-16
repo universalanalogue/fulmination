@@ -87,7 +87,7 @@ give it every new feature it would never take advantage of as I consider it a fi
 product.  I will continue to support engine bugs, however as far as active development
 goes, the main focus is the SDK for the engine so others can make adventure games in it,
 as well as in the next adventure game I am currently working on.  I know there is alot
-of room for improvement, and alot of it already has. <\s>
+of room for improvement, and alot of it already has.</s>
  
 OK, I'm a hypocryte.   I've updated a fair bit of the games code to help reduce its total
 size.  It isn't fully up to date with the current build of the engine, it is however

@@ -88,7 +88,7 @@ product.  I will continue to support engine bugs, however as far as active devel
 goes, the main focus is the SDK for the engine so others can make adventure games in it,
 as well as in the next adventure game I am currently working on.  I know there is alot
 of room for improvement, and alot of it already has. 
-  
+ 
 OK, I'm a hypocryte.   I've updated a fair bit of the games code to help reduce its total
 size.  It isn't fully up to date with the current build of the engine, it is however
 much better than it was.  It took a week, however it will now fit on floppy.

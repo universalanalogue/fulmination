@@ -1053,6 +1053,7 @@ if [[ $1 == book12 ]] ; then libindex=("You look in between the sheets and you s
 a single tattered piece of paper.") ; fi
 if [[ $1 == book13 ]] ; then libindex=("Inside the hole, appears to be a page.") ; fi
 if [[ $1 == book14 ]] ; then libindex=("In the branches, a scrap of paper is stuck.") ; fi
+if [[ $1 == book15 ]] ; then libindex=("You see the corner of a paper under the box.") ; fi
 if [[ $1 == bookcase1 ]] ; then libindex=("The empty bookcase is scorched and covered in soot.") ; fi
 if [[ $1 == bookcase2 ]] ; then libindex=("There is one lonely page on the scorched shelf") ; fi
 if [[ $1 == bookcase3 ]] ; then libindex=("All of the shelves have been scorched.") ; fi
@@ -1069,6 +1070,7 @@ if [[ $1 == box9 ]] ; then libindex=("You open the box.") ; fi
 if [[ $1 == box10 ]] ; then libindex=("It is a box that you crawled through to get here.") ; fi
 if [[ $1 == box11 ]] ; then libindex=("the box is already open.") ; fi
 if [[ $1 == box12 ]] ; then libindex=("It is an open box.") ; fi
+if [[ $1 == box13 ]] ; then libindex=("It is a sealed crate") ; fi
 if [[ $1 == bush1 ]] ; then libindex=("There is a small bush in the yard.") ; fi
 if [[ $1 == bush2 ]] ; then libindex=("The bush is ratty and poorly trimmed.") ; fi
 if [[ $1 == cabinet1 ]] ; then libindex=("Inside the cabinet there is a key") ; fi
@@ -1850,7 +1852,7 @@ read -p '##################################################
 # Created by: Universal Analogue  #              #
 # License: MIT                    #              #
 # Makebuild Engine Ver 1.7        #              #
-# Fulmination Ver 1.5.01          #              #
+# Fulmination Ver 1.5.02          #              #
 ##################################################'
 
 }

@@ -4,13 +4,13 @@ function parser1() {
 var1="$1"
 
 var1=$(tr '[:upper:]' '[:lower:]' <<< "$var1")
-var1=$(sed 's| a ||g' <<< "$var1")
-var1=$(sed 's| an ||g' <<< "$var1")
-var1=$(sed 's| at ||g' <<< "$var1")
-var1=$(sed 's| in ||g' <<< "$var1")
-var1=$(sed 's| on ||g' <<< "$var1")
-var1=$(sed 's| out ||g' <<< "$var1")
-var1=$(sed 's| the ||g' <<< "$var1")
+var1=$(sed 's| a | |g' <<< "$var1")
+var1=$(sed 's| an | |g' <<< "$var1")
+var1=$(sed 's| at | |g' <<< "$var1")
+var1=$(sed 's| in | |g' <<< "$var1")
+var1=$(sed 's| on | |g' <<< "$var1")
+var1=$(sed 's| out | |g' <<< "$var1")
+var1=$(sed 's| the | |g' <<< "$var1")
 
 #prespace removal
 if [[ "$var1" == *"apparition"* ]] ; then var1=$(sed 's|apparition|ghost|' <<< "$var1") ; fi

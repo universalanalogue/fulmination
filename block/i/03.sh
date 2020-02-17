@@ -106,6 +106,8 @@ else
 output=$(./utils.sh form uni look)
 fi ;;
 
+[l][o][o][k][b][o][x]) output=$(./utils.sh form looki null box13 0 book15 $book11) ;;
+
 [l][o][o][k][e][a][s][t][d][o][o][r]) 
 output=$(./utils.sh form lookdoor door1 door5 $i09 $key2) ;;
 

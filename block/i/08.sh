@@ -153,8 +153,8 @@ sed -i '/cell=/c\cell=13' status
 sed -i '/block=/c\block=e' status
 break 
 else
-./utils.sh cutscene i8a Death logo
 ./utils.sh setdeath
+./utils.sh cutscene i8a Death logo
 break
 fi ;;
 

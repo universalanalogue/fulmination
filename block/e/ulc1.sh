@@ -211,7 +211,7 @@ if [ $cella -eq 36 ] ; then sed -i '/cella=/c\cella=37' status ; intro=0 ; fi
 
 if [ $cella -eq 29 ] ; then if [ $wolf -eq 2 ]
 then sed -i '/cell=/c\cell=30a' status
-else sed -i '/cell=/c\cell=30' status ; fi ; fi
+else sed -i '/cell=/c\cell=30' status ; fi ; break ; fi
 if [[ "$cella" =~ ^(07|11)$ ]] ; then output=$(./utils.sh form elooka hedge3) ; fi
 if [[ "$cella" =~ ^(15|19|23|37)$ ]] ; then output=$(./utils.sh form elooka forest2) ; fi
 if ! [[ "$cella" =~ ^(01|02|03|04|05|06|07|09|10|11|14|15|17|18|19|23|24|26|28|29|33|34|35|36|37)$ ]] ; then comm=null ; fi
@@ -238,7 +238,7 @@ if [ $cella -eq 29 ] ; then sed -i '/cella=/c\cella=36' status ; intro=0 ; fi
 
 if [ $cella -eq 23 ] ; then if [ $wolf -eq 2 ]
 then sed -i '/cell=/c\cell=30a' status
-else sed -i '/cell=/c\cell=30' status ; fi ; fi
+else sed -i '/cell=/c\cell=30' status ; fi ; break ; fi
 if [[ "$cella" =~ ^(33|34)$ ]] ; then output=$(./utils.sh form elooka hedge3) ; fi
 if [[ "$cella" =~ ^(35|36|37)$ ]] ; then output=$(./utils.sh form elooka forest2) ; fi
 if ! [[ "$cella" =~ ^(01|05|06|07|09|10|11|12|14|15|17|18|19|23|24|26|28|29|33|34|35|36|37)$ ]] ; then comm=null ; fi
@@ -265,7 +265,7 @@ if [ $cella -eq 36 ] ; then sed -i '/cella=/c\cella=29' status ; intro=0 ; fi
 
 if [ $cella -eq 37 ] ; then if [ $wolf -eq 2 ]
 then sed -i '/cell=/c\cell=30a' status
-else sed -i '/cell=/c\cell=30' status ; fi ; fi
+else sed -i '/cell=/c\cell=30' status ; fi ; break ; fi
 if [[ "$cella" =~ ^(01|02|03|04|05|06|07)$ ]] ; then output=$(./utils.sh form elooka hedge3) ; fi
 if ! [[ "$cella" =~ ^(01|02|03|04|05|06|07|09|10|11|12|14|15|17|18|19|23|24|28|29|33|34|35|36|37)$ ]] ; then comm=null ; fi
 fi

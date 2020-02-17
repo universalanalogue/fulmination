@@ -2,6 +2,7 @@
 
 gsed -i "s/sed/gsed/g" mkbld.sh
 gsed -i "s/sed/gsed/g" lib.sh
+gsed -i "s/awk/gawk/g" utils.sh
 gsed -i "s/sed/gsed/g" utils.sh
 gsed -i "s/sed/gsed/g" start.sh
 

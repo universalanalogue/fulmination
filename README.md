@@ -44,13 +44,15 @@ you have to move the game without gitfiles for it to fit. floppy must be ext2
 
 2) have gsed installed
 
-3) move to the directory after it downloads/unpacks.
+3) have gawk installed
 
-4) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
- 
-5) copy bsd.sh from reffiles to the fulmination root directory, then run it ./bsd.sh
+4) move to the directory after it downloads/unpacks.
 
-6) rest the same as linux.
+5) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
+
+6) copy bsd.sh from reffiles to the fulmination root directory, then run it ./bsd.sh
+
+7) rest the same as linux.
 
 >MACOS
 

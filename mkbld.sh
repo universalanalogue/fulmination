@@ -37,7 +37,7 @@ break\
 fi\
 if [ $block == e ]\
 then\
-if [[ "$cell" =~ ^(1|2|3|4|5|8|9|12|13|16|17|20|21|24|25|26|27|28)$ ]]\
+if [[ "$cell" =~ ^(08|13|16|20|21|25|27|)$ ]] || [[ "$cella" =~ ^(01|02|03|04|05|09|12|17|24|26|28)$ ]]\
 then\
 ./utils.sh cutscene burnhouse2 VICTORY! frontb\
 ./utils.sh setdeath\

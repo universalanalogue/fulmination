@@ -103,7 +103,8 @@ case $case1 in
 #room commands
 
 [g][o][e][a][s][t]) if [ $i24bwindow -eq 1 ]
-then 
+then
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break
@@ -112,7 +113,8 @@ output=$(./utils.sh form uni go)
 fi ;;
 
 [g][o][n][o][r][t][h]) if [ $i24awindow -eq 1 ]
-then 
+then
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break

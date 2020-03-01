@@ -130,7 +130,7 @@ case $case1 in
 then
 sed -i '/ammocount=/c\ammocount=1' status
 sed -i '/ammo=/c\ammo=3' status
-output=$(./utils.sh form looki null ammo1 0)
+output=$(./utils.sh form looki null ammo1 0 gun5 $gun)
 else
 output=$(./utils.sh form looki null ammo2 0)
 fi ;;
@@ -149,7 +149,7 @@ then
 sed -i '/gun=/c\gun=1' status
 sed -i '/book31=/c\book31=0' status
 sed -i '/book12=/c\book12=0' status
-output=$(./utils.sh form looki null gun1 0)
+output=$(./utils.sh form looki null gun1 0 gun5 $ammocount)
 else
 output=$(./utils.sh form looki null gun2 0)
 fi ;;

@@ -97,7 +97,8 @@ case $case1 in
 #room commands
 
 [g][o][e][a][s][t]) if [ $i29window -eq 1 ]
-then 
+then
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break

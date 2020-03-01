@@ -109,6 +109,7 @@ case $case1 in
 
 [g][o][e][a][s][t]) if [ $i32awindow -eq 1 ]
 then 
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break
@@ -118,6 +119,7 @@ fi ;;
 
 [g][o][s][o][u][t][h]) if [ $i32bwindow -eq 1 ]
 then 
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break

@@ -177,7 +177,7 @@ fi ;;')
 
 sleep=('sleepnum=$(grep "sleepnum=" status | cut -d "=" -f2)\
 sleep=$(grep "sleep=" status | cut -d "=" -f2)\
-sleep=$(( "$sleep" - 1 ))\
+sleep=$((sleep-1))\
 sed -i "/sleep=/c\\sleep=$sleep" status\
 if [ $sleepnum -eq 1 ] ; then sleepthreshold=200 ; fi\
 if [ $sleepnum -eq 2 ] ; then sleepthreshold=100 ; fi\

@@ -93,6 +93,7 @@ case $case1 in
 
 [g][o][s][o][u][t][h]) if [ $i26window -eq 1 ]
 then 
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break

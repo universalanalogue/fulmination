@@ -1173,6 +1173,7 @@ if [[ $1 == gun1 ]] ; then libindex=("You picked up the gun") ; fi
 if [[ $1 == gun2 ]] ; then libindex=("You already have the gun.") ; fi
 if [[ $1 == gun3 ]] ; then libindex=("You see a gun.") ; fi
 if [[ $1 == gun4 ]] ; then libindex=("It is an Enfield NO2 revolver in 38S&W.") ; fi
+if [[ $1 == gun5 ]] ; then thresh=1 ; libindex=("You load the gun.") ; fi
 if [[ $1 == figure1 ]] ; then libindex=("you see a small shadowy figure in the window
 across the courtyard") ; fi
 if [[ $1 == fireplace1 ]] ; then libindex=("your hand is on the fireplace.  it is empty.") ; fi
@@ -1918,8 +1919,8 @@ bigger and better things.
 Performance review: 
 
 #tested with both bash 4/5.  if bash 5 breaks it, please let me know
-#might work with bash 3.  the only thing that might not be
-#compatible with is inventory
+#does not work with bash 3 at all
+#
 
 1 Terminal Emulators: Perfect.  Preferred is urxvt,
 terminator/ guake works

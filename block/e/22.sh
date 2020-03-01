@@ -161,8 +161,8 @@ output=$(./utils.sh form uni read)
 fi ;;
 
 [s][m][a][s][h][t][r][e][e]) if [ $hammer -eq 1 ]
-then 
-./utils.sh cutscene smashent Go "graphpass e 22pic2b 1 1"
+then
+./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2"
 ./utils.sh setdeath
 sed -i '/cell=/c\cell=null' status
 break
@@ -329,7 +329,7 @@ fi ;;
 
 [s][m][a][s][h][t][r][e][e]) if [ $hammer -eq 1 ]
 then 
-./utils.sh cutscene smashent Go "graphpass e 22pic2b 1 1"
+./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2"
 ./utils.sh setdeath
 sed -i '/cell=/c\cell=null' status
 break

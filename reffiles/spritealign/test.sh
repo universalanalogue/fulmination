@@ -3,25 +3,18 @@
 
 function overlay(){
 #$1 image $2 xaxis start $3 yaxis start $4 transparency
-xaxis=$2
-yaxis=$3
+xaxis=$2 ; if [ $xaxis -eq 0 ] ; then xaxis=1 ; fi
+yaxis=$3 ; if [ $yaxis -eq 0 ] ; then yaxis=1 ; fi
 
 var1=$(./block/./overlay.sh $1 | sed 's|\\|\\\\|g')
 
-var1=$(awk 1 ORS='nwlne' <<< "$var1" | sed 's/nwlne/\\e[#layer;#xaxisH/g')
-var1=$(sed "s/#xaxis/$xaxis/g" <<< "$var1")
-match=$(grep -o '#layer' <<< "$var1" | wc -l )
-match=$((match+yaxis))
-count=$yaxis
-while [ $count -ne $match ] ; do count=$((count+1)) ; var1=$(sed "s/#layer/$count/" <<< "$var1") ; done
+var1=$(awk 1 ORS='nwlne' <<< "$var1" | sed "s/\(.*\)nwlne/\1/ ; s/nwlne/\\\\e[#layer;${xaxis}H/g")
+mat=$(($(grep -o '#layer' <<< "$var1" | wc -l)+1))
 
+var1=$(awk -v yaxis="$yaxis" -v v=1 -v mat="$mat" '{while( v < mat)
+if($x~/#layer/){sub(/#layer/,v++ + yaxis)}}1' <<< "$var1")
 
 if [ $4 -eq 1 ] ; then var1=$(sed 's/ /\\e[1C/g' <<< "$var1") ; fi
-
-if [[ "$var1" == *"#layer"* ]]
-then
-var1=$(sed "s/\[#layer;${xaxis}H//" <<< "$var1" | sed 's/\(.*\)\\e/\1/')
-fi
 
 printf "\e[${yaxis};${xaxis}H${var1}"
 }

@@ -134,6 +134,7 @@ fi ;;
 sed -i '/cell=/c\cell=06' status
 break
 else
+./utils.sh colorset 2
 ./utils.sh cutscene i1a Death logo
 ./utils.sh setdeath
 break

@@ -118,7 +118,8 @@ case $case1 in
 sed -i '/cella=/c\cella=39' status ; break ;;
 
 [g][o][w][e][s][t]) if [ $i22window -eq 1 ]
-then 
+then
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break

@@ -127,7 +127,8 @@ fi ;;
 [g][o][e][a][s][t]) sed -i '/cell=/c\cell=41' status ; break ;;
 
 [g][o][w][e][s][t]) if [ $i28window -eq 1 ]
-then 
+then
+./utils.sh colorset 2
 ./utils.sh cutscene windowfall Death logo
 ./utils.sh setdeath
 break

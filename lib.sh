@@ -4,57 +4,13 @@
 #graphics---------------------------------------------------------------
 
 function logo () {
-image=$(
-echo '#######################################################
-#                                                     #
-#                                                     #
-#                                                     #
-#                  _______________                    #
-#                 |\             /|                   #
-#                 | \           / |                   #
-#                 |  \   / \   /  |                   #
-#                 |  |\ /   \ /|  |                   #
-#                 |  | \ \ / / |  |                   #
-#                 |  |  \   /  |  |                   #
-#                 |__|___\_/___|__|                   #
-#                 |  |   / \   |  |                   #
-#                 |  |  /   \  |  |                   #
-#                 |  | /     \ |  |                   #
-#                 |  |/       \|  |                   #
-#                 |  /  /\ /\  \  |                   #
-#                 | /  /_____\  \ |                   #
-#                 |/_____________\|                   #
-#                                                     #
-#                                                     #
-#######################################################'
-./utils.sh overlay "blank 3 0" 56 1 0)
+image=$(empty
+./utils.sh overlay logo 20 5 0)
 echo "$image"
 }
 
 function empty () {
-image=$(
-echo '#######################################################
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#                                                     #
-#######################################################'
+image=$(./utils.sh overlay "blank 0" 1 1 0
 ./utils.sh overlay "blank 3 0" 56 1 0)
 echo "$image"
 }
@@ -2687,39 +2643,13 @@ exists=1"
 }
 
 function key1a() {
-
-
-printf '\e[8;56H     _______     
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ ((|)) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |       
-\e[20;56H     __| |       
-\e[21;56H     \___|       '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key3 62 12 0
 }
 
 function key1b() {
-printf '\e[8;56H      ((|))       
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key3 62 8 0
 }
 
 function key2 () {
@@ -2733,37 +2663,13 @@ exists=1"
 }
 
 function key2a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ ((| ) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key4 62 12 0
 }
 
 function key2b() {
-printf '\e[8;56H      ((| )       
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key4 62 8 0
 }
 
 function key3 () {
@@ -2777,37 +2683,13 @@ exists=1"
 }
 
 function key3a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ ((  ) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key5 62 12 0
 }
 
 function key3b() {
-printf '\e[8;56H      ((  )       
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key5 62 8 0
 }
 
 function key4 () {
@@ -2821,37 +2703,13 @@ exists=1"
 }
 
 function key4a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ (   ) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key6 62 12 0
 }
 
 function key4b() {
-printf '\e[8;56H      (   )       
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key6 62 8 0
 }
 
 function key5 () {
@@ -2865,37 +2723,13 @@ exists=1"
 }
 
 function key5a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ (  )) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key7 62 12 0
 }
 
 function key5b() {
-printf '\e[8;56H      (  ))      
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key7 62 8 0
 }
 
 function key6 () {
@@ -2909,37 +2743,13 @@ exists=1"
 }
 
 function key6a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ ( |)) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key8 62 12 0
 }
 
 function key6b() {
-printf '\e[8;56H      ( |))      
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key8 62 8 0
 }
 
 function key7 () {
@@ -2953,37 +2763,13 @@ exists=1"
 }
 
 function key7a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ (( )) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key9 62 12 0
 }
 
 function key7b() {
-printf '\e[8;56H      (( ))       
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key9 62 8 0
 }
 
 function key8 () {
@@ -2997,37 +2783,13 @@ exists=1"
 }
 
 function key8a() {
-printf '\e[8;56H     _______      
-\e[9;56H    (  ___  )     
-\e[10;56H   (  (___)  )    
-\e[11;56H   (         )    
-\e[12;56H    \ ( | ) /     
-\e[13;56H     (W   W)      
-\e[14;56H       |W|        
-\e[15;56H       | |        
-\e[16;56H       | |        
-\e[17;56H      /  |        
-\e[18;56H     /_  |        
-\e[19;56H       | |        
-\e[20;56H     __| |        
-\e[21;56H     \___|        '
+./utils.sh overlay keyp 56 8 0
+./utils.sh overlay key10 62 12 0
 }
 
 function key8b() {
-printf '\e[8;56H      ( | )       
-\e[9;56H      _____       
-\e[10;56H     (     )      
-\e[11;56H    (       )     
-\e[12;56H   (         )    
-\e[13;56H   (         )    
-\e[14;56H    (       )     
-\e[15;56H     (_   _)      
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |   |       '
+./utils.sh overlay lockp 56 8 0
+./utils.sh overlay key10 62 8 0
 }
 
 function clockkey () {
@@ -3041,20 +2803,7 @@ exists=1"
 }
 
 function clockkeyg () {
-printf '\e[8;56H   ___________    
-\e[9;56H  /___     ___\   
-\e[10;56H  (   )   (   )   
-\e[11;56H  (___)___(___)   
-\e[12;56H  (__ /   \ __)   
-\e[13;56H     (_____)      
-\e[14;56H      |   |       
-\e[15;56H      |   |       
-\e[16;56H      |   |       
-\e[17;56H      |   |       
-\e[18;56H      |   |       
-\e[19;56H      |   |       
-\e[20;56H      |   |       
-\e[21;56H      |___|       '
+./utils.sh overlay keyc 56 8 0
 }
 
 function cog () {

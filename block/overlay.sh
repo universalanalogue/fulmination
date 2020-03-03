@@ -9,6 +9,90 @@ function key2(){
 echo '-'
 }
 
+function key3(){
+echo '((|))'
+}
+
+function key4(){
+echo '((| )'
+}
+
+function key5(){
+echo '((  )'
+}
+
+function key6(){
+echo '(   )'
+}
+
+function key7(){
+echo '(  ))'
+}
+
+function key8(){
+echo '( |))'
+}
+
+function key9(){
+echo '(( ))'
+}
+
+function key10(){
+echo '( | )'
+}
+
+function keyc(){
+echo '   ___________    
+  /___     ___\   
+  (   )   (   )   
+  (___)___(___)   
+  (__ /   \ __)   
+     (_____)      
+      |   |       
+      |   |       
+      |   |       
+      |   |       
+      |   |       
+      |   |       
+      |   |       
+      |___|       '
+}
+
+
+function keyp(){
+echo '     _______      
+    (  ___  )     
+   (  (___)  )    
+   (         )    
+    \       /     
+     (W   W)      
+       |W|        
+       | |        
+       | |        
+      /  |        
+     /_  |        
+       | |        
+     __| |        
+     \___|        '
+}
+
+function lockp(){
+echo '                  
+      _____       
+     (     )      
+    (       )     
+   (         )    
+   (         )    
+    (       )     
+     (_   _)      
+      |   |       
+      |   |       
+      |   |       
+      |   |       
+      |   |       
+      |   |       '
+}
+
 function book1(){
 echo ' _
  \\'
@@ -429,17 +513,42 @@ echo '  \   \     /    \     /    \      \  / \ /   / /
   /   /   //  \ / \   / \  /  \   /  \  \   \    '
 }
 
+function logo(){
+echo ' _______________ 
+|\             /|
+| \           / |
+|  \   / \   /  |
+|  |\ /   \ /|  |
+|  | \ \ / / |  |
+|  |  \   /  |  |
+|__|___\_/___|__|
+|  |   / \   |  |
+|  |  /   \  |  |
+|  | /     \ |  |
+|  |/       \|  |
+|  /  /\ /\  \  |
+| /  /_____\  \ |
+|/_____________\|'
+}
+
+
 function blank(){
 c=0
+if [ $1 -eq 0 ] ; then
+bar1=$(printf "%-55s" | tr ' ' '#')
+body1=$(while [ $c -ne 20 ] ; do printf "#%-53s#\n" ; c=$((c+1)) ; done)
+bar2=$(printf "%-55s" | tr ' ' '#')
+fi
 
+if [ $1 -eq 3 ] ; then
 if [ $2 -eq 0 ] ; then spreda=('#') ; spredb=('#') ; fi
 if [ $2 -eq 1 ] ; then spreda=('_') ; spredb=('|') ; fi
-if [ $1 -eq 3 ] ; then
 bar1=$(printf "%-19s" | tr ' ' "${spreda}")
 body1=$(while [ $c -ne 20 ] ; do printf "%-18s${spredb}\n" ; c=$((c+1)) ; done)
-fi
 if [ $2 -eq 1 ] ; then bar2=$(echo "${bar1%_}|") ; fi
 if [ $2 -eq 0 ] ; then bar2=("$bar1") ; fi
+fi
+
 
 echo "$bar1
 $body1

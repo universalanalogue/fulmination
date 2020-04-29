@@ -101,6 +101,11 @@ color=$(grep "color=" status | cut -d "=" -f2)
 colorset $color
 }
 
+function pause (){
+if [ -z ${1+x} ] ; then a=Paused ; else a="$1" ; fi
+read -p "$a"
+}
+
 function colorset(){
 sed -i "/color=/c\color=${1}" status
 #    green            outside        background    text     cursor

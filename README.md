@@ -57,7 +57,16 @@ you have to move the game without gitfiles for it to fit. floppy must be ext2
 >MACOS
 
 1) Will probably work with all the freebsd instructions, however I lack a MAC, so I can't test it 
-   
+
+>Windows
+
+This is ill advised as performance is very slow
+
+1) Install Cygwin
+
+2) Get the game in the directory structure of Cygwin
+
+3) Rest the same as Linux
 
 # whats new in V1.5.00
 

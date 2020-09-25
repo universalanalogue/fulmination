@@ -2,7 +2,7 @@
 Scriptures of Fulmination, or how I learned to stop worrying, and just love urxvt.
 
 # Requirements
-1) Bash
+1) Bash -ge 4
 2) gnu-coreutils
 3) sed (of the gsed variety, default in linux)
 4) moc/mocp/music on console player. (only for music and there currently
@@ -11,7 +11,7 @@ Scriptures of Fulmination, or how I learned to stop worrying, and just love urxv
    overrun in proccessing)
 6) an ssh client if playing over ssh.
 
-7) a serial terminal client if playing over serial.
+7) a serial terminal client if playing over serial -ge 9600buad.
 
 8) a terminal emulator if playing in a gui.
 
@@ -20,6 +20,8 @@ Scriptures of Fulmination, or how I learned to stop worrying, and just love urxv
 10) some storage medium to store the game.  game will fit and run on a 1.44mb floppy,
 you have to move the game without gitfiles for it to fit. floppy must be ext2
 
+11) At least a 40MHz processor, with at least 128mb of system ram (Min Req for Linux/ tested)
+##### As a note, when running down at 40mhz, the game will allow you to cache commands while it loads, which is an interesting thing, as that shouldn't be even possible
 
 # Installation
 >LINUX
@@ -56,7 +58,9 @@ you have to move the game without gitfiles for it to fit. floppy must be ext2
 
 >MACOS
 
-1) Will probably work with all the freebsd instructions, however I lack a MAC, so I can't test it 
+1) Install bash, gsed, gawk from homebrew, then sudo ln -s /usr/local/bin/bash /bin/bash
+
+2) Rest the same as FREEBSD
 
 >Windows
 
@@ -68,47 +72,11 @@ This is ill advised as performance is very slow
 
 3) Rest the same as Linux
 
-# whats new in V1.5.00
+# ToDo
 
-why v1.5.00.  The jump in version is due to me backporting all of the
-changes from v2.0.00 of the engine, that didn't break general compatablity
-and requiring big rewrites, hence why that version of the engine is 2.0.00.
-
-Unified Logic Cells.  Large blocks of similar cells that have been combined.
-
-Massivly overhauled overlays performance.
-
-Massivly implemented overlays to reduce duplicate graphical entries.
-
-General efficiency things
-
-Lots of bugs fixed.
-
-Probably more added.
-
-# General Disclaimer
->Disclaimer of engine inefficiencies
-
-<s> This game uses the 1.0 version of the engine.
-Bugs and general story things I am willing to work on or fix as needed. 
-It will not recive Feature updates such as streamlined inventory module, or updated
-overlays module.  The game received 6 months more of feature updates to get it to
-what I would consider to be a stable professional state.  I could honestly go back and
-give it every new feature it would never take advantage of as I consider it a finished
-product.  I will continue to support engine bugs, however as far as active development
-goes, the main focus is the SDK for the engine so others can make adventure games in it,
-as well as in the next adventure game I am currently working on.  I know there is alot
-of room for improvement, and alot of it already has.</s>
- 
-OK, I'm a hypocryte.   I've updated a fair bit of the games code to help reduce its total
-size.  It isn't fully up to date with the current build of the engine, it is however
-much better than it was.  It took a week, however it will now fit on floppy.
-After I finish with the inventory streamlines I have planned, I will release the SDK.
-
-TL;DR: I will fix whats there, however I will not be modifing the engine any further.
-I will howver fix bugs and story issues as needed.  The game has been done
-for 7 months, and I've just been trying to get up the nerve to post it.I want to move on
-to better things, and better things are in production.
+## Music
+Whenever I either get talented enough to make music, or
+happen to aquire some music, I will finish setting up the music subsystem
 
 # License: MIT
 

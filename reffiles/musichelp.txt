@@ -1,0 +1,4 @@
+if the music fade doesnt work properlly it usually means that your sink for your mocp isnt properlly configured.
+edit ~/.moc/config
+change the value of AlsaMixer1 to whatever your card is
+ie PCM,Master,DSX,Generic.  can be found with aplay -L | grep :CARD

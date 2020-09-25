@@ -152,7 +152,7 @@ key4 - I9- opens door in I19
 key5 - E12 - opens door in room I4
 key6 - I23- opens door in I42 - after wolf
 key7 - E10- opens door in I12 - after wolf
-key8 - I4 - opens door in E30
+key8 - I4 - opens door in E30 - after wolf
 clockkey - E8 - after I21 
 
 #clockparts

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 image=$(block/$block/./graphics.sh ${cell}pic1
 ./utils.sh overlay "blank 3 1" 56 1 0
 ./utils.sh overlay "sidebar $block $cell 0" 56 4 0
@@ -8,7 +8,7 @@ if [ $i24bwindow -eq 1 ] ; then ./utils.sh overlay win11 2 3 0 ; fi)
 echo "$image"
 }
 
-function vars() {
+vars() {
 
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 
 if [[ "$cella" =~ ^(01|02|03|04|05|06|07|09|11|15|17|18|19|23|24|26|28|34|35)$ ]] ; then num=0 ; fi
 if [[ "$cella" =~ ^(10|12|14|29)$ ]] ; then num=1 ; fi
@@ -22,7 +22,7 @@ if [ $cella -eq 35 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes2 4
 echo "$image"
 }
 
-function vars() {
+vars() {
 #base
 block=$(grep 'block=' status | cut -d "=" -f2)
 cella=$(grep "cella=" status | cut -d "=" -f2)
@@ -94,7 +94,7 @@ block=$(grep "block=" status | cut -d "=" -f2)
 cell=$(grep "cell=" status | cut -d "=" -f2)
 mvnt1=$(grep "mvnt1=" status | cut -d "=" -f2)
 
-function sleep1(){
+sleep1(){
 
 #sleep
 

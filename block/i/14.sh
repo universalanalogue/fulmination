@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 ./utils.sh colorset 8
 image=$(block/$block/./graphics.sh ${cell}pic1a
 ./utils.sh overlay "blank 3 1" 56 1 0
@@ -10,7 +10,7 @@ if [ $book113 -eq 0 ] ; then ./utils.sh overlay book7 13 7 0 ; fi)
 echo "$image"
 }
 
-function vars() {
+vars() {
 
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)

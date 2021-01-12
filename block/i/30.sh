@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 
 if [ $focus -eq 0 ]
 then
@@ -33,7 +33,7 @@ echo "$image"
 fi
 }
 
-function vars() {
+vars() {
 
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)

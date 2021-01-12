@@ -3,25 +3,25 @@
 
 #graphics---------------------------------------------------------------
 
-function logo () {
+logo () {
 image=$(empty
 ./utils.sh overlay logo 20 5 0)
 echo "$image"
 }
 
-function empty () {
+empty () {
 image=$(./utils.sh overlay "blank 0" 1 1 0
 ./utils.sh overlay "blank 3 0" 56 1 0)
 echo "$image"
 }
 
-function graphpass(){
+graphpass(){
 if [[ $3 != 0 ]] ; then ./utils.sh colorset $3 ; fi
 block/$1/./graphics.sh $2
 if [[ $4 != 0 ]] ; then ./utils.sh colorset $4 ; fi
 }
 
-function back () {
+back () {
 image=$(
 echo '_______________________________________________________
 |                          _                          |
@@ -49,7 +49,7 @@ echo '_______________________________________________________
 read -p "$image"
 }
 
-function front () {
+front () {
 image=$(
 echo '_______________________________________________________
 |             | |                                     |
@@ -77,7 +77,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function frontb () {
+frontb () {
 image=$(
 echo '_______________________________________________________
 |                                                     |
@@ -105,7 +105,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function frontr() {
+frontr() {
 image=$(
 echo '_______________________________________________________
 |  /   /  /  /| |/  / /  /    /   / /   //  /   /    /|
@@ -133,7 +133,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function side () {
+side () {
 image=$(
 echo '_______________________________________________________
 |             /                               \       |
@@ -161,7 +161,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function burnie1() {
+burnie1() {
 image=$(
 echo '_______________________________________________________
 |         |                                 |         |
@@ -189,7 +189,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function burnie2() {
+burnie2() {
 image=$(
 echo '_______________________________________________________
 |                                                     |
@@ -217,7 +217,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function greed1() {
+greed1() {
 image=$(
 echo '_______________________________________________________
 |         |                                 |         |
@@ -245,7 +245,7 @@ echo '_______________________________________________________
 echo "$image"
 }
 
-function greed2() {
+greed2() {
 image=$(
 echo '_______________________________________________________
 |                                                     |
@@ -279,7 +279,7 @@ echo "$image"
 
 #cutscene---------------------------------------------------------------
 
-function opening() {
+opening() {
 echo "You awake, unsure of self or place.  You seem to
 be in an abandoned mansion, sparsely furnished and grungy.
 All you have with you is your strong sense of true north,
@@ -287,12 +287,12 @@ and your weird ability to judge what a key does.  Outside
 you hear the trailing end of a storm.  You decide to go take a look."
 }
 
-function installer2() {
+installer2() {
 echo "Scriptures of Fulmination is now installed!
 type ./start.sh to begin!"
 }
 
-function openingui(){
+openingui(){
 echo "Main Menu
 1) New Game
 2) load game
@@ -303,7 +303,7 @@ echo "Main Menu
 e) Exit "
 }
 
-function bathroom1() {
+bathroom1() {
 echo "As you open the door and enter, you see a mirror.
 It is your reflection, but it isn't.  You cant seem to
 remember your gender or what you looked like, but it sure
@@ -311,7 +311,7 @@ as hell isn't this.  Your face is worn, your eyes are heavy,
 and your hair is white and stringy." 
 }
 
-function bathroom2(){
+bathroom2(){
 echo "As one last crack of thunder bursts, shaking the
 house violently, the rain begins to subside.  
 As the walls creak and grown, your feeling of 
@@ -319,14 +319,14 @@ uneasiness begins to ease into increasing worry and dread."
 }
 
 
-function burnbooks2(){
+burnbooks2(){
 echo 'You toss every scrap of paper and your journal you have
 into the fireplace with your lighter.  The pages light up 
 instantaneously.  The apparition shrieks; "You think that is enough
 to stop me?" as she devours your soul.'
 }
 
-function burnbooks3(){
+burnbooks3(){
 echo "you toss the papers into the fireplace with the lighter, and
 they burst up into a bright purple flame.  the ghost cries out in 
 agony and melts into the floor.  she is gone.  you crawl through
@@ -338,7 +338,7 @@ to the wide world.  you walk down the street towards
 your next adventure."
 }
 
-function burnhouse1(){
+burnhouse1(){
 echo "You're the direct type arn't you? Well the house
 is gone, but so are you.  Turns out setting a house on fire,
 then standing in it with a dumb look on your face is not the
@@ -346,7 +346,7 @@ best course of action, try a little harder next time.
 You are dead"
 }
 
-function burnhouse2(){
+burnhouse2(){
 echo "You're the direct type arn't you? The house is set 
 ablaze, and with it, the ghost, and anything else which might
 be of harm to you.  Now the force keeping the gate closed is 
@@ -355,12 +355,12 @@ Congratulations, you have survived the whole ordeal!
 You have won!"
 }
 
-function victory(){
+victory(){
 echo "Congratulations, you have survived the whole ordeal!
 You have won!"
 }
 
-function burnie3(){
+burnie3(){
 echo 'As you try to commit another petty arson,
 you feel an oppressing heat from behind you.  You look
 Behind you and you see a massive inferno who swallows
@@ -368,14 +368,14 @@ you up.
 You are Dead'
 }
 
-function greed3(){
+greed3(){
 echo 'As you grip at the air for possessions
 you feel a shadow creep up behind you.  You look behind
 you and you see a massive specter who swallows you up
 You are Dead'
 }
 
-function toiletlick3() {
+toiletlick3() {
 echo "Fine, I hope that feeling of independence is worth it,
 you now have the feeling of dysentery. The good news is you are 
 in a bathroom.  the bad news, the water isn't running.  Your 
@@ -383,7 +383,7 @@ insides run away from you, and you eventually die of dehydration.
 You are Dead "
 }
 
-function sit2(){
+sit2(){
 echo 'As you sit in the chair your weight causes the chair to
 crumble. Unfortunately as you hit the ground, the back of the chair
 splinters and impales your chest.
@@ -391,7 +391,7 @@ splinters and impales your chest.
 You Are Dead'
 }
 
-function sleep1() {
+sleep1() {
 echo "you lie your head on the pillow for a well 
 deserved rest.  you hope that once you awake,
 this whole ordeal will be behind you. Morning has to come
@@ -401,7 +401,7 @@ rested, but you are still where you fell asleep.
 In the dark...."
 }
 
-function sleep2() {
+sleep2() {
 echo "the passage of time has not been kind, and you
 once again seek the warmth of a bed.  this time you
 have no high hopes as you did the last time.  this is your
@@ -411,7 +411,7 @@ were really like.  as you once again arise,
 you hope to end this nightmare soon."
 }
 
-function sleep3() {
+sleep3() {
 echo "you once again seek the seclusion and security of a
 warm bed.  your mind once again begins to wander.  why are all 
 these bedrooms so well furnished and maintained? Why are all
@@ -421,7 +421,7 @@ as these.  as your mind clears, you eyes open, and you face
 this world once more."
 }
 
-function sleep4() {
+sleep4() {
 echo "you are frightened. you have noticed that the time 
 you have been sleeping has been increasing, and likewise the 
 time you spend in the waking nightmare has been decreasing.
@@ -430,7 +430,7 @@ awake once more.  you have to end this soon, because you might
 not get another chance."
 }
 
-function sleep5() {
+sleep5() {
 echo "you made it, but you don't know how.  you once again see
 your only friend in this waking hell.  as your knees hit the floor
 from exhaustion, you drag yourself into the bed.  you see the
@@ -441,7 +441,7 @@ covers.  death has come for you and you have no where left to hide.
 You have Died."
 }
 
-function sleepdeath1() {
+sleepdeath1() {
 echo "As you take a step, you feel your legs go out from
 under you, and you move no more. you here shrill laughter
 from far off as your vision fades to nothing.  time
@@ -450,23 +450,23 @@ Finally everything goes away to never return again.
 You have died."
 }
 
-function sleepwarn1() {
+sleepwarn1() {
 echo "your brow begins to feel heavy
 you start to wonder where there might be a bed"
 }
 
-function sleepwarn2() {
+sleepwarn2() {
 echo "your feet now start to drag.  you start
 to yearn for the warm embrace of a bed."
 }
 
-function sleepwarn3() {
+sleepwarn3() {
 echo "your whole body begins to wane.  your eyes
 find it hard to focus and your feet follow behind you
 you feel it is a terrible night for a curse."
 }
 
-function windowfall() {
+windowfall() {
 echo "the fall safely.  unfortunately you have misjudged your own
 durability.  your knees shatter as your feet touch the ground.
 as your back reaches the ground, it shatters as well.  now begins
@@ -477,7 +477,7 @@ it comes.
 You are Dead"
 }
 
-function i1a() {
+i1a() {
 echo "as you walk down the corridor, it is as if the darkness
 itself consumes your flesh, you try to scream out, but the
 darkness eats your cries.
@@ -485,7 +485,7 @@ darkness eats your cries.
 you have died..."
 }
 
-function i8a() {
+i8a() {
 echo "as you walk outside, you feel the sharp rain on your face.
 As you walk you begin to realize you cant see where you are going.
 you turn back to return where you came from, but you cant see
@@ -497,7 +497,7 @@ clamping around your neck.
 you have died..."
 }
 
-function smellbody1 (){
+smellbody1 (){
 echo "the body clearly expired long ago, however it
 was fairly well preserved from the room being sealed,
 and all of the air cooked out."
@@ -505,7 +505,7 @@ and all of the air cooked out."
 
 #ghoststuff-------------------------------------------------------------
 
-function ghost1(){
+ghost1(){
 
 if [[ $1 == burn ]] ; then libindex=('the apparition shrieks "Ghosts do not burn fool" as
 she descends upon you.
@@ -576,7 +576,7 @@ echo "$libindex"
 
 
 
-function ghosttalk(){
+ghosttalk(){
 echo 'She Shrieks to you "I shall get you for what you did to me!"
 she then devours you
 You are dead'
@@ -586,7 +586,7 @@ You are dead'
 #wolfstuff--------------------------------------------------------------
 
 
-function wolf1(){
+wolf1(){
 if [[ $1 == 1 ]] ; then object=("as you run north towards the wolf") ; fi
 if [[ $1 == 2 ]] ; then object=("as you run south away from the wolf") ; fi
 if [[ $1 == 3 ]] ; then object=("as you run west away from the wolf") ; fi
@@ -635,7 +635,7 @@ if [[ $1 == 40 ]] ; then object=("as you try to walk") ; fi
 echo "$object, the wolf eats you" 
 }
 
-function wolf2(){
+wolf2(){
 if [[ $1 == 1 ]] ; then object=("there is a wolf approaching you from the north") ; fi
 if [[ $1 == 2 ]] ; then object=("The silver bullet ripped into the the wolf.
 It slumpped over and disolved into the air.") ; fi
@@ -646,7 +646,7 @@ the wolf impedes on you") ; fi
 echo "$object"
 }
 
-function wolf3(){
+wolf3(){
 if [[ $1 == 1 ]] ; then object=("As you fumble through your pack unable to focus") ; fi
 if [[ $1 == 2 ]] ; then object=("You stop as you try to lick yourself,") ; fi
 
@@ -654,7 +654,7 @@ echo "$object,
 the wolf impeades on you "
 }
 
-function lickwolf1(){
+lickwolf1(){
 echo "Suddenly, the wolf stops in its tracks.  It says; 'Hello.
 My name is Hazzal.  I come from the hills of Caledonia.
 King Georges lobster backs destroyed my home. I came to these woods
@@ -663,7 +663,7 @@ But the girl, the girl was different.  she didn't seek to destroy
 me, she just wanted to be my friend."
 }
 
-function lickwolf2() {
+lickwolf2() {
 echo "Her mother though, was just like all the others.
 so I decided to play a little game.  I taught the girl to see the
 world for what it is, and how to use it.  of course the girl used
@@ -677,7 +677,7 @@ ceased to exist, so would she.' Then the wolf disappears."
 
 #greyroot----------------------------------------------------------------
 
-function smashent(){
+smashent(){
 echo 'the hammer makes contact with the large oak, and suddenly
 it springs to life.
 "YOU DARE STRIKE ME MORTAL?" the ent shouts.
@@ -686,7 +686,7 @@ He then grabs you and puts you in his mouth.
 You are dead'
 }
 
-function entfriend(){
+entfriend(){
 
 if [[ $1 == 1 ]] ; then object=("The tree's eyes open as its arms lower.  its eyes
 fall upon yoyu. Hello Friend, I am called Greyroot.") ; fi
@@ -714,7 +714,7 @@ if [[ $1 == 10 ]] ; then object=("Go forth and stop this madness.") ; fi
 echo "$object"
 }
 
-function greyrootmisc(){
+greyrootmisc(){
 if [[ $1 == incorrect ]] ; then object=("You are incorrect") ; fi
 if [[ $1 == correct ]] ; then object=("You are correct") ; fi
 if [[ $1 == slump ]] ; then object=("Greyroot slumps back to his resting state") ; fi
@@ -730,7 +730,7 @@ echo "$object"
 
 #E----------------------------------------------------------------------
 
-function elookdir() {
+elookdir() {
 remainder=
 direct=("$1")
 view=("$2")
@@ -759,7 +759,7 @@ echo "you are outside
 $remainder"
 }
 
-function elooka(){
+elooka(){
 
 if [[ $1 == bush ]] ; then object=("The bush is well kept.") ; fi
 if [[ $1 == bush1 ]] ; then object=("The bush is ratty and poorly trimmed.") ; fi
@@ -807,7 +807,7 @@ if [[ $1 == window3 ]] ; then object=("you see a staircase and a door across the
 echo "$object"
 }
 
-function elook(){
+elook(){
 
 if [[ $1 == 30 ]] ; then
 if [[ $2 == wolf ]] ; then if [[ $3 == 2 ]] ; then wolf=("there is a wolf eyeing you up
@@ -885,7 +885,7 @@ $wolf"
 }
 
 
-function lick(){
+lick(){
 
 if [[ $1 == ammo1 ]] ; then object=("You shouldn't put that in your mouth") ; fi
 if [[ $1 == ashes1 ]] ; then object=("You wish you hadn't done that") ; fi
@@ -973,7 +973,7 @@ echo "$object
 $door"
 }
 
-function lookilib(){
+lookilib(){
 thresh=0
 
 if [[ $1 == ammo1 ]] ; then libindex=("You picked up 3 bullets.") ; fi
@@ -1291,7 +1291,7 @@ through the tree line.") ; fi
 
 }
 
-function looki(){
+looki(){
 
 if [[ $1 == i01 ]] ; then output=("To the west is a door, to the east is
 a corridor.  There is a window to the north") ; fi
@@ -1413,7 +1413,7 @@ if [[ ${13} == $thresh ]] ; then echo "$libindex" ; fi
 
 }
 
-function lookdoor(){
+lookdoor(){
 
 lookilib $1
 echo "$libindex" 
@@ -1425,7 +1425,7 @@ if [[ $4 == 1 ]] ; then uni doorunlock ; fi
 if [[ $4 != 1 ]] ; then uni doorlock ;fi
 }
 
-function lookkey(){
+lookkey(){
 if [[ $1 == e08 ]] ; then echo "It is a small brass clock key" ; fi
 if [[ $1 == e10 ]] ; then elooka tree ; echo "On the limb of the tree, there sits a key" ; fi
 if [[ $1 == e12 ]] ; then echo "you see a it is a small brass key" ; fi
@@ -1438,7 +1438,7 @@ if [[ $1 == i09 ]] ; then echo "you see a key in they box" ; fi
 if [[ $1 == i23 ]] ; then echo "The key is sitting in the drawers" ; fi
 }
 
-function smell(){
+smell(){
 #room
 if [[ $1 == e ]] ; then object=("The smell of fresh rain prevail the air") ; fi
 if [[ $1 == i01 ]] ;  then if [[ $3 == 1 ]] ; then 
@@ -1546,7 +1546,7 @@ echo "$object
 $secondary"
 }
 
-function journal1(){
+journal1(){
 
 if [[ $1 == 1 ]] ; then object=("Do you want to play a game?") ; fi
 if [[ $1 == 2 ]] ; then object=("Why won't she love me?") ; fi
@@ -1564,14 +1564,14 @@ sed -i "/^#journalb/i $object" status
 
 #stockcommands----------------------------------------------------------
 
-function burnbooks4(){
+burnbooks4(){
 echo "As you place the flame of the lighter beneath the
 page, the fire resists to catch.  it would appear as though some
 outside force is preventing you from burning the paper
 at this moment."
 }
 
-function lickme1(){
+lickme1(){
 echo "this used to let you get your tongue cut off which would keep
 you from ever licking anything ever again.  however as i am now 
 implementing focus, it basically came down to one or the other.
@@ -1581,7 +1581,7 @@ people will ever see this text.  if you do, please post
 #letmelickmyselfgate on twitter."
 }
 
-function uni(){
+uni(){
 item=($2)
 if [[ $1 == back ]] ; then object=("Unable to go back.") ; fi
 if [[ $1 == book ]] ; then object=("It is a page of a journal.") ; fi
@@ -1627,11 +1627,11 @@ echo "$object"
 #debugstuff-------------------------------------------------------------
 
 
-function debugfill(){
+debugfill(){
 echo "Inventory Filled"
 }
 
-function debughelp(){
+debughelp(){
 echo "type state <variable> to view the state of 
 a variable.
 type set <global/local> <variable> = <number> to
@@ -1640,11 +1640,11 @@ type move <block> - <cell> to change room
 debugreload > reloads the cell file"
 }
 
-function debugmove(){
+debugmove(){
 echo "incorrect syntax to move to cell"
 }
 
-function debugstate(){
+debugstate(){
 debug1=("$1")
 debug2=("$2")
 debug3=("$3")
@@ -1652,7 +1652,7 @@ echo "global: $debug1=$debug2
 local: $debug1=$debug3"
 }
 
-function loadsave(){
+loadsave(){
 echo "which file to $1
 1) $2
 2) $3
@@ -1662,27 +1662,27 @@ echo "which file to $1
 c) cancel"
 }
 
-function options1(){
+options1(){
 echo "1) Travel Orientation
 b) Back"
 }
 
-function options2(){
+options2(){
 echo "travel orientation
 1) absolute
 2) relative
 b) back  "
 }
 
-function options3(){
+options3(){
 echo "orientation set to absolute"
 }
 
-function options4(){
+options4(){
 echo "orientation set to relative"
 }
 
-function installer1(){
+installer1(){
 if [[ $1 == 1 ]] ; then output=("Welcome
 If the screen isnt drawing right, you need a bigger terminal
 window.  chances are though, if you are having that issue, you
@@ -1704,7 +1704,7 @@ echo "$output"
 
 #about------------------------------------------------------------------
 
-function help1() {
+help1() {
 echo "Help
 Basic commands:
 
@@ -1767,7 +1767,7 @@ Beware your greed, for it will consume you
 type <debug help> for debug mode help"
 }
 
-function journalhelp(){
+journalhelp(){
 echo "Just type to enter data into your Journal.  When you reach the
 end of a line it will enter it into the journal.  if you want to end
 early, then you can press enter.  Once you enter a line, you can no
@@ -1776,7 +1776,7 @@ longer remove it.  Remember, you are using a pen."
 
 }
 
-function universalana(){ 
+universalana(){ 
 read -p '##################################################
 #              ;;;;;;;;;;;;;;;;;;;;              #
 #            ;;;;;;;;;;;;;;;;;;;;;;;;            #
@@ -1809,17 +1809,17 @@ read -p '##################################################
 # Created by: Universal Analogue  #              #
 # License: MIT                    #              #
 # Makebuild Engine Ver 1.7        #              #
-# Fulmination Ver 1.5.02          #              #
+# Fulmination Ver 1.5.07          #              #
 ##################################################'
 
 }
 
-function readme() {
+readme() {
 echo "Readme
-A small Adventure game created for the fun of it, done over two
-years with no prior experience.
+A small Adventure game, written to try to find the limit
+of what could be done with bash and coreutils.
 
-The more specific to why, is because it turns out I could.
+Still not quite at the end yet.
 
 # Riddles by fantasynamegenerators.com
 
@@ -1831,7 +1831,7 @@ the universal analogue"
 
 #inventory--------------------------------------------------------------
 
-function book11 () {
+book11 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1841,7 +1841,7 @@ givenname=Sue Journal 1
 exists=1"
 }
 
-function book11r () {
+book11r () {
 echo "December 15th, 1941
 
 Such a terrible thing, just a few days after our baby girl is born,
@@ -1852,7 +1852,7 @@ damn Japanese a lesson they wont forget.  I will wait for him forever.
 The rest is torn off"
 }
 
-function book12 () {
+book12 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1862,7 +1862,7 @@ givenname=Sue Journal 2
 exists=1"
 }
 
-function book12r () {
+book12r () {
 echo "August 15th, 1942
 
 My beloved Steven has sailed off to parts unknown to fight our
@@ -1871,7 +1871,7 @@ enemies.......
 The rest is burned"
 }
 
-function book13 () {
+book13 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1881,7 +1881,7 @@ givenname=Sue Journal 3
 exists=1"
 }
 
-function book13r () {
+book13r () {
 echo "July 20th 1943
 
 The worst news today, Stevens ship was torpedoed...
@@ -1891,7 +1891,7 @@ Hes gone, how can he be go....
 The rest is too wet to read"
 }
 
-function book14 () {
+book14 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1901,7 +1901,7 @@ givenname=Sue Journal 4
 exists=1"
 }
 
-function book14r () {
+book14r () {
 echo "May 13th, 1946 
 
 I have met the most wonderful man.  He just showed up at my door
@@ -1913,7 +1913,7 @@ I think she's been writing in my journal again, going to have
 to keep it out of her reach..."
 }
 
-function book15 () {
+book15 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1923,7 +1923,7 @@ givenname=Sue Journal 5
 exists=1"
 }
 
-function book15r () {
+book15r () {
 echo "February 15th, 1947
 
 Stanley's been coming over a lot lately.  I just keep finding
@@ -1934,7 +1934,7 @@ British during the war.  I just have to keep the brat upstairs
 to keep her from scaring him off."
 }
 
-function book16 () {
+book16 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1944,7 +1944,7 @@ givenname=Sue Journal 6
 exists=1"
 }
 
-function book16r () {
+book16r () {
 echo "April 23rd, 1948
 
 Stanley finished putting in the window from the kitchen into
@@ -1954,7 +1954,7 @@ and asked Stanley if he was her father.  When he said no, she
 started to scream.  I slapped her something she wouldn't forget."
 }
 
-function book17 () {
+book17 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1964,7 +1964,7 @@ givenname=Sue Journal 7
 exists=1"
 }
 
-function book17r () {
+book17r () {
 echo "September 15th, 1948
 
 My Dearest Stanley is moving in today!  He said he just can't
@@ -1974,7 +1974,7 @@ talking to this wolf looking thing by the fence before, going to
 have to have Stanley chase that thing away."
 }
 
-function book18 () {
+book18 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -1984,7 +1984,7 @@ givenname=Sue Journal 8
 exists=1"
 }
 
-function book18r () {
+book18r () {
 echo "June 3rd, 1951
 
 Julia was acting weird today again.  The doctor says its normal,
@@ -1996,7 +1996,7 @@ house so they wont be able to see her at least...
 The rest seems to have been torn out."
 }
 
-function book19 () {
+book19 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2006,7 +2006,7 @@ givenname=Sue Journal 9
 exists=1"
 }
 
-function book19r () {
+book19r () {
 echo "November 24th, 1951
 
 The Hedgerows that Stanley put have helped the rumors for now,
@@ -2017,7 +2017,7 @@ however Caroline's behavior has continued to get worse ...
 The rest is unintelligible" 
 }
 
-function book110 () {
+book110 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2027,7 +2027,7 @@ givenname=Sue Journal 10
 exists=1"
 }
 
-function book110r () {
+book110r () {
 echo "January 3rd, 1952
 
 My dearest Stanley, Not my dearest Stanley.  There was just so 
@@ -2035,7 +2035,7 @@ much blood..... I know it was her, she was alway jealous. the police
 wouldn't believe she did it.... i just know she did."
 }
 
-function book111 () {
+book111 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2045,7 +2045,7 @@ givenname=Sue Journal 11
 exists=1"
 }
 
-function book111r () {
+book111r () {
 echo "April 14th, 1952
 
 I turned the oven on, and lit the fireplace in the kitchen.
@@ -2055,7 +2055,7 @@ Shes gone now.. I can still hear the screaming...
 It never ends...  how can the screaming still be there if shes gone?"
 }
 
-function book112 () {
+book112 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2065,7 +2065,7 @@ givenname=Sue Journal 12
 exists=1"
 }
 
-function book112r () {
+book112r () {
 echo "March 18th, 1964
 
 I can still hear the screaming at night.  I've boarded up the door
@@ -2077,7 +2077,7 @@ My perfect perfect perfect perfect wonderful Stanley......
 It breaks down into ramblings "
 }
 
-function book113 () {
+book113 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2087,7 +2087,7 @@ givenname=Sue Journal 13
 exists=1"
 }
 
-function book113r () {
+book113r () {
 echo "July 11th, 1966
 
 I looked through my diary today, and theres writing in it,
@@ -2099,7 +2099,7 @@ Not again, Not again, Never again Never Never Never NEVER NEVER NEVER
 NEVER NEVER NEVER NEVER NEVER NEV....."
 }
 
-function book21 () {
+book21 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2109,7 +2109,7 @@ givenname=Stanley Journal 1
 exists=1"
 }
 
-function book21r () {
+book21r () {
 echo "July 3rd, 1942
 
 It seems luck is on my side, I got transfered out of Tobruk a
@@ -2119,7 +2119,7 @@ quite so broken though, I would like to give Rommell a good
 piece of my mind...."
 }
 
-function book22 () {
+book22 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2129,7 +2129,7 @@ givenname=Stanley Journal 2
 exists=1"
 }
 
-function book22r () {
+book22r () {
 echo "May 15th, 1945
 
 Its finally over.  I'm not quite sure what to do with myself.
@@ -2138,7 +2138,7 @@ I hear my cousin out in America has a company selling vacuum
 cleaners. I might just go see him about that"
 }
 
-function book23 () {
+book23 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2148,7 +2148,7 @@ givenname=Stanley Journal 3
 exists=1"
 }
 
-function book23r () {
+book23r () {
 echo "May 15th, 1946 
 
 I met the most delightful lady today.  She was living all by
@@ -2157,7 +2157,7 @@ money.  she said she would be most happy to have me over again,
 I just might have to take her up on that"
 }
 
-function book24 () {
+book24 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2167,7 +2167,7 @@ givenname=Stanley Journal 4
 exists=1"
 }
 
-function book24r () {
+book24r () {
 echo "February 16th, 1947
 
 Ive been spending more and more time over at Susan house.
@@ -2176,7 +2176,7 @@ I hear noises coming from up stairs, but she says its just
 the old house creaking.  I don't think houses giggle or cry though..."
 }
 
-function book25 () {
+book25 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2186,7 +2186,7 @@ givenname=Stanley Journal 5
 exists=1"
 }
 
-function book25r () {
+book25r () {
 echo "April 25th, 1948
 
 I had just finished putting in a new window into the Susan
@@ -2198,7 +2198,7 @@ to ball when Sue whipped around the corner and dragged her off.
 when Sue came back, she apologized and I told her it was ok...."
 }
 
-function book26 () {
+book26 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2208,7 +2208,7 @@ givenname=Stanley Journal 6
 exists=1"
 }
 
-function book26r () {
+book26r () {
 echo "September 5th, 1948
 
 Susan asked me to move in with her today.  I said yes of course,
@@ -2220,7 +2220,7 @@ creepy wolf that likes to hang out by the fence.  Its a good thing
 that i kept that revolver that Pole Chekhov gave me back in Beda Fomm."
 }
 
-function book27 () {
+book27 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2230,7 +2230,7 @@ givenname=Stanley Journal 7
 exists=1"
 }
 
-function book27r () {
+book27r () {
 echo "November 26th, 1951
 
 I think i have gotten myself a bit over my head here.  I'm beginning
@@ -2240,7 +2240,7 @@ I don't know if they were like that when she found them though....
 .. haven't seen things like that since the war.."
 }
 
-function book28 () {
+book28 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2250,7 +2250,7 @@ givenname=Stanley Journal 8
 exists=1"
 }
 
-function book28r () {
+book28r () {
 echo "December 24th, 1951
 
 I was out by the shed getting some wood for the fire, when this wolf
@@ -2262,7 +2262,7 @@ walked away mumbling to herself.  Her mother really ought to have
 a talk with her....."
 }
 
-function book31 () {
+book31 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2272,7 +2272,7 @@ givenname=Caroline Journal 1
 exists=1"
 }
 
-function book31r () {
+book31r () {
 echo "December 20th, 1945
 
 I love my mommy.  I don't know why she is so sad so much.
@@ -2281,7 +2281,7 @@ Hazzal.  He taught me how to write.
 He said that if i listen to him i can make mommy happy."
 }
 
-function book32 () {
+book32 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2291,7 +2291,7 @@ givenname=Caroline Journal 2
 exists=1"
 }
 
-function book32r () {
+book32r () {
 echo "April 30rd, 1948
 
 Why is mommy so mean.  all she ever does is yell at me and lock me 
@@ -2303,7 +2303,7 @@ and how to use them to make bad people go away....
 The hand writing is barely legible."
 }
 
-function book33 () {
+book33 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2313,7 +2313,7 @@ givenname=Caroline Journal 3
 exists=1"
 }
 
-function book33r () {
+book33r () {
 echo "September 17th, 1948
 
 Now that mommy let that bad man in the house, she wont let me
@@ -2323,7 +2323,7 @@ she keeps telling me shes going to have Stanley shoot him.
 I wont let that happen."
 }
 
-function book34 () {
+book34 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2333,7 +2333,7 @@ givenname=Caroline Journal 4
 exists=1"
 }
 
-function book34r () {
+book34r () {
 echo "January 15th, 1950
 
 I've started sleeping during the day, so I can sneak out at night to
@@ -2344,7 +2344,7 @@ have my mommy back.He taught me all about books, and there power.
 I just need blood.  Lots and Lots of blood."
 }
 
-function book35 () {
+book35 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2354,7 +2354,7 @@ givenname=Caroline Journal 5
 exists=1"
 }
 
-function book35r () {
+book35r () {
 echo "September 17th, 1951
 
 Mommy had that bastard Stanley put up hedges around the fence
@@ -2363,7 +2363,7 @@ behind the house.  I think she knows what i'm up to, but she
 cant stop me now.  I just need more blood."
 }
 
-function book36 () {
+book36 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2373,7 +2373,7 @@ givenname=Caroline Journal 6
 exists=1"
 }
 
-function book36r () {
+book36r () {
 echo "January 5th, 1952
 
 Ive done it!  Just like Mr Hazzal said!  I gave the book to that
@@ -2382,7 +2382,7 @@ of little pieces.  now he'll never get between me and my mommy.
 I've never been so happy!"
 }
 
-function book37 () {
+book37 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2392,7 +2392,7 @@ givenname=Caroline Journal 7
 exists=1"
 }
 
-function book37r () {
+book37r () {
 echo "April 13th, 1952
 
 I told mommy she doesn't need that loser anymore, she has me.
@@ -2401,7 +2401,7 @@ to stop crying.  Mommy just needs to be happy.  I'm all
 she needs..."
 }
 
-function book38 () {
+book38 () {
 echo "#looka
 It seems to be a page of a journal.
 #lookb
@@ -2411,7 +2411,7 @@ givenname=Caroline Journal 8
 exists=1"
 }
 
-function book38r () {
+book38r () {
 echo "April 14th, 1952
 
 Why did she.............. I love her so.......
@@ -2423,7 +2423,7 @@ put mysel..in.....ook......
 Most of the page is burned away"
 }               
 
-function ammo () {
+ammo () {
 echo "#looka
 They are solid silver 38S&W.
 #lookb
@@ -2433,7 +2433,7 @@ givenname=Ammo
 exists=1"
 }
 
-function gun () {
+gun () {
 echo "#looka
 It is an Enfield NO2 revolver in 38S&W.
 #lookb
@@ -2443,7 +2443,7 @@ givenname=Gun
 exists=1"
 }
 
-function hammer () {
+hammer () {
 echo "#looka
 It is an old weathered ball peen hammer.
 #lookb
@@ -2453,7 +2453,7 @@ givenname=Hammmer
 exists=1"
 }
 
-function light () {
+light () {
 echo "#looka
 It is a dynamo powered flashlight.
 #lookb
@@ -2463,7 +2463,7 @@ givenname=Light
 exists=1"
 }
 
-function lighter () {
+lighter () {
 echo "#looka
 It is an old flip cap lighter
 #lookb
@@ -2473,7 +2473,7 @@ givenname=Lighter
 exists=1"
 }
 
-function pendant () {
+pendant () {
 echo "#looka
 It is a mysterious pendant you found in a
 secret panel.  You do not know why, but you get
@@ -2485,7 +2485,7 @@ givenname=Pendant
 exists=1"
 }
 
-function key1 () {
+key1 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2495,17 +2495,17 @@ givenname=Key 1
 exists=1"
 }
 
-function key1a() {
+key1a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key3 62 12 0
 }
 
-function key1b() {
+key1b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key3 62 8 0
 }
 
-function key2 () {
+key2 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2515,17 +2515,17 @@ givenname=Key 2
 exists=1"
 }
 
-function key2a() {
+key2a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key4 62 12 0
 }
 
-function key2b() {
+key2b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key4 62 8 0
 }
 
-function key3 () {
+key3 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2535,17 +2535,17 @@ givenname=Key 3
 exists=1"
 }
 
-function key3a() {
+key3a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key5 62 12 0
 }
 
-function key3b() {
+key3b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key5 62 8 0
 }
 
-function key4 () {
+key4 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2555,17 +2555,17 @@ givenname=Key 4
 exists=1"
 }
 
-function key4a() {
+key4a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key6 62 12 0
 }
 
-function key4b() {
+key4b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key6 62 8 0
 }
 
-function key5 () {
+key5 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2575,17 +2575,17 @@ givenname=Key 5
 exists=1"
 }
 
-function key5a() {
+key5a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key7 62 12 0
 }
 
-function key5b() {
+key5b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key7 62 8 0
 }
 
-function key6 () {
+key6 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2595,17 +2595,17 @@ givenname=Key 6
 exists=1"
 }
 
-function key6a() {
+key6a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key8 62 12 0
 }
 
-function key6b() {
+key6b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key8 62 8 0
 }
 
-function key7 () {
+key7 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2615,17 +2615,17 @@ givenname=Key 7
 exists=1"
 }
 
-function key7a() {
+key7a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key9 62 12 0
 }
 
-function key7b() {
+key7b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key9 62 8 0
 }
 
-function key8 () {
+key8 () {
 echo "#looka
 It is a small brass key.
 #lookb
@@ -2635,17 +2635,17 @@ givenname=Key 8
 exists=1"
 }
 
-function key8a() {
+key8a() {
 ./utils.sh overlay keyp 56 8 0
 ./utils.sh overlay key10 62 12 0
 }
 
-function key8b() {
+key8b() {
 ./utils.sh overlay lockp 56 8 0
 ./utils.sh overlay key10 62 8 0
 }
 
-function clockkey () {
+clockkey () {
 echo "#looka
 It is a small brass key to wind a clock.
 #lookb
@@ -2655,11 +2655,11 @@ givenname=Clock Key
 exists=1"
 }
 
-function clockkeyg () {
+clockkeyg () {
 ./utils.sh overlay keyc 56 8 0
 }
 
-function cog () {
+cog () {
 echo "#looka
 It is a small cog from a clock.
 #lookb
@@ -2669,7 +2669,7 @@ givenname=Cog
 exists=1"
 }
 
-function gear () {
+gear () {
 echo "#looka
 It is a small gear from a clock.
 #lookb
@@ -2679,7 +2679,7 @@ givenname=Gear
 exists=1"
 }
 
-function mainspringbarrel () {
+mainspringbarrel () {
 echo "#looka
 It is the mainspring barrel from a clock.
 #lookb
@@ -2689,7 +2689,7 @@ givenname=Main Spring Barrel
 exists=1"
 }
 
-function sprocket () {
+sprocket () {
 echo "#looka
 It is a small sprocket from a clock.
 #lookb
@@ -2699,7 +2699,7 @@ givenname=Sprocket
 exists=1"
 }
 
-function journal () {
+journal () {
 echo "#looka
 It is a tattered old journal that you write in.
 #lookb
@@ -2709,7 +2709,7 @@ givenname=Journal
 exists=1"
 }
 
-function pen () {
+pen () {
 echo "#looka
 It is the pen you write with in the journal.
 #lookb

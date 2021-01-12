@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function parser1() {
+parser1() {
 var1="$1"
 
 var1=$(tr '[:upper:]' '[:lower:]' <<< "$var1")
@@ -95,18 +95,18 @@ if [ -z $var1 ] ; then var1=("You pass this turn") ; fi
 echo "$var1"
 }
 
-function clear {
+clear() {
 printf "\ec"
 color=$(grep "color=" status | cut -d "=" -f2)
 colorset $color
 }
 
-function pause (){
+pause (){
 if [ -z ${1+x} ] ; then a=Paused ; else a="$1" ; fi
 read -p "$a"
 }
 
-function colorset(){
+colorset(){
 sed -i "/color=/c\color=${1}" status
 #    green            outside        background    text     cursor
 if [ $1 -eq 1 ] ; then printf '\e]11;black\a\e[0;32m\e]12;green\a\e[0;0H' ; fi
@@ -128,7 +128,7 @@ if [ $1 -eq 8 ] ; then printf '\e]11;grey\a\e[1;34m\e]12;darkcyan\a\e[0;0H' ; fi
 if [ $1 -eq 9 ] ; then printf '\e]11;grey\a\e[1;31m\e]12;red\a\e[0;0H' ; fi
 }
 
-function posbar() {
+posbar() {
 # $1 - numerator | $2 - denominator | $3 - size of bar
 a=$1 && b=$2 && c=$3
 if [ $b -le 0 ] ; then b=1 ; fi
@@ -142,7 +142,7 @@ printf "%-${e}s]" | tr ' ' '-')
 echo "$posbar" | tr -d '\r'
 }
 
-function events(){
+events(){
 greed=$(grep "greed=" status | cut -d "=" -f2)
 if [ $greed -ge 50 ]
 then
@@ -164,14 +164,14 @@ break
 fi
 }
 
-function setdeath(){
+setdeath(){
 ./utils.sh colorset 4
 sed -i "/cell=/c\cell=null" status
 sed -i "/block=/c\block=i" status
 sed -i "/focus=/c\focus=0" status
 }
 
-function cutscene(){
+cutscene(){
 printf "\e[0;0H"
 if [[ $3 != null ]] ; then ./lib.sh $3 ; fi
 output=$(form ./lib.sh $1)
@@ -186,7 +186,7 @@ printf "\e[37;26H"
 read case1
 }
 
-function cutscene2(){
+cutscene2(){
 printf "\e[0;0H"
 ./lib.sh $1
 printf "\e[23;0H"
@@ -198,7 +198,7 @@ $3
 ##########################################################################"
 }
 
-function menu(){
+menu(){
 printf "\e[23;0H"
 a=$(printf '%-70s' "$2")
 echo "# $a #
@@ -209,7 +209,7 @@ $1
 printf "\e[37;23H"
 }
 
-function prompt(){
+prompt(){
 last=$(printf '%-36s' "$1")
 printf "\e[23;0H"
 colorset $4
@@ -222,7 +222,7 @@ $3
 printf "\e[37;23H"
 }
 
-function overlay(){
+overlay(){
 #$1 image $2 xaxis start $3 yaxis start $4 transparency
 xaxis=$2 ; if [ $xaxis -eq 0 ] ; then xaxis=1 ; fi
 yaxis=$3 ; if [ $yaxis -eq 0 ] ; then yaxis=1 ; fi
@@ -240,7 +240,7 @@ if [ $4 -eq 1 ] ; then var1=$(sed 's/ /\\e[1C/g' <<< "$var1") ; fi
 printf "\e[${yaxis};${xaxis}H${var1}"
 }
 
-function save() {
+save() {
 while true ; do
 save1=$(ls | grep ".save")
 a=$(grep .save.1 <<< "$save1")
@@ -263,7 +263,7 @@ esac
 done
 }
 
-function form() {
+form() {
 text=$(./lib.sh "$1" "$2" "$3" "$4" "$5" "$6" "$7" "$8" "$9" "${10}")
 total=11
 count=1
@@ -277,7 +277,7 @@ echo "$form
 $bar1"
 }
 
-function reader () {
+reader () {
 text=$(./lib.sh $1 | sed "1d")
 givenname=$(./lib.sh $1 | sed '1q;d')
 givenname=$(printf '%-71s' "$givenname")
@@ -322,7 +322,7 @@ esac
 done
 }
 
-function inventory () {
+inventory () {
 inv=$(sed -n '/^#inveta/,/^#invetb/p;/^#invetb/q' status | sed '/#/d' | sed '/^[[:space:]]*$/d')
 ammo=$(grep "ammo=" status | cut -d "=" -f2)
 
@@ -385,9 +385,11 @@ if [[ ! -z ${prime1a} ]]
 then
 status=$(./lib.sh $prime1a)
 givenname=$(grep 'givenname=' <<< "$status" | cut -d "=" -f2)
-declare "${i}2=$(printf '%-66s' "$givenname")"
+#declare "${i}2=$(printf '%-66s' "$givenname")"
+printf -v "${i}2" '%s' "$(printf '%-66s' "$givenname")"
 else
-declare "${i}2=printf '%-66s'"
+#declare "${i}2=printf '%-66s'"
+printf -v "${i}2" '%s' "$(printf '%-66s')"
 fi
 done
 if [ $intro1 -eq 1 ]
@@ -504,7 +506,7 @@ esac
 done
 }
 
-function journal () {
+journal () {
 fill=$(printf '%-54s')
 ./utils.sh clear
 while true ; do 
@@ -559,7 +561,7 @@ done
 }
 
 
-function music(){
+music(){
 
 
 if [[ $1 == 1 ]]

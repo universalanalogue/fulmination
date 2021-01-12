@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-function overlay(){
+overlay(){
 #$1 image $2 xaxis start $3 yaxis start $4 transparency
 xaxis=$2 ; if [ $xaxis -eq 0 ] ; then xaxis=1 ; fi
 yaxis=$3 ; if [ $yaxis -eq 0 ] ; then yaxis=1 ; fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 image=$(block/$block/./graphics.sh ${cell}pic1a
 ./utils.sh overlay "blank 3 1" 56 1 0
 ./utils.sh overlay "sidebar $block $cell 3" 56 4 0)
@@ -8,7 +8,7 @@ echo "$image"
 if [ $i25wound -eq 1 ] ; then ./utils.sh overlay "scuff" 22 12 0 ; fi
 }
 
-function vars() {
+vars() {
 
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)

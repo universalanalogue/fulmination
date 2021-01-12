@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 if [ $focus -eq 0 ]
 then
 image=$(block/$block/./graphics.sh 10pic3a
@@ -16,7 +16,7 @@ fi
 echo "$image"
 }
 
-function vars() {
+vars() {
 
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)

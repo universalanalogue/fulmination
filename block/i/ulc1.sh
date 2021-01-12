@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 if [[ "$cella" =~ ^(33|34)$ ]] ; then num=1 ; fi
 if [[ "$cella" =~ ^(35|36|39|40|42)$ ]] ; then num=2 ; fi
 if [ "$cella" -eq 33 ] ; then ./utils.sh colorset 5 ; fi
@@ -10,7 +10,7 @@ image=$(block/$block/./graphics.sh ${cella}pic1
 echo "$image"
 }
 
-function vars() {
+vars() {
 #base
 block=$(grep 'block=' status | cut -d "=" -f2)
 cella=$(grep "cella=" status | cut -d "=" -f2)
@@ -53,7 +53,7 @@ block=$(grep "block=" status | cut -d "=" -f2)
 cell=$(grep "cell=" status | cut -d "=" -f2)
 mvnt1=$(grep "mvnt1=" status | cut -d "=" -f2)
 
-function sleep1(){
+sleep1(){
 
 #sleep
 

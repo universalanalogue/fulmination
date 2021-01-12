@@ -1,52 +1,52 @@
 #!/bin/bash
 
-function key1(){
+key1(){
 echo '0
 |'
 }
 
-function key2(){
+key2(){
 echo '-'
 }
 
-function book1(){
+book1(){
 echo ' _
  \\'
 }
 
-function book2(){
+book2(){
 echo '|_|'
 }
 
-function book3(){
+book3(){
 echo '|\
 |.|
  \|'
 }
 
-function book4(){
+book4(){
 echo '   _____
   /    /
  /    / 
 /____/  '
 }
 
-function book5(){
+book5(){
 echo '^'
 }
 
-function book6(){
+book6(){
 echo '|\
 | |
  \|'
 }
 
-function book7(){
+book7(){
 echo ' _
 |.|'
 }
 
-function book8(){
+book8(){
 echo '   //|
   // /
  // / 
@@ -54,39 +54,39 @@ echo '   //|
 ()/   '
 }
 
-function book9(){
+book9(){
 echo '  __/   /
  /     / 
 /_____/  '
 }
 
-function book10(){
+book10(){
 echo '\     \,
 ,\_____\'
 }
 
-function book11(){
+book11(){
 echo '| |
 |_|'
 }
 
-function book12(){
+book12(){
 echo '_'
 }
-function book13 (){
+book13 (){
 echo '  ___
  /  /
 /__/ '
 }
 
-function chair1(){
+chair1(){
 echo '          
  _|_  _|__
           
           '
 }
 
-function door1(){
+door1(){
 echo '\___   
 |   |\ 
 |   | \
@@ -95,7 +95,7 @@ echo '\___
      \|'
 }
 
-function door2(){
+door2(){
 echo '  |_____
  /|####|
 | |####|
@@ -104,7 +104,7 @@ echo '  |_____
 |/      '
 }
 
-function door3(){
+door3(){
 echo '   ____ 
  /|    |
 / |    |
@@ -113,20 +113,20 @@ echo '   ____
 |/      '
 }
 
-function eyes1(){
+eyes1(){
 echo '.|
 |.'
 }
 
-function eyes2(){
+eyes2(){
 echo '..'
 }
 
-function scuff(){
+scuff(){
 echo "#"
 }
 
-function table1(){
+table1(){
 echo '
 ________    
 \       \   
@@ -135,57 +135,57 @@ ________
    \_______\'
 }
 
-function spec1(){
+spec1(){
 echo '#
 #'
 }
 
-function box1(){
+box1(){
 echo '  /|
  / |
 / /
 |/'
 }
 
-function box2(){
+box2(){
 echo '|\
  \\
   \|'
 }
 
-function box3(){
+box3(){
 echo '____\ ____ 
 | \  |    |
 |  \ |    |
 |___\|____|'
 }
 
-function gear1(){
+gear1(){
 echo 'o'
 }
 
-function hammer1 (){
+hammer1 (){
 echo ' /\ 
  \/\
  /\/
 /   '
 }
 
-function lighter (){
+lighter (){
 echo '  ___
  /__/
 /__/ '
 }
 
-function unless(){
+unless(){
 echo 'unless'
 }
 
-function vengance(){
+vengance(){
 echo 'vengance'
 }
 
-function pendant1(){
+pendant1(){
 echo '    _   
    / \  
   /   \ 
@@ -197,21 +197,21 @@ echo '    _
    {}   '
 }
 
-function safe1(){
+safe1(){
 echo '___ ___ 
 |  |___|
 |  |  o|
 |__|__`|'
 }
 
-function safe2(){
+safe2(){
 echo '___ ___ 
 |__|___|
 |\/|   |
 |/\|___|'
 }
 
-function safe3(){
+safe3(){
 echo '_____    
 |    |\  
 |    | \ 
@@ -221,7 +221,7 @@ _|    \ |
  \     \|'
 }
 
-function safe4(){
+safe4(){
 echo '_____    
 |____|\  
 ||   |\\ 
@@ -231,18 +231,18 @@ _|    \||
  \     \|'
 }
 
-function sprocket(){
+sprocket(){
 echo '`'
 }
 
-function win1(){
+win1(){
 echo ' _____ 
 | _|_ |
 |/   \|
 |_\_/_|'
 }
 
-function win2(){
+win2(){
 echo '   /|
   / |
  /| |
@@ -253,7 +253,7 @@ echo '   /|
 |/   '
 }
 
-function win3 (){
+win3 (){
 echo '|\
 | \
 | |\
@@ -264,7 +264,7 @@ echo '|\
    \|'
 }
 
-function win4 (){
+win4 (){
 echo '|\        
 | \       
 | |\      
@@ -288,7 +288,7 @@ echo '|\
 _________\'
 }
 
-function win5(){
+win5(){
 echo '_________
 | /_|_\||
 ||/   \||
@@ -296,7 +296,7 @@ echo '_________
 ||     ||'
 }
 
-function win6(){
+win6(){
 echo ' //
 // 
 / \
@@ -305,7 +305,7 @@ echo ' //
  /'
 }
 
-function win7(){
+win7(){
 echo '\\ 
  \\
 / \
@@ -314,13 +314,13 @@ echo '\\
  \\'
 }
 
-function win8(){
+win8(){
 echo '_____
 |/ \|
 |\ /|'
 }
 
-function win9(){
+win9(){
 echo ' /|
 / |
 | |
@@ -330,7 +330,7 @@ echo ' /|
 /  '
 }
 
-function win10(){
+win10(){
 echo '| | \
 |/ \|
 |\ \|
@@ -339,7 +339,7 @@ echo '| | \
    \|'
 }
 
-function win11(){
+win11(){
 echo '  /|
  / |
 /| |
@@ -350,7 +350,7 @@ echo '  /|
 /   '
 }
 
-function win12(){
+win12(){
 echo '/   /  /|
    /  /||
   /  // |
@@ -366,7 +366,7 @@ echo '/   /  /|
 _|__/____'
 }
 
-function win1b () {
+win1b () {
 echo '    \   \   \_____\_______/____________/   /   /  
      \   \  /                          \  /   /   
       \   \/                            \/   /    
@@ -387,7 +387,7 @@ echo '    \   \   \_____\_______/____________/   /   /
     /   /  \               /        \   /    \  \ '
 }
 
-function win2b () {
+win2b () {
 echo ' \ \  /\/    / \    / \    /   \  /\  / \ / / /  
   \/\/_/\___/___\__/___\__/_____\/  \/   \ / /   
   / /\                           \  /\  / \ /   /
@@ -408,7 +408,7 @@ echo ' \ \  /\/    / \    / \    /   \  /\  / \ / / /
  / /\  / \  /   \ \ /  / / /\ \  / /\ \ \ \     \'
 }
 
-function win3b () {
+win3b () {
 echo '  \   \     /    \     /    \      \  / \ /   / /
    \   \___/______\___/______\______\/   \   / / 
 \   \  /                             \  / \ / /  
@@ -429,7 +429,7 @@ echo '  \   \     /    \     /    \      \  / \ /   / /
   /   /   //  \ / \   / \  /  \   /  \  \   \    '
 }
 
-function blank(){
+blank(){
 c=0
 
 if [ $2 -eq 0 ] ; then spreda=('#') ; spredb=('#') ; fi
@@ -446,7 +446,7 @@ $body1
 $bar2"
 }
 
-function sidebar(){
+sidebar(){
 if [ $3 -eq 0 ] ; then
 compass=(" N 
 W+E

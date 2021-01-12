@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 
 if [ $focus -eq 0 ]
 then
@@ -35,7 +35,7 @@ if [ $i9box -eq 1 ] ; then ./utils.sh overlay box1 5 6 0 ; fi
 fi
 }
 
-function vars() {
+vars() {
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)
 book31=$(grep 'book31=' status | cut -d "=" -f2)

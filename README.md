@@ -42,23 +42,19 @@ you have to move the game without gitfiles for it to fit. floppy must be ext2
    glitchy than the day one Assasins Creed Unity.
 
 >FREEBSD
-1) Have bash installed and linked to /bin/bash (ln /usr/local/bin/bash /bin/bash)
+1) Have bash, gsed, gawk, and coreutils installed
 
-2) have gsed installed
+2) move to the directory after it downloads/unpacks.
 
-3) have gawk installed
+3) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
 
-4) move to the directory after it downloads/unpacks.
+4) copy bsd.sh from reffiles to the fulmination root directory, then run it ./bsd.sh
 
-5) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
-
-6) copy bsd.sh from reffiles to the fulmination root directory, then run it ./bsd.sh
-
-7) rest the same as linux.
+5) rest the same as linux.
 
 >MACOS
 
-1) Install bash, gsed, gawk from homebrew, then sudo ln -s /usr/local/bin/bash /bin/bash
+1) Install bash, gsed, gawk, coreutils from homebrew
 
 2) Rest the same as FREEBSD
 

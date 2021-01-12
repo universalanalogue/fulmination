@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function background() {
+background() {
 
 if [ $focus -eq 0 ]
 then
@@ -32,7 +32,7 @@ if [ $lighter -eq 0 ] && [ $i7mirror -eq 1 ] ; then ./utils.sh overlay lighter 2
 fi
 }
 
-function vars(){
+vars(){
 
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)

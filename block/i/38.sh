@@ -26,7 +26,7 @@ fi
 image=$(block/$block/./graphics.sh $pic
 ./utils.sh overlay "blank 3 1" 56 1 0
 ./utils.sh overlay "sidebar $block $cell 0" 56 4 0
-echo -e "aux1")
+echo -e "$aux1")
 echo "$image"
 echo -e "$aux2"
 

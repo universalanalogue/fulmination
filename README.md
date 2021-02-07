@@ -5,30 +5,31 @@ Scriptures of Fulmination, or how I learned to stop worrying, and just love urxv
 1) Bash -ge 4
 2) gnu-coreutils
 3) sed (of the gsed variety, default in linux)
-4) moc/mocp/music on console player. (only for music and there currently
+4) git (ease of downloading the game)
+5) moc/mocp/music on console player. (only for music and there currently
    isn't any, so its not really needed yet)
-5) 74x42 monospace characters terminal (would probably have it be atleast 75x43 in case of
+6) 74x42 monospace characters terminal (would probably have it be atleast 75x43 in case of
    overrun in proccessing)
-6) an ssh client if playing over ssh.
+7) an ssh client if playing over ssh.
 
-7) a serial terminal client if playing over serial -ge 9600buad.
+8) a serial terminal client if playing over serial -ge 9600buad.
 
-8) a terminal emulator if playing in a gui.
+9) a terminal emulator if playing in a gui.
 
-9) a monitor and keyboard if playing on local console.
+10) a monitor and keyboard if playing on local console.
 
-10) some storage medium to store the game.  game will fit and run on a 1.44mb floppy,
+11) some storage medium to store the game.  game will fit and run on a 1.44mb floppy,
 you have to move the game without gitfiles for it to fit. floppy must be ext2
 
-11) At least a 40MHz processor, with at least 128mb of system ram (Min Req for Linux/ tested)
+12) At least a 40MHz processor, with at least 128mb of system ram (Min Req for Linux/ tested)
 ##### As a note, when running down at 40mhz, the game will allow you to cache commands while it loads, which is an interesting thing, as that shouldn't be even possible
 
 # Installation
 >LINUX
-1) move to the directory after it downloads/unpacks.
+1) git clone https://github.com/universalanalogue/fulmination.git
 
-2) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
- 
+2) chmod +x -R fulmination ; cd fulmination
+
 3) run ./mkbld.sh to install the program.
 
 4) run ./start.sh to play the game.
@@ -37,18 +38,16 @@ you have to move the game without gitfiles for it to fit. floppy must be ext2
 
 6) if you dont enjoy, please give feedback so I know what doesn't work for the next game.
 
-7) report bugs so I can fix them.  I consider this to be a production level game, however
-   my beta testers either didn't understand adventure games or were me.  Should be less
-   glitchy than the day one Assasins Creed Unity.
+7) report bugs so I can fix them.
 
 >FREEBSD
 1) Have bash, gsed, gawk, and coreutils installed
 
-2) move to the directory after it downloads/unpacks.
+2) git clone https://github.com/universalanalogue/fulmination.git
 
-3) it might require a chmod +x -R * . I am unsure as I load the files out of a local directory.
+3) chmod +x -R fulmination ; cd fulmination
 
-4) copy bsd.sh from reffiles to the fulmination root directory, then run it ./bsd.sh
+4) cp reffiles/bsd.sh bsd.sh ; ./bsd.sh
 
 5) rest the same as linux.
 
@@ -64,7 +63,7 @@ This is ill advised as performance is very slow
 
 1) Install Cygwin
 
-2) Get the game in the directory structure of Cygwin
+2) Be sure you install git durring the install
 
 3) Rest the same as Linux
 

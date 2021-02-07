@@ -167,58 +167,51 @@ fi
 setdeath(){
 ./utils.sh colorset 4
 sed -i "/cell=/c\cell=null" status
+sed -i "/cella=/c\cella=null" status
 sed -i "/block=/c\block=i" status
 sed -i "/focus=/c\focus=0" status
 }
 
 cutscene(){
 printf "\e[0;0H"
+bar1=$(printf "%-74s" | tr ' ' "#")
+text=(" Press Enter to Continue ")
+bar2=$(printf "$bar1\e[73D$text")
 if [[ $3 != null ]] ; then ./lib.sh $3 ; fi
 output=$(form ./lib.sh $1)
 printf "\e[23;0H"
 a=$(printf '%-70s' "$2")
-echo "# $a #
-##########################################################################
-$output
-# Press Enter to continue ################################################
-##########################################################################"
+echo -e "# $a #\n$bar1\n$output\n$bar2\n$bar1"
 printf "\e[37;26H"
 read case1
 }
 
 cutscene2(){
 printf "\e[0;0H"
+bar1=$(printf "%-74s" | tr ' ' "#")
 ./lib.sh $1
 printf "\e[23;0H"
 a=$(printf '%-70s' "$2")
-echo "# $a #
-##########################################################################
-$3
-##########################################################################
-##########################################################################"
+echo -e "# $a #\n$bar1\n$3\n$bar1\n$bar1"
 }
 
 menu(){
+bar1=$(printf "%-74s" | tr ' ' "#")
+var1=$(printf "# What will you do? : %-50s #")
 printf "\e[23;0H"
 a=$(printf '%-70s' "$2")
-echo "# $a #
-##########################################################################
-$1
-# What will you do? :                                                    #
-##########################################################################"
+echo -e "# $a #\n$bar1\n$1\n$var1\n$bar1"
 printf "\e[37;23H"
 }
 
 prompt(){
+bar1=$(printf "%-74s" | tr ' ' "#")
+var1=$(printf "# What will you do? : %-50s #")
 last=$(printf '%-36s' "$1")
 printf "\e[23;0H"
 colorset $4
 printf "\e[23;0H"
-echo "# Fatigue: $2 # $last #
-##########################################################################
-$3
-# What will you do? :                                                    #
-##########################################################################"
+echo -e "# Fatigue: $2 # $last #\n$bar1\n$3\n$var1\n$bar1"
 printf "\e[37;23H"
 }
 
@@ -280,8 +273,12 @@ $bar1"
 reader () {
 text=$(./lib.sh $1 | sed "1d")
 givenname=$(./lib.sh $1 | sed '1q;d')
-givenname=$(printf '%-71s' "$givenname")
+gap=$((70-$(wc -c <<< "$givenname")))
+givenname=$(printf "# $givenname %-${gap}s #")
 fill=$(printf '%-54s')
+bar1=$(printf "%-74s" | tr ' ' '#')
+prompt=$(printf "# : %-69s#")
+
 while true ; do
 printf "\e[0;0H"
 page5=$(wc -l <<< "$text")
@@ -299,17 +296,11 @@ done)
 page1p=$(printf '%-2s' "$page1")
 page5p=$(printf '%-2s' $(((page5 / total)+1)))
 
-echo "##########################################################################
-# $givenname#
-##########################################################################
-$form
-##########################################################################
+echo -e "$bar1\n$givenname\n$bar1\n$form\n$bar1
 # page: $page1p / $page5p  # $fill#
-##########################################################################
+$bar1
 # Commands: n) next page # p) previous page # d) done reading            #
-##########################################################################
-# :                                                                      #
-##########################################################################" 
+$bar1\n$prompt\n$bar1" 
 printf "\e[37;5H" 
 read case1
 case $case1 in
@@ -323,85 +314,71 @@ done
 }
 
 inventory () {
-inv=$(sed -n '/^#inveta/,/^#invetb/p;/^#invetb/q' status | sed '/#/d' | sed '/^[[:space:]]*$/d')
+num='^[0-9]+$'
+lett=$(echo {a..k} | tr " " "\n")
+intro1=1
+intro2=1
+bar1=$(printf "%-74s" | tr ' ' '#')
+prompt=$(printf "# : %-69s#")
+#select all within the #invet brackets in the status file
+#remove comments, remove spaces, remove =0, remove =2
+inv=$(sed -n '/^#inveta/,/^#invetb/p;/^#invetb/q' status | sed '/#/d;/^$/d;/=0/d;/=2/d')
 ammo=$(grep "ammo=" status | cut -d "=" -f2)
 
 if [ $ammo -gt 0 ] ; then inventory=ammo ; else inventory= ; fi
 
 for i in $inv ; do
 ivara1=$(cut -d "=" -f1 <<< "$i")
-ivarb1=$(cut -d "=" -f2 <<< "$i")
 
-if [ $ivarb1 -eq 1 ]
-then
 inventory=("$inventory
 $ivara1")
-fi
+
 done
+
+#remove whitespace at the end of the variable
 inventory=$(sed '/^[[:space:]]*$/d' <<< "$inventory")
+
 ./utils.sh clear
-intro1=1
-intro2=1
+
 while true ; do
 
 page5=$(wc -l <<< "$inventory")
 page2=$(wc -w <<< "$page1")
 if [ $page2 -eq 0 ] ; then page1=1 ; fi
+total=11
+page3=$((page1 * total))
+page6=$(sed '/^$/d' <<< "$inventory" | head -n $page3 | tail -n $total)
 
-page3=$(($page1 * 11))
-page6=$(sed '/^$/d' <<< "$inventory" | head -n $page3 | tail -n 11)
-a1=$(sed '1q;d' <<< "$page6") && a1=$(printf '%-70s' "$a1")
-b1=$(sed '2q;d' <<< "$page6") && b1=$(printf '%-70s' "$b1")
-c1=$(sed '3q;d' <<< "$page6") && c1=$(printf '%-70s' "$c1")
-d1=$(sed '4q;d' <<< "$page6") && d1=$(printf '%-70s' "$d1")
-e1=$(sed '5q;d' <<< "$page6") && e1=$(printf '%-70s' "$e1")
-f1=$(sed '6q;d' <<< "$page6") && f1=$(printf '%-70s' "$f1")
-g1=$(sed '7q;d' <<< "$page6") && g1=$(printf '%-70s' "$g1")
-h1=$(sed '8q;d' <<< "$page6") && h1=$(printf '%-70s' "$h1")
-i1=$(sed '9q;d' <<< "$page6") && i1=$(printf '%-70s' "$i1")
-j1=$(sed '10q;d' <<< "$page6") && j1=$(printf '%-70s' "$j1")
-k1=$(sed '11q;d' <<< "$page6") && k1=$(printf '%-70s' "$k1")
 page1p=$(printf '%-2s' "$page1")
-page5p=$(((page5 / 11) + 1))
-page5p=$(printf '%-2s' "$page5p") 
+page5p=$(printf '%-2s' $(((page5 / total) + 1)))
 
-menu=("a
-b
-c
-d
-e
-f
-g
-h
-i
-j
-k")
+count=1
+for i in $lett ;do
 
-for i in $menu ; do
 prime1="${i}1"
-prime1a=$(echo "${!prime1}") 
+#declare "${i}1=$(sed "${count}q;d" <<< "$page6")"
+printf -v "${i}1" '%s' "$(sed "${count}q;d" <<< "$page6")"
+prime1a=$(echo "${!prime1}")
 
 if [[ ! -z ${prime1a} ]]
 then
-status=$(./lib.sh $prime1a)
-givenname=$(grep 'givenname=' <<< "$status" | cut -d "=" -f2)
+givenname=$(grep 'givenname=' <<< $(./lib.sh $prime1a) | cut -d "=" -f2)
 #declare "${i}2=$(printf '%-66s' "$givenname")"
 printf -v "${i}2" '%s' "$(printf '%-66s' "$givenname")"
 else
 #declare "${i}2=printf '%-66s'"
 printf -v "${i}2" '%s' "$(printf '%-66s')"
 fi
+count=$((count+1))
 done
-if [ $intro1 -eq 1 ]
-then
-intro1=$(( $intro1 + 1 ))
-./lib.sh empty
-fi
+
+if [ $intro1 -eq 1 ] ; then intro1=$(( $intro1 + 1 )) ; ./lib.sh empty ; fi
+
 if [ $intro2 -eq 1 ]
 then
 intro2=$((intro2+1))
 printf "\e[23;0H"
-echo "# 1) $a2  #
+echo -e "# 1) $a2  #
 # 2) $b2  #
 # 3) $c2  #
 # 4) $d2  #
@@ -412,36 +389,19 @@ echo "# 1) $a2  #
 # 9) $i2  #
 # 10) $j2 #
 # 11) $k2 #
-##########################################################################
+$bar1
 # page: ${page1p}/ ${page5p}Commands: n) next page # p) previous page # e) exit        #
-##########################################################################
-# :                                                                      #
-##########################################################################" 
+$bar1\n$prompt\n$bar1" 
 fi
-printf "\e[37;5H" ; echo '        ' ; printf "\e[37;5H"
+printf '\e[37;5H        \e[37;5H'
 read input
-
-
-num='^[0-9]+$'
 
 if ! [[ $input =~ $num ]] ; then case1=0 ; else case1=$input ; fi
 
 if [ $case1 -ge 1 -a $case1 -le 15 ]
 then
 case2=run
-lett="a
-b
-c
-d
-e
-f
-g
-h
-i
-j
-k"
-input=$(sed "${input}q;d" <<< "$lett")
-input=$(echo "${input}1")
+input=$(echo "$(sed "${input}q;d" <<< "$lett")1")
 input=$(echo "${!input}")
 else
 case2="$input"
@@ -473,7 +433,7 @@ if [[ $read != null ]]
 then
 while true; do 
 printf  "\e[4;2H Would you like to read the book [y]/[n] : " 
-printf "\e[37;5H" ; echo '        ' ; printf "\e[37;5H"
+printf '\e[37;5H        \e[37;5H'
 read -n 1 case3
 case $case3 in
 [y]) ./utils.sh clear
@@ -483,7 +443,7 @@ intro1=1
 intro2=1
 break ;;
 [n]) printf "\e[5;2H Book not read"
-printf "\e[37;5H" ; echo '        ' ; printf "\e[37;5H" ; break ;;
+printf '\e[37;5H        \e[37;5H' ; break ;;
 esac
 done 
 fi 
@@ -508,6 +468,9 @@ done
 
 journal () {
 fill=$(printf '%-54s')
+journal=$(printf "# Journal %-62s #")
+bar1=$(printf "%-74s" | tr ' ' '#')
+prompt=$(printf "# : %-69s#")
 ./utils.sh clear
 while true ; do 
 text=$(sed -n '/^#journala/,/^#journalb/p;/^#journalb/q' status | sed '/#/d')
@@ -528,17 +491,11 @@ page5p=$(printf '%-2s' $(((page5 / total)+1)))
 
 lineremove=$((linep + (total * page1p)))
 
-echo "##########################################################################
-# Journal                                                                #
-##########################################################################
-$form
-##########################################################################
+echo -e "$bar1\n$journal\n$bar1\n$form\n$bar1
 # page: $page1p / $page5p  # $fill#
-##########################################################################
+$bar1
 # Commands: n) next page # p) previous page # d) Done Writing h) Help    #
-##########################################################################
-# :                                                                      #
-##########################################################################"
+$bar1\n$prompt\n$bar1"
 printf "\e[37;5H" 
 read -n 69 -e case1
 if ! [[ "$case1" =~ ^(n|p|d|h| |)$ ]]
@@ -551,7 +508,7 @@ case $case1 in
 ./utils.sh clear ;;
 [p]) if [ $page1 -ne 1 ] ; then page1=$(($page1 -1)) ; fi 
 ./utils.sh clear ;;
-[h]) ui null " " Journal journalhelp 4 2
+[h]) cutscene journalhelp "Journal Help" null
 ./utils.sh clear ;;
 [d]) break ;;
 *) ./utils.sh clear ;;

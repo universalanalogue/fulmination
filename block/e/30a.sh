@@ -1,18 +1,12 @@
 #!/bin/bash
 
 background() {
-if [ $wolf -eq 1 ]
-then
-image=$(block/$block/./graphics.sh 30pic1c
+if [ $wolf -eq 1 ] ; then pic="30pic1c" ; fi
+if [ $wolf -eq 2 ] ; then pic="30pic1b" ; fi
+
+image=$(block/$block/./graphics.sh $pic
 ./utils.sh overlay "blank 3 1" 56 1 0
 ./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
-fi
-if [ $wolf -eq 2 ]
-then
-image=$(block/$block/./graphics.sh 30pic1b
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
-fi
 echo "$image"
 
 }

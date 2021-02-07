@@ -28,22 +28,22 @@ if [ $cella -eq 42 ] ; then key6=$(grep 'key6=' status | cut -d "=" -f2) ; fi
 burnie=$(grep 'burnie=' status | cut -d "=" -f2)
 greed=$(grep 'greed=' status | cut -d "=" -f2)
 
-if [[ "$cella" =~ ^(39)$ ]] ; then i22=$(grep 'i22=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(39)$ ]] ; then i23=$(grep 'i23=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(35)$ ]] ; then i24=$(grep 'i24=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(40)$ ]] ; then i25=$(grep 'i25=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(40)$ ]] ; then i26=$(grep 'i26=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(36)$ ]] ; then i27=$(grep 'i27=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(42)$ ]] ; then i30=$(grep 'i30=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(42)$ ]] ; then i31=$(grep 'i31=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 39 ] ; then i22=$(grep 'i22=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 39 ] ; then i23=$(grep 'i23=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 35 ] ; then i24=$(grep 'i24=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 40 ] ; then i25=$(grep 'i25=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 40 ] ; then i26=$(grep 'i26=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 36 ] ; then i27=$(grep 'i27=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 42 ] ; then i30=$(grep 'i30=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 42 ] ; then i31=$(grep 'i31=' status | cut -d "=" -f2) ; fi
 if [[ "$cella" =~ ^(34|39)$ ]] ; then i33=$(grep 'i33=' status | cut -d "=" -f2) ; fi
 if [[ "$cella" =~ ^(33|35)$ ]] ; then i34=$(grep 'i34=' status | cut -d "=" -f2) ; fi
 if [[ "$cella" =~ ^(34|36)$ ]] ; then i35=$(grep 'i35=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(35)$ ]] ; then i36=$(grep 'i36=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(36)$ ]] ; then i37=$(grep 'i37=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 35 ] ; then i36=$(grep 'i36=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 36 ] ; then i37=$(grep 'i37=' status | cut -d "=" -f2) ; fi
 if [[ "$cella" =~ ^(33|40)$ ]] ; then i39=$(grep 'i39=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(39)$ ]] ; then i40=$(grep 'i40=' status | cut -d "=" -f2) ; fi
-if [[ "$cella" =~ ^(42)$ ]] ; then i41=$(grep 'i41=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 39 ] ; then i40=$(grep 'i40=' status | cut -d "=" -f2) ; fi
+if [ "$cella" -eq 42 ] ; then i41=$(grep 'i41=' status | cut -d "=" -f2) ; fi
 }
 
 helpcount=0

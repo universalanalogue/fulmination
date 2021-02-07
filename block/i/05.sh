@@ -1,56 +1,34 @@
 #!/bin/bash
 
 background() {
-
+aux1= ; pic=
 if [ $focus -eq 0 ]
 then
 ./utils.sh colorset 4
-image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 1" 56 4 0
-if [ $i5awindow -eq 1 ] ; then ./utils.sh overlay win1 26 6 0 ; fi
+pic=pic1a
+aux1=$(if [ $i5awindow -eq 1 ] ; then ./utils.sh overlay win1 26 6 0 ; fi
 if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 47 6 0 ; fi)
-echo "$image"
 fi
 
 if [ $focus -eq 1 ]
 then
-if [ $i5awindow -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic3a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 1" 56 4 0)
-else
-./utils.sh colorset 6
-image=$(block/$block/./graphics.sh ${cell}pic3b
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 1" 56 4 0)
-fi
-echo "$image"
+if [ $i5awindow -eq 0 ] ; then pic="pic3a" ; else pic="pic3b" ; ./utils.sh colorset 6 ; fi
 fi
 
 if [ $focus -eq 2 ]
 then
 ./utils.sh colorset 1
-if [ $rain -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic2a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 2" 56 4 0
-if [ $i1window -eq 1 ] ; then ./utils.sh overlay win1 14 3 0 ; fi
+if [ $rain -eq 0 ] ; then pic="pic2a" ; else pic="pic2b" ; fi
+aux1=$(if [ $i1window -eq 1 ] ; then ./utils.sh overlay win1 14 3 0 ; fi
 if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi
 if [ $book31 -eq 0 ] ; then ./utils.sh overlay spec1 16 5 0 ; fi)
-else
-image=$(block/$block/./graphics.sh ${cell}pic2b
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 2" 56 4 0
-if [ $i1window -eq 1 ] ; then ./utils.sh overlay win1 14 3 0 ; fi
-if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi
-if [ $book31 -eq 0 ] ; then ./utils.sh overlay spec1 16 5 0 ; fi)
-fi
-echo "$image"
 fi
 
+image=$(block/$block/./graphics.sh ${cell}$pic
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+echo -e "aux1")
+echo "$image"
 }
 
 vars() {

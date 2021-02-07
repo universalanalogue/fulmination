@@ -1,27 +1,25 @@
 #!/bin/bash
 
 background() {
-
+aux1= ; pic=
 if [ $focus -eq 0 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 2" 56 4 0
-if [ $i37window -eq 1 ] ; then ./utils.sh overlay win3 39 7 0 ; fi)
-echo "$image"
-
+pic=pic1a
+aux1=$(if [ $i37window -eq 1 ] ; then ./utils.sh overlay win3 39 7 0 ; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic2a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0
-if [ $i41window -eq 1 ] ; then ./utils.sh overlay win1 24 6 0 ; fi
+pic=pic2a
+aux1=$(if [ $i41window -eq 1 ] ; then ./utils.sh overlay win1 24 6 0 ; fi
 if [ $i37window -eq 1 ] ; then ./utils.sh overlay win1b 3 3 1 ; fi)
-echo "$image"
 fi
 
+image=$(block/$block/./graphics.sh ${cell}$pic
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+echo -e "aux1")
+echo "$image"
 }
 
 vars() {

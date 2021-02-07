@@ -16,7 +16,7 @@ ammo=$(grep 'ammo=' status | cut -d "=" -f2)
 book11=$(grep 'book11=' status | cut -d "=" -f2)
 gun=$(grep 'gun=' status | cut -d "=" -f2)
 hammer=$(grep 'hammer=' status | cut -d "=" -f2)
-key2=$(grep "key2=" status | cut -d "=" -f2 )
+key2=$(grep "key2=" status | cut -d "=" -f2)
 lighter=$(grep 'lighter=' status | cut -d "=" -f2)
 
 #variable
@@ -28,7 +28,6 @@ greed=$(grep 'greed=' status | cut -d "=" -f2)
 i02=$(grep 'i02=' status | cut -d "=" -f2)
 i04=$(grep 'i04=' status | cut -d "=" -f2)
 i09=$(grep 'i09=' status | cut -d "=" -f2)
-rain=$(grep 'rain=' status | cut -d "=" -f2)
 }
 helpcount=0
 intro=0

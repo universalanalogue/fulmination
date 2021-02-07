@@ -51,8 +51,10 @@ load=1
 if [ $mode -eq 1 ] ; then
 cp status.new status
 cell=01
+cella=01
 block=i
 sed -i "/cell=/c\cell=01" status
+sed -i "/cella=/c\cella=01" status
 sed -i "/block=/c\block=i" status
 ./utils.sh cutscene opening Begining logo
 fi
@@ -85,6 +87,7 @@ fi
 
 color=$(grep 'color=' status | cut -d "=" -f2)
 cell=$(grep 'cell=' status | cut -d "=" -f2)
+cella=$(grep 'cella=' status | cut -d :"=" -f2 )
 block=$(grep 'block=' status | cut -d "=" -f2)
 ./utils.sh colorset $color
 fi
@@ -94,6 +97,7 @@ if [[ $load != null ]] ; then
 while [[ $cell != "null" ]] ; do 
 block/$block/./$cell.sh
 cell=$(grep 'cell=' status | cut -d "=" -f2)
+cella=$(grep 'cella=' status | cut -d "=" -f2)
 block=$(grep 'block=' status | cut -d "=" -f2)
 done 
 fi 

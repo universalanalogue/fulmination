@@ -2,58 +2,38 @@
 
 background() {
 
-
+aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
 ./utils.sh colorset 4
-image=$(block/${block}/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
-if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 ; fi
+pic=pic1a
+aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 ; fi
 if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win4 45 2 0 ; fi)
-echo "$image"
-if [ "$book17" -eq 0 ] ; then ./utils.sh overlay book2 33 13 0 ; fi
-if [ "$key1" -eq 0 ] ; then ./utils.sh overlay key1 17 16 0 ; fi
+aux2=$(if [ "$book17" -eq 0 ] ; then ./utils.sh overlay book2 33 13 0 ; fi
+if [ "$key1" -eq 0 ] ; then ./utils.sh overlay key1 17 16 0 ; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 1
-if [ $rain -eq 1 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic2a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0
-if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 48 4 0 ; fi
-if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi)
-else
-image=$(block/$block/./graphics.sh ${cell}pic2b
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0
-if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 48 4 0 ; fi
-if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi)
-fi
-echo "$image"
-if [ $i9box ] ; then ./utils.sh overlay box2 46 8 1 ; fi
+if [ $rain -eq 1 ] ; then pic="pic2a" ; else pic="pic2b" ; fi
+aux1=$(if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 48 4 0 ; fi
+if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi
+if [ $i9box -eq 1 ] ; then ./utils.sh overlay box2 46 8 1 ; fi)
 fi
 
 if [ $focus -eq 2 ]
 then
 ./utils.sh colorset 1
-if [ $rain -eq 1 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic3a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 1" 56 4 0
-if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
-else
-image=$(block/$block/./graphics.sh ${cell}pic3b
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 1" 56 4 0
-if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
+if [ $rain -eq 1 ] ; then pic="pic3a" ; else ; pic="pic3b" ; fi
+aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
 fi
+
+image=$(block/$block/./graphics.sh ${cell}$pic
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+echo -e "aux1")
 echo "$image"
-fi
 }
 
 vars() {

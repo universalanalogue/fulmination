@@ -1,18 +1,13 @@
 #!/bin/bash
 
 background() {
-if [ $focus -eq 0 ]
-then
-image=$(block/$block/./graphics.sh 10pic3a
+aux1= ; aux2= ; pic=
+if [ $focus -eq 0 ] ; then pic=pic3a ; fi
+if [ $focus -eq 1 ] ; then pic=pic4a ; fi
+
+image=$(block/$block/./graphics.sh ${cell}$pic
 ./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 1" 56 4 0)
-fi
-if [ $focus -eq 1 ]
-then
-image=$(block/$block/./graphics.sh 10pic4a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0)
-fi
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 echo "$image"
 }
 

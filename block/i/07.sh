@@ -1,35 +1,30 @@
 #!/bin/bash
 
 background() {
-
+aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
-image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
-if [ $i7mirror -eq 1 ] ; then ./utils.sh overlay win8 35 10 0 ; fi)
-echo "$image"
+pic=pic1a
+aux1=$(if [ $i7mirror -eq 1 ] ; then ./utils.sh overlay win8 35 10 0 ; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 6
-if [ $i7mirror -eq 0 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic2a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+if [ $i7mirror -eq 0 ] ; then pic=pic2a ; fi
+if [ $i7mirror -eq 1 ] ; then
+pic=pic2b
+aux1=$(if [ $lighter -eq 0 ] ; then ./utils.sh overlay unless 45 4 0 ; fi)
+aux2=$(if [ $lighter -eq 0 ] ; then ./utils.sh overlay lighter 21 13 0 ; fi)
 fi
-if [ $i7mirror -eq 1 ]
-then
-image=$(block/$block/./graphics.sh ${cell}pic2b
-if [ $lighter -eq 0 ] && [ $i7mirror -eq 1 ] ; then ./utils.sh overlay unless 45 4 0 ; fi
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
 fi
+
+image=$(block/$block/./graphics.sh ${cell}$pic
+./utils.sh overlay "blank 3 1" 56 1 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+echo -e "aux1")
 echo "$image"
-if [ $lighter -eq 0 ] && [ $i7mirror -eq 1 ] ; then ./utils.sh overlay lighter 21 13 0 ; fi
-fi
+echo -e "$aux2"
 }
 
 vars(){

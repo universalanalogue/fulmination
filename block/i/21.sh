@@ -1,7 +1,6 @@
 #!/bin/bash
 
 background() {
-
 image=$(block/$block/./graphics.sh 14pic1a
 ./utils.sh overlay "blank 3 1" 56 1 0
 ./utils.sh overlay "sidebar $block $cell 2" 56 4 0)

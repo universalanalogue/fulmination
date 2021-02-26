@@ -1,4 +1,5 @@
 #!/bin/bash
+#version=1.08.01
 
 background() {
 if [ $wolf -eq 1 ] ; then pic="30pic1c" ; fi

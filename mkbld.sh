@@ -1,4 +1,5 @@
 #!/bin/bash
+#version=1.08.01
 echo "color=4" > status
 if [[ $(tty) == *"ttyS"* ]] || [[ $(tty) == *"ttyUSB"* ]]
 then

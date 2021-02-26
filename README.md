@@ -47,13 +47,13 @@ you have to move the game without gitfiles for it to fit. floppy must be ext2
 
 3) chmod +x -R fulmination ; cd fulmination
 
-4) cp reffiles/bsd.sh bsd.sh ; ./bsd.sh
+4) reffiles/./bsd.sh
 
 5) rest the same as linux.
 
 >MACOS
 
-1) Install bash, gsed, gawk, coreutils from homebrew
+1) Install bash, gsed, gawk, coreutils, and git from homebrew
 
 2) Rest the same as FREEBSD
 
@@ -63,9 +63,14 @@ This is ill advised as performance is very slow
 
 1) Install Cygwin
 
-2) Be sure you install git durring the install
+2) Be sure you install git during the install
 
 3) Rest the same as Linux
+
+#Update
+If a new release is released, ou can now do an inplace update of the files.  The updates can be done by running ```
+reffles/./update.sh update ```
+It also has the ability to patch saved games.  Please note this function might cause unintened consiquences, so patch the save the games at your own risk.
 
 # ToDo
 

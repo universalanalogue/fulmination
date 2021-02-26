@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#version=1.08.01
 
 #graphics---------------------------------------------------------------
 
@@ -1776,7 +1776,8 @@ longer remove it.  Remember, you are using a pen."
 
 }
 
-universalana(){ 
+universalana(){
+revver=1.08.01
 read -p '##################################################
 #              ;;;;;;;;;;;;;;;;;;;;              #
 #            ;;;;;;;;;;;;;;;;;;;;;;;;            #
@@ -1808,8 +1809,8 @@ read -p '##################################################
 ###################################              #
 # Created by: Universal Analogue  #              #
 # License: MIT                    #              #
-# Makebuild Engine Ver 1.9        #              #
-# Fulmination Ver 1.7.02          #              #
+# Makebuild Engine Version 1.9    #              #
+# Fulmination Version $revver     #              #
 ##################################################'
 
 }

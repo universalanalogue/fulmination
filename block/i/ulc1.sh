@@ -1,4 +1,5 @@
 #!/bin/bash
+#version=1.08.01
 
 background() {
 if [[ "$cella" =~ ^(33|34)$ ]] ; then num=1 ; fi

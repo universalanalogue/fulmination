@@ -1,4 +1,5 @@
 #!/bin/bash
+#version=1.08.01
 
 background() {
 ./utils.sh colorset 1

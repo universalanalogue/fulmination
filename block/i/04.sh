@@ -1,4 +1,5 @@
 #!/bin/bash
+#version=1.08.01
 
 background() {
 image=$(block/$block/./graphics.sh ${cell}pic1a

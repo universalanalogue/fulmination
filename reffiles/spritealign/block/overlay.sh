@@ -1,4 +1,7 @@
 #!/bin/bash
+#version=1.08.01
+
+
 
 key1(){
 echo '0

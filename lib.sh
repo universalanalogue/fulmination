@@ -1777,7 +1777,7 @@ longer remove it.  Remember, you are using a pen."
 }
 
 universalana(){
-revver=1.08.01
+revver=1.08.02
 read -p '##################################################
 #              ;;;;;;;;;;;;;;;;;;;;              #
 #            ;;;;;;;;;;;;;;;;;;;;;;;;            #

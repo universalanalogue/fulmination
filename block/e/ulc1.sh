@@ -1,5 +1,5 @@
 #!/bin/bash
-#version=1.08.01
+#version=1.08.02
 
 background() {
 
@@ -14,7 +14,7 @@ image=$(block/$block/./graphics.sh ${cella}pic1
 if [ $cella -eq 02 ] ; then if [ $i30bwindow -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
 if [ $cella -eq 03 ] ; then if [ $i31window -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
 if [ $cella -eq 04 ] ; then if [ $i32bwindow -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
-if [ $cella -eq 09 ] ; then if [ $i32bwindow -eq 1 ] ; then ./utils.sh overlay win9 2 4 0 ; fi ; fi
+if [ $cella -eq 09 ] ; then if [ $i32awindow -eq 1 ] ; then ./utils.sh overlay win9 2 4 0 ; fi ; fi
 if [ $cella -eq 12 ] ; then if [ $i28window -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
 if [ $cella -eq 19 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes1 49 14 0 ; fi ; fi
 if [ $cella -eq 23 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes1 49 15 0 ; fi ; fi
@@ -512,7 +512,7 @@ if ! [[ "$cella" =~ ^(01|02|03|04|05|09|12|17|24|26|28|33)$ ]] ; then comm=null 
 fi
 
 if [[ "$comm" == rock ]] ; then
-if [[ "$cella" =~ ^(11|15|18|35)$ ]] ; then output=$(./util.sh form lick rock) ; fi
+if [[ "$cella" =~ ^(11|15|18|35)$ ]] ; then output=$(./utils.sh form lick rock) ; fi
 if ! [[ "$cella" =~ ^(11|15|18|35)$ ]] ; then comm=null ; fi
 fi
 
@@ -543,7 +543,7 @@ then
 case1=(system${case1})
 fi ;;
 
-[s][m][e][l][l]*) comm=$(sed 's/lick//' <<< $case1)
+[s][m][e][l][l]*) comm=$(sed 's/smell//' <<< $case1)
 
 if [[ "$comm" == bush ]] ; then
 if [[ "$cella" =~ ^(02|14|19|36)$ ]] ; then output=$(./utils.sh form smell bushe) ; fi
@@ -845,7 +845,7 @@ fi ;;
 esac
 fi
 
-if [[ ( $cella -eq 35 || $cella -eq 23) ]] && [[ $case1 == *"system"* ]]
+if [[ ( $cella == 35 || $cella == 23) ]] && [[ $case1 == *"system"* ]]
 then
 case1=$(sed "s/system//" <<< $case1)
 case $case1 in

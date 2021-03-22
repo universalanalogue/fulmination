@@ -8,6 +8,12 @@ oldva=$(cut -d "." -f1 <<< "$oldv")
 oldvb=$(cut -d "." -f2 <<< "$oldv")
 oldvc=$(cut -d "." -f3 <<< "$oldv")
 
+if [ -z $1 ] 
+then
+echo "please add increment type to end of command
+1 bugfix, 2 minor, 3 major"
+else
+
 if [ $1 -eq 1 ] ; then
 newvc=$((10#$oldvc+1))
 if [ $(($(wc -c <<< "$newvc")-1)) -eq 1 ] ; then newvc=("0$newvc") ; fi
@@ -29,6 +35,7 @@ sed -i "/revver=/c\revver=$newv" lib.sh
 for i in $vcs ; do
 sed -i "/#version=/c\#version=$newv" $i
 done
+fi
 }
 
 patch(){

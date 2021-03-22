@@ -1,23 +1,25 @@
 #!/bin/bash
-#version=1.08.01
+#version=1.08.02
 
 background() {
 aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
-pic2=pic1a
+comp=1
+pic=pic1a
 aux1=$(if [ $i6panel -eq 1 ] ; then ./utils.sh overlay door1 43 11 0 ; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
+comp=2
 pic=pic2a
 aux2=$(if [ $book37 -eq 0 ] ; then ./utils.sh overlay table1 23 10 0 ; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
 ./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
 echo -e "$aux1")
 echo "$image"
 echo -e "$aux2"
@@ -114,7 +116,7 @@ fi
 sed -i '/cell=/c\cell=07' status
 break 
 else
-output=$(./utils.sh form uni doorlocked)
+output=$(./utils.sh form uni doorlock)
 fi ;;
 
 [g][o][w][e][s][t]) sed -i '/cell=/c\cell=01' status ; break ;;

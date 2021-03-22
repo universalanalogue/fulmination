@@ -1,5 +1,5 @@
 #!/bin/bash
-#version=1.08.01
+#version=1.08.02
 
 key1(){
 echo '0
@@ -96,7 +96,7 @@ echo '
 
 book1(){
 echo ' _
- \\'
+ \\\'
 }
 
 book2(){

@@ -1,5 +1,5 @@
 #!/bin/bash
-#version=1.08.01
+#version=1.08.02
 
 background() {
 
@@ -7,6 +7,7 @@ aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
 ./utils.sh colorset 4
+comp=0
 pic=pic1a
 aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 ; fi
 if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win4 45 2 0 ; fi)
@@ -17,6 +18,7 @@ fi
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 1
+comp=3
 if [ $rain -eq 1 ] ; then pic="pic2a" ; else pic="pic2b" ; fi
 aux1=$(if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 48 4 0 ; fi
 if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi
@@ -26,15 +28,17 @@ fi
 if [ $focus -eq 2 ]
 then
 ./utils.sh colorset 1
-if [ $rain -eq 1 ] ; then pic="pic3a" ; else ; pic="pic3b" ; fi
+comp=1
+if [ $rain -eq 1 ] ; then pic="pic3a" ; else pic="pic3b" ; fi
 aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
 ./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
 echo -e "$aux1")
 echo "$image"
+echo -e "$aux2"
 }
 
 vars() {

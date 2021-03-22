@@ -1,5 +1,5 @@
 #!/bin/bash
-#version=1.08.01
+#version=1.08.02
 
 parser1() {
 var1="$1"
@@ -26,6 +26,7 @@ if [[ "$var1" == *"page"* ]] ; then var1=$(sed 's|page|book|' <<< "$var1") ; fi
 if [[ "$var1" == *"paper"* ]] ; then var1=$(sed 's|paper|book|' <<< "$var1") ; fi
 if [[ "$var1" == *"put"* ]] ; then var1=$(sed 's|put|place|' <<< "$var1") ; fi
 if [[ "$var1" == *"self"* ]] ; then var1=$(sed 's|self|me|' <<< "$var1") ; fi
+if [[ "$var1" == *"shrub"* ]] ; then var1=$(sed 's|shrub|bush|' <<< "$var1") ; fi
 if [[ "$var1" == *"skeleton"* ]] ; then var1=$(sed 's|skeleton|body|' <<< "$var1") ; fi
 if [[ "$var1" == *"sniff"* ]] ; then var1=$(sed 's|sniff|smell|' <<< "$var1") ; fi
 if [[ "$var1" == *"stove"* ]] ; then var1=$(sed 's|stove|hob|' <<< "$var1") ; fi
@@ -34,17 +35,19 @@ if [[ "$var1" == *"taste"* ]] ; then var1=$(sed 's|taste|lick|' <<< "$var1") ; f
 #removes spaces
 var1=$(sed 's| ||g' <<< "$var1")
 #post space removal
-if [[ "$var1" != *"set"* ]] || [[ "$var1" != *"state"* ]]  || [[ "$var1" != *"debug"* ]]
+if ! [[ "$var1" =~ ^(*"set"*|*"state"*|*"debug"*)$ ]]
+#if [[ "$var1" != *"set"* ]] || [[ "$var1" != *"state"* ]]  || [[ "$var1" != *"debug"* ]]
 then
 if [[ "$var1" == *"bookshelf"* ]] ; then var1=$(sed 's|bookshelf|bookcase|' <<< "$var1") ; fi
 if [[ "$var1" == *"chairleg"* ]] ; then var1=$(sed 's|chairleg|leg|' <<< "$var1") ; fi
 if [[ "$var1" == *"clockkey"* ]] ; then var1=$(sed 's|clockkey|key|' <<< "$var1") ; fi
+if [[ "$var1" == *"flashlight"* ]] ; then var1=$(sed 's|flashlight|light|' <<< "$var1") ; fi
 if [[ "$var1" == *"hallway"* ]] ; then var1=$(sed 's|hallway|corridor|' <<< $var1) ; fi
 if [[ "$var1" == *"hedgerow"* ]] ; then var1=$(sed 's|hedgerow|hedge|' <<< "$var1") ; fi
 if [[ "$var1" == *"idfa"* ]] ; then var1=$(sed 's|idfa|idkfa|' <<< "$var1") ; fi
 if [[ "$var1" == *"mellon"* ]] ; then var1=$(sed 's|mellon|friend|' <<< "$var1") ; fi
 if [[ "$var1" == *"pickup"* ]] ; then var1=$(sed 's|pickup|get|' <<< "$var1") ; fi
-if [[ "$var1" == *"sleepbed"* ]] ; then var1=$(echo "$var1" | sed 's|sleepbed|gobed|') ; fi
+if [[ "$var1" == *"sleepbed"* ]] ; then var1=$(sed 's|sleepbed|gobed|' <<< "$var1" ) ; fi
 fi
 
 #shortcuts

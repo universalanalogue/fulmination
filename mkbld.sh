@@ -1,5 +1,5 @@
 #!/bin/bash
-#version=1.08.01
+#version=1.08.02
 echo "color=4" > status
 if [[ $(tty) == *"ttyS"* ]] || [[ $(tty) == *"ttyUSB"* ]]
 then
@@ -134,7 +134,8 @@ output=$(./utils.sh form debugfill);;\
 \
 [d][e][b][u][g][r][e][l][o][a][d]) break ;;\
 \
-[m][o][v][e]*) debug1=$(sed "s/move//" <<< "$case1")\
+[m][o][v][e]*) #move <block> <cell> \
+debug1=$(sed "s/move//" <<< "$case1")\
 debug2=$(cut -d "-" -f1 <<< "$debug1")\
 debug3=$(cut -d "-" -f2 <<< "$debug1")\
 if [[ $debug2 == e ]] && [[ "$debug3" =~ ^(01|02|03|04|05|06|07|09|10|11|12|14|15|17|18|19|23|24|26|28|29|33|34|35|36|37)$ ]]\

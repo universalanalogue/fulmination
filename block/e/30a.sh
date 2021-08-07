@@ -2,12 +2,13 @@
 #version=1.08.01
 
 background() {
-if [ $wolf -eq 1 ] ; then pic="30pic1c" ; fi
-if [ $wolf -eq 2 ] ; then pic="30pic1b" ; fi
 
-image=$(block/$block/./graphics.sh $pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+aux1=$(if [ $wolf -eq 1 ] ; then ./utils.sh overlay wolf2 15 10 1 2 ;fi
+if [ $wolf -eq 2 ] ; then ./utils.sh overlay wolf1 9 8 1 2 ; fi)
+image=$(block/$block/./graphics.sh 30pic1
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+echo "$aux1")
 echo "$image"
 
 }
@@ -389,8 +390,8 @@ fi ;;
 
 [l][i][c][k][w][o][l][f]) if [ $wolf -eq 1 ]
 then
-./utils.sh cutscene lickwolf1 "Wolf Defeated" "graphpass e 30pic1c 1 1"
-./utils.sh cutscene lickwolf2 "Wolf Defeated" "graphpass e 30pic1c 1 1"
+./utils.sh cutscene lickwolf1 "Wolf Defeated" "graphpass e 30pic1c 1 1 0"
+./utils.sh cutscene lickwolf2 "Wolf Defeated" "graphpass e 30pic1c 1 1 0"
 sed -i "/key7=/c\key7=0" status
 sed -i "/key6=/c\key6=0" status
 sed -i "/key8=/c\key8=0" status

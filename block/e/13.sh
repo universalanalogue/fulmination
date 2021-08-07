@@ -7,24 +7,26 @@ if [ $focus -eq 0 ]
 then
 ./utils.sh colorset 1
 comp=0
+tint=0
 pic=pic1a
-aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win12 2 10 0 ; fi
-if [ $i29window -eq 1 ] ; then ./utils.sh overlay win9 2 4 0 ; fi)
+aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win12 2 10 0 0; fi
+if [ $i29window -eq 1 ] ; then ./utils.sh overlay win9 2 4 0 0; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 4
 comp=3
+tint=1
 pic=pic2a
-aux1=$(if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win1 22 3 0 ; fi
-if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
+aux1=$(if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win1 22 3 0 0; fi
+if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 0; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 $tint
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 $tint
+echo "$aux1")
 echo "$image"
 }
 
@@ -199,7 +201,7 @@ then
 if [ $i8bwindow -eq 0 ]
 then
 sed -i '/i8bwindow=/c\i8bwindow=1' status
-intro1
+intro=1
 output=$(./utils.sh form uni smashwin1)
 else
 output=$(./utils.sh form uni smashwin2)

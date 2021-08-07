@@ -1,6 +1,6 @@
 #version=1.08.01
 
-cell=1
+cell=01
 cella=
 block=i
 rain=1

@@ -3,9 +3,9 @@
 
 background() {
 image=$(block/$block/./graphics.sh ${cell}pic1
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0
-if [ $i24awindow -eq 1 ] ; then ./utils.sh overlay win11 2 3 0 ; fi)
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0 0
+if [ $i24awindow -eq 1 ] ; then ./utils.sh overlay win11 2 3 0 0; fi)
 echo "$image"
 }
 

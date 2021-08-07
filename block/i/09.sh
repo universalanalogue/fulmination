@@ -8,10 +8,10 @@ then
 ./utils.sh colorset 1
 comp=1
 pic=pic1a
-aux1=$(if [ $i1window -eq 1 ] ; then ./utils.sh overlay win3 47 6 0 ; fi
-if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 9 0 ; fi
-if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win1 34 3 0 ; fi
-if [ $i9box -eq 1 ] ; then ./utils.sh overlay box1 2 16 0 ; fi)
+aux1=$(if [ $i1window -eq 1 ] ; then ./utils.sh overlay win3 47 6 0 0; fi
+if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 9 0 0; fi
+if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win1 34 3 0 0; fi
+if [ $i9box -eq 1 ] ; then ./utils.sh overlay box1 2 16 0 0; fi)
 fi
 
 if [ $focus -eq 1 ]
@@ -19,7 +19,7 @@ then
 ./utils.sh colorset 4
 comp=1
 pic=pic3a
-aux1=$(if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win1b 3 3 1 ; fi)
+aux1=$(if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win1b 3 3 1 0; fi)
 fi
 
 if [ $focus -eq 2 ]
@@ -27,7 +27,7 @@ then
 ./utils.sh colorset 4
 comp=0
 pic=pic2a
-aux1=$(if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi)
+aux1=$(if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 0; fi)
 fi
 
 if [ $focus -eq 3 ]
@@ -35,16 +35,16 @@ then
 ./utils.sh colorset 4
 comp=2
 pic=pic4a
-aux1=$(if [ $i1window -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
-aux2=$(if [ $book31 -eq 0 ] ; then ./utils.sh overlay book6 39 12 0 ; fi)
+aux1=$(if [ $i1window -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 0; fi)
+aux2=$(if [ $book31 -eq 0 ] ; then ./utils.sh overlay book6 39 12 0 0; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 }
 
 vars() {

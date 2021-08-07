@@ -6,26 +6,28 @@ aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
 pic=pic1a
-aux1=$(if [ $i7mirror -eq 1 ] ; then ./utils.sh overlay win8 35 10 0 ; fi)
+tint=0
+aux1=$(if [ $i7mirror -eq 1 ] ; then ./utils.sh overlay win8 35 10 0 0 ; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 6
+tint=4
 if [ $i7mirror -eq 0 ] ; then pic=pic2a ; fi
 if [ $i7mirror -eq 1 ] ; then
 pic=pic2b
-aux1=$(if [ $lighter -eq 0 ] ; then ./utils.sh overlay unless 45 4 0 ; fi)
-aux2=$(if [ $lighter -eq 0 ] ; then ./utils.sh overlay lighter 21 13 0 ; fi)
+aux1=$(if [ $lighter -eq 0 ] ; then ./utils.sh overlay unless 45 4 0 0 ; fi)
+aux2=$(if [ $lighter -eq 0 ] ; then ./utils.sh overlay lighter 21 13 0 0 ; fi)
 fi
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 $tint
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 $tint
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 }
 
 vars(){
@@ -227,7 +229,7 @@ fi ;;
 
 [l][i][c][k][t][o][i][l][e][t]) if [ $licktoilet -eq 2 ]
 then
-./utils.sh cutscene toiletlick3 Death "graphpass i 07pic1a"
+./utils.sh cutscene toiletlick3 Death "graphpass i 07pic1a 2 2 0"
 ./utils.sh setdeath
 break
 fi
@@ -236,7 +238,7 @@ then
 output=$(./utils.sh form lick toilet2)
 sed -i '/licktoilet=/c\licktoilet=2' status
 fi
-if [ $licktoiliet -eq 0 ]
+if [ $licktoilet -eq 0 ]
 then
 output=$(./utils.sh form lick toilet1)
 sed -i '/licktoilet=/c\licktoilet=1' status

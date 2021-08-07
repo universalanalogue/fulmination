@@ -8,14 +8,14 @@ if [ $focus -eq 0 ] ; then pic=pic1a ; fi
 if [ $focus -eq 1 ]
 then
 pic=pic2a
-aux2=$(if [ $book21 -eq 0 ] ; then ./utils.sh overlay book10 29 17 0 ; fi)
+aux2=$(if [ $book21 -eq 0 ] ; then ./utils.sh overlay book10 29 17 0 0; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0)
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 }
 
 vars() {

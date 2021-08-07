@@ -15,10 +15,12 @@ var1=$(sed 's| the | |g' <<< "$var1")
 
 #prespace removal
 if [[ "$var1" == *"apparition"* ]] ; then var1=$(sed 's|apparition|ghost|' <<< "$var1") ; fi
+if [[ "$var1" == *"bookshelf"* ]] ; then var1=$(sed 's|bookshelf|bookcase|' <<< "$var1") ; fi
 if [[ "$var1" == *"books"* ]] ; then var1=$(sed 's|books|book|' <<< "$var1") ; fi
 if [[ "$var1" == *"bullets"* ]] ; then var1=$(sed 's|bullets|ammo|' <<< "$var1") ; fi
 if [[ "$var1" == *"check"* ]] ; then var1=$(sed 's|check|look|' <<< "$var1") ; fi
 if [[ "$var1" == *"crate"* ]] ; then var1=$(sed 's|crate|box|' <<< "$var1") ; fi
+if [[ "$var1" == *"examine"* ]] ; then var1=$(sed 's|examine|look|' <<< "$var1") ; fi
 if [[ "$var1" == *"grass"* ]] ; then var1=$(sed 's|grass|floor|' <<< "$var1") ; fi
 if [[ "$var1" == *"ground"* ]] ; then var1=$(sed 's|ground|floor|' <<< "$var1") ; fi
 if [[ "$var1" == *"oven"* ]] ; then var1=$(sed 's|oven|hob|' <<< "$var1") ; fi
@@ -48,6 +50,7 @@ if [[ "$var1" == *"idfa"* ]] ; then var1=$(sed 's|idfa|idkfa|' <<< "$var1") ; fi
 if [[ "$var1" == *"mellon"* ]] ; then var1=$(sed 's|mellon|friend|' <<< "$var1") ; fi
 if [[ "$var1" == *"pickup"* ]] ; then var1=$(sed 's|pickup|get|' <<< "$var1") ; fi
 if [[ "$var1" == *"sleepbed"* ]] ; then var1=$(sed 's|sleepbed|gobed|' <<< "$var1" ) ; fi
+if [[ "$var1" == *"quit"* ]] ; then var1=$(sed 's|quit|exit|' <<< "$var1") ; fi
 fi
 
 #shortcuts
@@ -58,9 +61,11 @@ if [ "$var1" == g ] ; then var1=(getbook) ; fi
 if [ "$var1" == h ] ; then var1=(help) ; fi
 if [ "$var1" == j ] ; then var1=(journal) ; fi
 if [ "$var1" == q ] ; then var1=(look) ; fi
+if [ "$var1" == ls ] ; then var1=(look) ; fi
 if [ "$var1" == r ] ; then var1=(readbook) ; fi
 if [ "$var1" == t ] ; then var1=(getkey) ; fi
 if [ "$var1" == z ] ; then var1=(inventory) ; fi
+if [ "$var1" == ? ] ; then var1=(help) ; fi
 
 if [ $mvnt2 -eq 0 ]
 then
@@ -94,7 +99,7 @@ if [ "$var1" == d ] ; then var1=(gonorth) ; fi
 if [ "$var1" == a ] ; then var1=(gosouth) ; fi
 fi
 
-if [ -z $var1 ] ; then var1=("You pass this turn") ; fi
+if [ -z $var1 ] ; then var1=("pass") ; fi
 
 echo "$var1"
 }
@@ -220,9 +225,12 @@ printf "\e[37;23H"
 }
 
 overlay(){
-#$1 image $2 xaxis start $3 yaxis start $4 transparency
+#$1 image $2 xaxis start $3 yaxis start $4 transparency $5 colorset
+
 xaxis=$2 ; if [ $xaxis -eq 0 ] ; then xaxis=1 ; fi
 yaxis=$3 ; if [ $yaxis -eq 0 ] ; then yaxis=1 ; fi
+#sets color
+if [ $5 -ne 0 ] ; then col=$(grep "color=" status | cut -d "=" -f2) ; colorset $5 ; fi
 
 var1=$(./block/./overlay.sh $1 | sed 's|\\|\\\\|g')
 
@@ -235,6 +243,8 @@ if($x~/#layer/){sub(/#layer/,v++ + yaxis)}}1' <<< "$var1")
 if [ $4 -eq 1 ] ; then var1=$(sed 's/ /\\e[1C/g' <<< "$var1") ; fi
 
 printf "\e[${yaxis};${xaxis}H${var1}"
+#resets color
+if [ $5 -ne 0 ] ; then colorset $col ; fi
 }
 
 save() {

@@ -8,37 +8,42 @@ if [ $focus -eq 0 ]
 then
 ./utils.sh colorset 4
 comp=0
+tint=0
 pic=pic1a
-aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 ; fi
-if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win4 45 2 0 ; fi)
-aux2=$(if [ "$book17" -eq 0 ] ; then ./utils.sh overlay book2 33 13 0 ; fi
-if [ "$key1" -eq 0 ] ; then ./utils.sh overlay key1 17 16 0 ; fi)
+aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win2 3 7 0 0; fi
+if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win4 45 2 0 0; fi)
+aux2=$(if [ "$book17" -eq 0 ] ; then ./utils.sh overlay book2 33 13 0 0; fi
+if [ "$key1" -eq 0 ] ; then ./utils.sh overlay key1 17 16 0 0; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 1
 comp=3
-if [ $rain -eq 1 ] ; then pic="pic2a" ; else pic="pic2b" ; fi
-aux1=$(if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 48 4 0 ; fi
-if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi
-if [ $i9box -eq 1 ] ; then ./utils.sh overlay box2 46 8 1 ; fi)
+tint=4
+pic="pic2" 
+aux1=$(if [ $rain -eq 1 ] ; then ./utils.sh overlay rain1 3 3 1 0 ;fi
+if [ $i5bwindow -eq 1 ] ; then ./utils.sh overlay win3 48 4 0 0; fi
+if [ $i8awindow -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 0; fi
+if [ $i9box -eq 1 ] ; then ./utils.sh overlay box2 46 8 1 0; fi)
 fi
 
 if [ $focus -eq 2 ]
 then
 ./utils.sh colorset 1
 comp=1
-if [ $rain -eq 1 ] ; then pic="pic3a" ; else pic="pic3b" ; fi
-aux1=$(if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 ; fi)
+tint=4
+pic="pic3"
+aux1=$(if [ $rain -eq 1 ] ; then ./utils.sh overlay rain2 3 3 1 0 ; fi
+if [ $i8bwindow -eq 1 ] ; then ./utils.sh overlay win3b 3 3 1 0; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 $tint
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 $tint
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 }
 
 vars() {
@@ -139,8 +144,8 @@ sed -i '/block=/c\block=e' status
 break 
 else
 ./utils.sh colorset 2
-./utils.sh setdeath
 ./utils.sh cutscene i8a Death logo
+./utils.sh setdeath
 break
 fi ;;
 

@@ -7,19 +7,28 @@ if [[ "$cella" =~ ^(01|02|03|04|05|06|07|09|11|15|17|18|19|23|24|26|28|34|35)$ ]
 if [[ "$cella" =~ ^(10|12|14|29)$ ]] ; then num=1 ; fi
 if [[ "$cella" =~ ^(33|36|37)$ ]] ; then num=2 ; fi
 
+if [[ "$cella" =~ ^(02|03|04)$ ]] ; then pic=ext1 ; fi
+if [[ "$cella" =~ ^(18|29)$ ]] ; then pic=ext2 ; fi
+if [[ "$cella" =~ ^(01|05|06|07|09|10|11|12|14|15|17|19|23|24|26|28|33|34|35|36|37)$ ]] ; then pic=${cella}pic1 ; fi
 ./utils.sh colorset 1
-image=$(block/$block/./graphics.sh ${cella}pic1
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cella $num" 56 4 0
-if [ $cella -eq 02 ] ; then if [ $i30bwindow -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
-if [ $cella -eq 03 ] ; then if [ $i31window -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
-if [ $cella -eq 04 ] ; then if [ $i32bwindow -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
-if [ $cella -eq 09 ] ; then if [ $i32awindow -eq 1 ] ; then ./utils.sh overlay win9 2 4 0 ; fi ; fi
-if [ $cella -eq 12 ] ; then if [ $i28window -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 ; fi ; fi
-if [ $cella -eq 19 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes1 49 14 0 ; fi ; fi
-if [ $cella -eq 23 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes1 49 15 0 ; fi ; fi
-if [ $cella -eq 33 ] ; then if [ $i24awindow -eq 1 ] ; then ./utils.sh overlay win8 15 4 0 ; fi ; fi
-if [ $cella -eq 35 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes2 48 9 0 ; fi ; fi)
+image=$(block/$block/./graphics.sh ${pic}
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cella $num" 56 4 0 0
+if [ $cella -eq 02 ] ; then ./utils.sh overlay shrub1 26 12 0 0
+if [ $i30bwindow -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 0; fi ; fi
+if [ $cella -eq 03 ] ; then ./utils.sh overlay tree1 44 7 0 0
+ if [ $i31window -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 0; fi ; fi
+if [ $cella -eq 04 ] ; then ./utils.sh overlay tree2 2 7 0 0
+if [ $i32bwindow -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 0; fi ; fi
+if [ $cella -eq 09 ] ; then if [ $i32awindow -eq 1 ] ; then ./utils.sh overlay win9 2 4 0 0; fi ; fi
+if [ $cella -eq 12 ] ; then if [ $i28window -eq 1 ] ; then ./utils.sh overlay win1 23 1 0 0; fi ; fi
+if [ $cella -eq 18 ] ; then ./utils.sh overlay rock1 10 14 0 1
+./utils.sh overlay tree3 24 4 0 0 ; fi
+if [ $cella -eq 19 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes1 49 14 0 0; fi ; fi
+if [ $cella -eq 23 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes1 49 15 0 0; fi ; fi
+if [ $cella -eq 29 ] ; then ./utils.sh overlay shed1 22 4 0 0 ; fi
+if [ $cella -eq 33 ] ; then if [ $i24awindow -eq 1 ] ; then ./utils.sh overlay win8 15 4 0 0; fi ; fi
+if [ $cella -eq 35 ] ; then if [ $wolf -eq 2 ] ; then ./utils.sh overlay eyes2 48 9 0 0; fi ; fi)
 echo "$image"
 }
 
@@ -44,7 +53,7 @@ if [ $cella -eq 10 ] ; then key7=$(grep 'key7=' status | cut -d "=" -f2) ; fi
 greed=$(grep 'greed=' status | cut -d "=" -f2)
 burnie=$(grep 'burnie=' status | cut -d "=" -f2)
 
-if [[ "$cella" =~ ^(23|29|37)$ ]] ; then wolf=$(grep 'wolf=' status | cut -d "=" -f2) ; fi
+if [[ "$cella" =~ ^(19|23|29|37)$ ]] ; then wolf=$(grep 'wolf=' status | cut -d "=" -f2) ; fi
 if [ $cella -eq 02 ] ; then i30bwindow=$(grep 'i30bwindow=' status | cut -d "=" -f2) ; fi
 if [ $cella -eq 03 ] ; then i31window=$(grep 'i31window=' status | cut -d "=" -f2) ; fi
 if [ $cella -eq 04 ] ; then i32bwindow=$(grep 'i32bwindow=' status | cut -d "=" -f2) ; fi
@@ -413,7 +422,8 @@ fi
 
 if [[ "$comm" == bush ]] ; then
 if [[ "$cella" =~ ^(02|14|36)$ ]] ; then output=$(./utils.sh form elooka bush) ; fi
-if ! [[ "$cella" =~ ^(02|14|36)$ ]] ; then comm=null ; fi
+if [ "$cella" -eq 19 ] ; then output=$(./utils.sh form looki null bush1 0 book14 $book18) ; fi
+if ! [[ "$cella" =~ ^(02|14|36|19)$ ]] ; then comm=null ; fi
 fi
 
 if [[ "$comm" == driveway ]] ; then
@@ -421,10 +431,17 @@ if [[ "$cella" =~ ^(12|24|26|28)$ ]] ; then output=$(./utils.sh form elooka driv
 if ! [[ "$cella" =~ ^(12|24|26|28)$ ]] ; then comm=null ; fi
 fi
 
+if [[ "$comm" == eyes ]] ; then
+if [[ "$cella" =~ ^(19|23|35)$ ]] ; then if [ $wolf -eq 2 ] ;then output=$(./utils.sh form elooka eyes1)
+else output=$(./utils.sh form uni look) ; fi ; fi
+if ! [[ "$cella" =~ ^(19|23|35)$ ]] ; then comm=null ; fi
+fi
+
 if [[ "$comm" == forest ]] ; then
 if [ $cella -eq 28 ] ; then output=$(./utils.sh form elooka forest1) ; fi
 if [[ "$cella" =~ ^(11|14|15|18|34|36|37)$ ]] ; then output=$(./utils.sh form elooka forest) ; fi
-if ! [[ "$cella" =~ ^(11|14|15|18|28|34|36|37)$ ]] ; then comm=null ; fi
+if [[ $cella =~ ^(19|23|35)$ ]] ; then output=$(./utils.sh form looki null forest4 0 wolf1 $wolf) ; fi
+if ! [[ "$cella" =~ ^(11|14|15|18|19|23|28|34|35|36|37)$ ]] ; then comm=null ; fi
 fi
 
 if [[ "$comm" == hedge ]] ; then
@@ -466,7 +483,7 @@ if ! [[ "$cella" =~ ^(01|02|03|04|09|12|33)$ ]] ; then comm=null ; fi
 fi
 
 #failure
-if ! [[ "$comm" =~ ^(east|north|south|west|bush|driveway|forest|hedge|house|rock|shed|tree|window)$ ]] && [[ ! -z "$comm" ]]
+if ! [[ "$comm" =~ ^(east|north|south|west|bush|driveway|eyes|forest|hedge|house|rock|shed|tree|window)$ ]] && [[ ! -z "$comm" ]]
 then
 case1=(system${case1})
 fi ;;
@@ -557,8 +574,9 @@ fi
 
 if [[ "$comm" == forest ]] ; then
 if [[ "$cella" =~ ^(28)$ ]] ; then  output=$(./utils.sh form uni far) ; fi
-if [[ "$cella" =~ ^(11|14|15|18|34|35|36|37)$ ]] ; then output=$(./utils.sh form smell foreste) ; fi
-if ! [[ "$cella" =~ ^(11|14|15|18|19|34|35|36|37)$ ]] ; then comm=null ; fi
+if [[ "$cella" =~ ^(11|14|15|18|34|36|37)$ ]] ; then output=$(./utils.sh form smell foreste) ; fi
+if [[ $cella =~ ^(19|23|35)$ ]] ; then output=$(./utils.sh form smell foreste wolf $wolf) ; fi
+if ! [[ "$cella" =~ ^(11|14|15|18|19|23|34|35|36|37)$ ]] ; then comm=null ; fi
 fi
 
 if [[ "$comm" == hedge ]] ; then
@@ -699,8 +717,6 @@ fi ;;
 
 [l][i][c][k][m][a][i][l][b][o][x]) output=$(./utils.sh blockclear lick mail) ;;
 
-[s][m][e][l][l][d][r][i][v][e][w][a][y])  ;;
-
 [s][m][e][l][l][d][o][o][r]) output=$(./utils.sh form smell door2) ;;
 
 [s][m][e][l][l][k][e][y]) if [ $key5 -eq 0 ] || [ $key5 -eq 1 ]
@@ -738,58 +754,22 @@ then
 case1=$(sed "s/system//" <<< $case1)
 case $case1 in
 
-[g][e][t][b][o][o][k])
-if [ $book18 -eq 2 ] ; then output=$(./utils.sh form uni get1) 
-else
-if [ "$book18" -eq 0 ] ; then
+[g][e][t][b][o][o][k])if [ "$book18" -eq 0 ] ; then
 sed -i '/book18/c\book18=1' status
 output=$(./utils.sh form uni get2 book) 
 else
-output=$(./utils.sh form uni get3 book) ; fi ; fi ;;
+output=$(./utils.sh form uni get3 book) ; fi ;;
 
-[l][o][o][k][b][o][o][k]) if [ $book18 -eq 0 ] || [ $book18 -eq 1 ]
-then
-output=$(./utils.sh form uni book)
-else
-output=$(./utils.sh form uni look)
-fi ;;
+[l][o][o][k][b][o][o][k]) output=$(./utils.sh form uni book) ;;
 
-[l][o][o][k][b][u][s][h]) output=$(./utils.sh form looki null bush1 0 book14 $book18) ;;
-
-[l][o][o][k][f][o][r][e][s][t]) output=$(./utils.sh form looki null forest4 0 wolf1 $wolf) ;;
-
-[l][o][o][k][e][y][e][s]) if [ $wolf -eq 2 ]
-then
-output=$(./utils.sh form looki wolf1 $wolf)
-else
-output=$(./utils.sh form uni look)
-fi ;;
-
-[r][e][a][d][b][o][o][k]) if [ $book18 -eq 0 ] || [ $book18 -eq 1 ]
-then
-./utils.sh reader book18r
-intro=0
-else
-output=$(./utils.sh form uni read)
-fi ;;
+[r][e][a][d][b][o][o][k]) ./utils.sh reader book18r
+intro=0 ;;
 
 #olfactory
 
-[l][i][c][k][b][o][o][k]) if [ $book18 -eq 0 ] || [ $book18 -eq 1 ]
-then
-output=$(./utils.sh form lick book)
-else
-output=$(./utils.sh form uni lick1)
-fi ;;
+[l][i][c][k][b][o][o][k]) output=$(./utils.sh form lick book) ;;
 
-[s][m][e][l][l][b][o][o][k]) if [ $book18 -eq 0 ] || [ $book18 -eq 1 ]
-then
-output=$(./utils.sh form smell book)
-else
-output=$(./utils.sh form uni smell)
-fi ;;
-
-[s][m][e][l][l][f][o][r][e][s][t]) output=$(./utils.sh form smell foreste wolf $wolf) ;;
+[s][m][e][l][l][b][o][o][k]) output=$(./utils.sh form smell book) ;;
 
 *) case1=(system${case1}) ;;
 
@@ -809,14 +789,14 @@ else
 output=$(./utils.sh form uni get1)
 fi ;;
 
-[l][o][o][k][b][o][o][k]) if [ $book22 -eq 0 ] || [ $book22 -eq 1 ]
+[l][o][o][k][b][o][o][k]) if [ $book22 -ne 2 ]
 then
 output=$(./utils.sh form uni book)
 else
 output=$(./utils.sh form uni look)
 fi ;;
 
-[r][e][a][d][b][o][o][k]) if [ $book22 -eq 0 ] || [ $book22 -eq 1 ]
+[r][e][a][d][b][o][o][k]) if [ $book22 -ne 2 ]
 then
 ./utils.sh reader book22r
 intro=0
@@ -826,42 +806,19 @@ fi ;;
 
 #olfactory
 
-[l][i][c][k][b][o][o][k]) if [ $book22 -eq 0 ] || [ $book22 -eq 1 ]
+[l][i][c][k][b][o][o][k]) if [ $book22 -ne 2 ]
 then
 output=$(./utils.sh form lick book)
 else
 output=$(./utils.sh form uni lick1)
 fi ;;
 
-[s][m][e][l][l][b][o][o][k]) if [ $book22 -eq 0 ] || [ $book22 -eq 1 ]
+[s][m][e][l][l][b][o][o][k]) if [ $book22 -ne 2 ]
 then
 output=$(./utils.sh form smell book)
 else
 output=$(./utils.sh form uni smell)
 fi ;;
-
-*) case1=(system${case1}) ;;
-
-esac
-fi
-
-if [[ ( $cella == 35 || $cella == 23) ]] && [[ $case1 == *"system"* ]]
-then
-case1=$(sed "s/system//" <<< $case1)
-case $case1 in
-
-[l][o][o][k][f][o][r][e][s][t]) output=$(./utils.sh form looki null forest4 0 wolf1 $wolf) ;;
-
-[l][o][o][k][e][y][e][s]) if [ $wolf -eq 2 ]
-then
-output=$(./utils.sh form looki wolf1 $wolf)
-else
-output=$(./utils.sh form uni look)
-fi ;;
-
-#olfactory
-
-[s][m][e][l][l][f][o][r][e][s][t]) output=$(./utils.sh form smell foreste wolf $wolf) ;;
 
 *) case1=(system${case1}) ;;
 

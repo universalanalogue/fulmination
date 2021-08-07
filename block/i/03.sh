@@ -4,10 +4,10 @@
 background() {
 ./utils.sh colorset 4
 image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0)
 echo "$image"
-if [ $book11 -eq 0 ] ; then ./utils.sh overlay book12 40 13 0 ; fi
+if [ $book11 -eq 0 ] ; then ./utils.sh overlay book12 40 13 0 0 ; fi
 }
 
 vars () {
@@ -131,7 +131,7 @@ fi ;;
 
 [l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall1 0) ;;
 
-[o][p][e][n][b][o][x]) output=$(./utils.sh form looki null chair4 0) ;;
+[o][p][e][n][b][o][x]) output=$(./utils.sh form looki null box5 0) ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book11 -eq 0 ] || [ $book11 -eq 1 ]
 then

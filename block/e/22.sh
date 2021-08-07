@@ -3,16 +3,19 @@
 
 background() {
 pic=
-if [ $focus -eq 0 ] ; then pic=pic1a ; fi
+if [ $focus -eq 0 ] ; then pic=ext2
+aux1=$(./utils.sh overlay tree4 9 8 0 0) ; fi
 
 if [ $focus -eq 1 ]
 then
-if [ $mellon -eq 0 ] ; then pic=pic2a ; else pic2b ; fi
+aux1=
+if [ $mellon -eq 0 ] ; then pic=${cell}pic2a ; else ${cell}pic2b ; fi
 fi
 
-image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+image=$(block/$block/./graphics.sh $pic
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+echo "$aux1")
 echo "$image"
 }
 
@@ -89,28 +92,28 @@ case $case1 in
 
 [g][o][e][a][s][t]) if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1"
+./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
 sed -i '/cella=/c\cella=23' status
 sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][n][o][r][t][h]) if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1"
+./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
 sed -i '/cella=/c\cella=29' status
 sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][s][o][u][t][h]) if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1"
+./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
 sed -i '/cella=/c\cella=18' status
 sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][w][e][s][t])if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1"
+./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
  sed -i '/cell=/c\cell=21' status ; break ;;
 
@@ -154,7 +157,7 @@ fi ;;
 
 [s][m][a][s][h][t][r][e][e]) if [ $hammer -eq 1 ]
 then
-./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2"
+./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2 0"
 ./utils.sh setdeath
 sed -i '/cell=/c\cell=null' status
 break
@@ -208,25 +211,25 @@ if [ $focus -eq 1 ]
 then
 case $case1 in
 
-[f][r][i][e][n][d]) ./utils.sh cutscene "entfriend 1" Mellon "graphpass e 22pic2b 1 1"
+[f][r][i][e][n][d]) ./utils.sh cutscene "entfriend 1" Mellon "graphpass e 22pic2b 1 1 0"
 mellon=1
 if [ $riddle -eq 1 ] || [ $riddle -eq 2 ] || [ $riddle -eq 3 ]
 then
-./utils.sh cutscene "entfriend 2" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "entfriend 2" Mellon "graphpass e 22pic2b 1 1 0"
 fi
 if [ $riddle -eq 0 ]
 then
 if [ $wolflick -eq 0 ]
 then
-./utils.sh cutscene "entfriend 3" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "entfriend 3" Mellon "graphpass e 22pic2b 1 1 0 "
 fi
 if [ $wolflick -eq 1 ]
 then
-./utils.sh cutscene "entfriend 4" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "entfriend 4" Mellon "graphpass e 22pic2b 1 1 0"
 fi 
 sed -i "/riddle=/c\riddle=1" status
 vars
-./utils.sh cutscene "entfriend 5" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "entfriend 5" Mellon "graphpass e 22pic2b 1 1 0"
 fi
 if [ $riddle -eq 1 ]
 then 
@@ -237,9 +240,9 @@ read case2
 case $case2 in 
 [h][o][l][e]) sed -i "/riddle=/c\riddle=2" status
 vars
-./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1 0"
 break ;;
-*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1"
+*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1 0"
 break ;;
 esac
 done
@@ -253,9 +256,9 @@ read case2
 case $case2 in 
 [t][i][m][e]) sed -i "/riddle=/c\riddle=3" status
 vars
-./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1 0"
 break ;;
-*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1"
+*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1 0"
 break ;;
 esac
 done
@@ -269,9 +272,9 @@ read case2
 case $case2 in 
 [s][e][c][r][e][t]) sed -i "/riddle=/c\riddle=4" status
 vars
-./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1 0"
 break ;;
-*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1"
+*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1 0"
 break ;;
 esac
 done
@@ -282,12 +285,12 @@ sed -i "/riddle=/c\riddle=5" status
 sed -i "/book111=/c\book111=1" status
 ./lib.sh journal1 7
 vars
-./utils.sh cutscene "entfriend 9" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "entfriend 9" Mellon "graphpass e 22pic2b 1 1 0"
 fi
 if [ $riddle -eq 5 ]
 then
 output=$(./utils.sh form entfriend 10) 
-./utils.sh cutscene "entfriend 10" Mellon "graphpass e 22pic2b 1 1"
+./utils.sh cutscene "entfriend 10" Mellon "graphpass e 22pic2b 1 1 0"
 fi ;;
 
 [l][o][o][k]) if [ $mellon -eq 0 ]
@@ -321,7 +324,7 @@ fi ;;
 
 [s][m][a][s][h][t][r][e][e]) if [ $hammer -eq 1 ]
 then 
-./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2"
+./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2 0"
 ./utils.sh setdeath
 sed -i '/cell=/c\cell=null' status
 break

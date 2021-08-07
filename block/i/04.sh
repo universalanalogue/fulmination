@@ -3,11 +3,11 @@
 
 background() {
 image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0)
 echo "$image"
-if [ $key8 -eq 0 ] ; then ./utils.sh overlay key2 9 17 0 ; fi
-if [ $book12 -eq 0 ] ; then ./utils.sh overlay scuff 9 17 0 ; fi
+if [ $key8 -eq 0 ] ; then ./utils.sh overlay key2 9 17 0 0; fi
+if [ $book12 -eq 0 ] ; then ./utils.sh overlay scuff 9 17 0 0; fi
 }
 
 vars (){
@@ -116,6 +116,9 @@ fi ;;
 [g][o][s][o][u][t][h]) sed -i '/cell=/c\cell=03' status ; break ;;
 
 [l][o][o][k]) output=$(./utils.sh form looki i04) ;;
+
+[l][o][o][k][a][s][h][e][s])
+output=$(./utils.sh form looki null ashes2 0) ;;
 
 [l][o][o][k][e][a][s][t][d][o][o][r]) 
 output=$(./utils.sh form lookdoor door1 door7 $i05 1) ;;

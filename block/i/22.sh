@@ -6,15 +6,17 @@ aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
 pic=pic1a
-aux1=$(if [ $i22mirror -eq 1 ] ; then ./utils.sh overlay win8 19 10 0 ; fi
-if [ $i22window -eq 1 ] ; then ./utils.sh overlay win5 33 8 0 ; fi)
+tint=0
+aux1=$(if [ $i22mirror -eq 1 ] ; then ./utils.sh overlay win8 19 10 0 0; fi
+if [ $i22window -eq 1 ] ; then ./utils.sh overlay win5 33 8 0 0; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 ./utils.sh colorset 1
 pic=pic2a
-aux1=$(if [ $i22window -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 ; fi)
+tint=5
+aux1=$(if [ $i22window -eq 1 ] ; then ./utils.sh overlay win2b 3 3 1 0; fi)
 fi
 
 if [ $focus -eq 2 ]
@@ -24,16 +26,18 @@ if [ $i22mirror -eq 0 ] ; then pic=pic3a ; fi
 if [ $i22mirror -eq 1 ]
 then
 pic=pic3b
-aux1=$([ $book23 -eq 0 ] ; then ./utils.sh overlay vengance 43 4 0 ; fi)
-aux2=$([ $book23 -eq 0 ] ; then ./utils.sh overlay book13 37 11 0 ; fi)
+tint=5
+aux1=$(if [ $book23 -eq 0 ] ; then ./utils.sh overlay vengance 43 4 0 0; fi)
+aux2=$(if [ $book23 -eq 0 ] ; then ./utils.sh overlay book13 37 11 0 0; fi)
+fi
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 $tint
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0 $tint
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 }
 
 vars(){
@@ -227,7 +231,7 @@ fi  ;;
 
 [l][i][c][k][t][o][i][l][e][t]) if [ $licktoilet -eq 2 ]
 then
-./utils.sh cutscene toiletlick3 Death "graphpass i 07pic1a"
+./utils.sh cutscene toiletlick3 Death "graphpass i 07pic1a 2 2 3"
 ./utils.sh setdeath
 break
 fi
@@ -236,7 +240,7 @@ then
 output=$(./utils.sh form lick toilet2)
 sed -i '/licktoilet=/c\licktoilet=2' status
 fi
-if [ $licktoiliet -eq 0 ]
+if [ $licktoilet -eq 0 ]
 then
 output=$(./utils.sh form lick toilet1)
 sed -i '/licktoilet=/c\licktoilet=1' status

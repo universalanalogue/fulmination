@@ -6,24 +6,27 @@ aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
 comp=1
-pic=12pic1a
-aux1=$(if [ $i12panel -eq 1 ] ; then ./utils.sh overlay door3 7 11 0 ; fi)
+pic=room1
+aux1=$(./utils.sh overlay knob1 7 15 0 0 0
+if [ $i12panel -eq 1 ] ; then ./utils.sh overlay door3 7 11 0 0; fi
+./utils.sh overlay door9 24 21 0 0
+./utils.sh overlay door10 24 5 0 0)
 fi
 
 if [ $focus -eq 1 ]
 then
 comp=0
 pic=06pic2a
-aux2=$(if [ $book33 -eq 0 ] ; then ./utils.sh overlay table1 18 10 0 ; fi
-if [ $pendant -eq 0 ] ; then ./utils.sh overlay pendant1 35 8 0 ; fi)
+aux2=$(if [ $book33 -eq 0 ] ; then ./utils.sh overlay table1 18 10 0 0; fi
+if [ $pendant -eq 0 ] ; then ./utils.sh overlay pendant1 35 8 0 0; fi)
 fi
 
-image=$(block/$block/./graphics.sh $pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+image=$( block/$block/./graphics.sh $pic
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 
 }
 
@@ -100,7 +103,8 @@ case $case1 in
 
 [g][o][e][a][s][t]) if [ $key7 -eq 1 ]
 then
-sed -i '/cell=/c\cell=13' status
+sed -i '/cell=/c\cell=ulc1' status
+sed -i '/cella=/c\cella=13' status
 break 
 else
 output=$(./utils.sh form uni doorlock)

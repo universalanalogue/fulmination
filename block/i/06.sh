@@ -7,22 +7,22 @@ if [ $focus -eq 0 ]
 then
 comp=1
 pic=pic1a
-aux1=$(if [ $i6panel -eq 1 ] ; then ./utils.sh overlay door1 43 11 0 ; fi)
+aux1=$(if [ $i6panel -eq 1 ] ; then ./utils.sh overlay door1 43 11 0 0 ; fi)
 fi
 
 if [ $focus -eq 1 ]
 then
 comp=2
 pic=pic2a
-aux2=$(if [ $book37 -eq 0 ] ; then ./utils.sh overlay table1 23 10 0 ; fi)
+aux2=$(if [ $book37 -eq 0 ] ; then ./utils.sh overlay table1 23 10 0 0 ; fi)
 fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 
 }
 
@@ -105,8 +105,8 @@ then
 if [ $rain -eq 1 ]
 then
 ./utils.sh colorset 6
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh cutscene bathroom1 Intermission "graphpass i 07pic2a 6 4"
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh cutscene bathroom1 Intermission "graphpass i 07pic2a 6 4 0"
 ./utils.sh cutscene bathroom2 Intermission "null"
 sed -i '/rain=/c\rain=0' status
 ./lib.sh journal1 3

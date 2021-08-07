@@ -3,12 +3,12 @@
 
 background() {
 aux1= ; aux2= ; pic=
-if [ $focus -eq 0 ] ; then comp=1 ; pic=pic3a ; fi
-if [ $focus -eq 1 ] ; then comp=3 ; pic=pic4a ; fi
+if [ $focus -eq 0 ] ; then comp=1 ; pic=10pic3a ; fi
+if [ $focus -eq 1 ] ; then comp=3 ; pic=10pic4a ; fi
 
-image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0)
+image=$(block/$block/./graphics.sh $pic
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0)
 echo "$image"
 }
 
@@ -102,7 +102,7 @@ bar=$(./utils.sh posbar $sleep $sleepthreshold 20)
 pendant=$(grep 'pendant=' status | cut -d "=" -f2)
 if [ $pendant -eq 1 ]
 then
-./utils.sh cutscene "ghost1 pendant" Death "graphpass i 10pic3a 2 2"
+./utils.sh cutscene "ghost1 pendant" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 exit
 fi
@@ -137,14 +137,14 @@ case $case1 in
 
 [b][u][r][n][g][h][o][s][t]) if [ $lighter -eq 1 ]
 then
-./utils.sh cutscene "ghost1 burn" Death "graphpass i 10pic3a 2 2"
+./utils.sh cutscene "ghost1 burn" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break 
 else
 output=$(./utils.sh form uni ic)
 fi ;;
 
-[g][o][w][e][s][t]) ./utils.sh cutscene "ghost1 walk" Death "graphpass i 10pic3a 2 2 "
+[g][o][w][e][s][t]) ./utils.sh cutscene "ghost1 walk" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break ;;
 
@@ -160,11 +160,11 @@ output=$(./utils.sh form looki null fireplace1 0) ;;
 then
 if [ $ammo -gt 0 ]
 then
-./utils.sh cutscene "ghost1 shoot1" Death "graphpass i 10pic3a 2 2"
+./utils.sh cutscene "ghost1 shoot1" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 else
-./utils.sh cutscene "ghost1 shoot2" Death "graphpass i 10pic3a 2 2"
+./utils.sh cutscene "ghost1 shoot2" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 fi 
@@ -172,13 +172,13 @@ else
 output=$(./utils.sh form uni ic)
 fi ;;
 
-[s][m][a][s][h][g][h][o][s][t]) ./utils.sh cutscene "ghost1 smash" Death "graphpass i 10pic3a 2 2"
+[s][m][a][s][h][g][h][o][s][t]) ./utils.sh cutscene "ghost1 smash" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break ;;
 
 #olfactory
 
-[l][i][c][k][g][h][o][s][t]) ./utils.sh cutscene "ghost1 lick1" Victory "graphpass i 10pic3a 4 4"
+[l][i][c][k][g][h][o][s][t]) ./utils.sh cutscene "ghost1 lick1" Victory "graphpass i 10pic3a 4 4 1"
 ./utils.sh cutscene victory Victory front
 ./utils.sh setdeath
 break ;;
@@ -207,7 +207,7 @@ intro=0 ;;
 
 [l][i][c][k][m][e]) if [ $lickme -lt 2 ]
 then
-./utils.sh cutscene "ghost1 lick2" Death "graphpass i 10pic3a 2 2"
+./utils.sh cutscene "ghost1 lick2" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 fi ;;
@@ -333,12 +333,12 @@ if [ $book11 -eq 1 ] && [ $book12 -eq 1 ] && [ $book13 -eq 1 ] && [ $book14 -eq 
 && [ $book28 -eq 1 ] && [ $book31 -eq 1 ] && [ $book32 -eq 1 ] && [ $book33 -eq 1 ] \
 && [ $book35 -eq 1 ] && [ $book36 -eq 1 ] && [ $book37 -eq 1 ] && [ $book38 -eq 1 ]
 then
-./utils.sh cutscene burnbooks3 Victory "graphpass i 10pic3a 4 4"
+./utils.sh cutscene burnbooks3 Victory "graphpass i 10pic3a 4 4 1"
 ./utils.sh cutscene victory Victory front
 ./utils.sh setdeath
 break
 else
-./utils.sh cutscene burnbooks2 Death "graphpass i 10pic3a 2 2"
+./utils.sh cutscene burnbooks2 Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 fi
@@ -367,7 +367,7 @@ intro=0 ;;
 [i][n][v][e][n][t][o][r][y]) ./utils.sh inventory
 intro=0 ;;
 
-[l][i][c][k][m][e]) ./utils.sh cutscene "ghost1 lick2" Death "graphpass i 10pic3a 2 2 "
+[l][i][c][k][m][e]) ./utils.sh cutscene "ghost1 lick2" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break ;;
 

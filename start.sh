@@ -88,7 +88,7 @@ fi
 
 color=$(grep 'color=' status | cut -d "=" -f2)
 cell=$(grep 'cell=' status | cut -d "=" -f2)
-cella=$(grep 'cella=' status | cut -d :"=" -f2 )
+cella=$(grep 'cella=' status | cut -d "=" -f2 )
 block=$(grep 'block=' status | cut -d "=" -f2)
 ./utils.sh colorset $color
 fi

@@ -6,32 +6,35 @@ aux1= ; aux2= ; pic=
 
 if [ $focus -eq 0 ]
 then
-pic=pic1a
-aux1=$(if [ $i19painting -eq 1 ] ; then ./utils.sh overlay safe1 21 6 0 ; fi
-if [ $i19safe -eq 1 ] ; then ./utils.sh overlay safe2 21 6 0 ; fi)
+pic=basement1
+aux1=$(if [ $i19painting -eq 0 ] ; then ./utils.sh overlay paint2 24 6 0 0 ; fi
+if [ $i19painting -eq 1 ] ; then ./utils.sh overlay safe1 21 6 0 0; fi
+if [ $i19safe -eq 1 ] ; then ./utils.sh overlay safe2 21 6 0 0; fi
+./utils.sh overlay door4 3 8 1 0
+./utils.sh overlay door5 49 8 1 0)
 fi
 
 if [ $focus -eq 1 ]
 then
 
-if [ $i19painting -eq 0 ] ; then pic=pic2a ; fi
+if [ $i19painting -eq 0 ] ; then pic=19pic2a ; fi
 
-if [[ $i19painting -eq 1 && $i19safe -eq 0 ]] ; then pic=pic2b ; fi
+if [[ $i19painting -eq 1 && $i19safe -eq 0 ]] ; then pic=19pic2b ; fi
 
 if [ $i19safe -eq 1 ]
 then
-pic=pic2c
-aux2=$(if [ $book112 -eq 0 ] ; then ./utils.sh overlay book4 25 15 0 ; fi)
+pic=19pic2c
+aux2=$(if [ $book112 -eq 0 ] ; then ./utils.sh overlay book4 25 15 0 0; fi)
 fi
 
 fi
 
-image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
-echo -e "$aux1")
+image=$(block/$block/./graphics.sh $pic
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 
 }
 
@@ -107,13 +110,15 @@ case $case1 in
 
 [g][o][e][a][s][t]) if [ $key4 -eq 1 ]
 then
-sed -i '/cell=/c\cell=20' status
+sed -i '/cell=/c\cell=ulc1' status
+sed -i '/cella=/c\cella=20' status
 break 
 else
 output=$(./utils.sh form uni doorlock)
 fi ;;
 
-[g][o][w][e][s][t]) sed -i '/cell=/c\cell=18' status ; break ;;
+[g][o][w][e][s][t]) sed -i '/cell=/c\cell=ulc1' status
+sed -i '/cella=/c\cella=18' status ; break ;;
 
 [l][o][o][k]) output=$(./utils.sh form looki i19) ;;
 

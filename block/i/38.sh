@@ -6,9 +6,12 @@ aux1= ; aux2= ; pic=
 if [ $focus -eq 0 ]
 then
 comp=2
-pic=38pic1a
-aux1=$(if [ $i38painting -eq 1 ] ; then ./utils.sh overlay safe3 32 7 0 ; fi
-if [ $i38safe -eq 1 ] ; then ./utils.sh overlay safe4 32 7 0 ; fi)
+pic=hall1
+aux1=$(if [ $i38painting -eq 0 ] ; then ./utils.sh overlay paint1 37 8 0 0 ; fi
+if [ $i38painting -eq 1 ] ; then ./utils.sh overlay safe3 32 7 0 0 ; fi
+if [ $i38safe -eq 1 ] ; then ./utils.sh overlay safe4 32 7 0 0 ; fi
+./utils.sh overlay door8 22 22 0 0
+./utils.sh overlay door4 16 6 1 0)
 fi
 
 if [ $focus -eq 1 ]
@@ -21,16 +24,16 @@ if [[ $i38painting -eq 1 && $i38safe -eq 0 ]] ; then pic=19pic2b ; fi
 if [ $i38safe -eq 1 ]
 then
 pic=19pic2c
-aux2=$(if [ $book36 -eq 0 ] ; then ./utils.sh overlay book4 25 15 0 ; fi)
+aux2=$(if [ $book36 -eq 0 ] ; then ./utils.sh overlay book4 25 15 0 0; fi)
 fi
 fi
 
 image=$(block/$block/./graphics.sh $pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0
+echo "$aux1")
 echo "$image"
-echo -e "$aux2"
+echo "$aux2"
 
 }
 
@@ -126,7 +129,7 @@ fi ;;
 intro=1
 if [ $i38painting -eq 0 ]
 then
-output=$(./utils.sh form looki null painting1 0)
+output=$(./utils.sh form looki null painting8 0)
 fi
 if [ $i38painting -eq 1 ] && [ $i38safe -eq 0 ]
 then

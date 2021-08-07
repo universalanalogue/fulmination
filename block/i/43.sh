@@ -4,9 +4,9 @@
 background() {
 ./utils.sh colorset 2
 image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0
-if [ $book28 -eq 0 ] ; then ./utils.sh overlay scuff 31 8 0 ; fi)
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+if [ $book28 -eq 0 ] ; then ./utils.sh overlay scuff 31 8 0 0; fi)
 echo "$image"
 }
 

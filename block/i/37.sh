@@ -6,22 +6,28 @@ aux1= ; pic=
 if [ $focus -eq 0 ]
 then
 comp=2
-pic=pic1a
-aux1=$(if [ $i37window -eq 1 ] ; then ./utils.sh overlay win3 39 7 0 ; fi)
+tint=0
+pic=hall1
+aux1=$(./utils.sh overlay win13 39 7 0 0
+if [ $i37window -eq 1 ] ; then ./utils.sh overlay win3 39 7 0 0; fi
+./utils.sh overlay door7 22 2 0 0
+./utils.sh overlay door8 22 22 0 0
+./utils.sh overlay door4 16 6 1 0)
 fi
 
 if [ $focus -eq 1 ]
 then
 comp=3
-pic=pic2a
-aux1=$(if [ $i41window -eq 1 ] ; then ./utils.sh overlay win1 24 6 0 ; fi
-if [ $i37window -eq 1 ] ; then ./utils.sh overlay win1b 3 3 1 ; fi)
+tint=5
+pic=37pic2a
+aux1=$(if [ $i41window -eq 1 ] ; then ./utils.sh overlay win1 24 6 0 0; fi
+if [ $i37window -eq 1 ] ; then ./utils.sh overlay win1b 3 3 1 0; fi)
 fi
 
-image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0
-echo -e "$aux1")
+image=$(block/$block/./graphics.sh $pic
+./utils.sh overlay "blank 3 1" 56 1 0 $tint
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 2 $tint
+echo "$aux1")
 echo "$image"
 }
 

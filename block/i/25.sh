@@ -2,11 +2,13 @@
 #version=1.08.01
 
 background() {
-image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 3" 56 4 0)
+image=$(block/$block/./graphics.sh room2
+./utils.sh overlay table2 25 14 0 0
+./utils.sh overlay chair2 33 15 0 0
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 3" 56 4 0 0)
 echo "$image"
-if [ $i25wound -eq 1 ] ; then ./utils.sh overlay "scuff" 22 12 0 ; fi
+if [ $i25wound -eq 1 ] ; then ./utils.sh overlay "scuff" 22 12 0 0; fi
 }
 
 vars() {

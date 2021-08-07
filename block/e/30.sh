@@ -3,9 +3,9 @@
 
 background() {
 ./utils.sh colorset 1
-image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0)
+image=$(block/$block/./graphics.sh ${cell}pic1
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0)
 echo "$image"
 }
 
@@ -87,9 +87,9 @@ sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][s][h][e][d]) if [ $key8 -eq 1 ] 
 then
-sed -i '/cell=/c\cell=14' status
+sed -i '/cell=/c\cell=ulc1' status
+sed -i '/cella=/c\cella=14' status
 sed -i '/block=/c\block=i' status
-sed -i '/color=/c\color=8' status 
 break
 else
 output=$(./utils.sh form uni doorlock)
@@ -97,9 +97,9 @@ fi ;;
 
 [g][o][d][o][o][r]) if [ $key8 -eq 1 ] 
 then
-sed -i '/cell=/c\cell=14' status
+sed -i '/cell=/c\cell=ulc1' status
+sed -i '/cella=/c\cella=14' status
 sed -i '/block=/c\block=i' status
-sed -i '/color=/c\color=8' status 
 break
 else
 output=$(./utils.sh form uni doorlock)

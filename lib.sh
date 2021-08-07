@@ -5,19 +5,23 @@
 
 logo () {
 image=$(empty
-./utils.sh overlay logo 20 5 0)
+./utils.sh overlay logo 20 5 0 0)
 echo "$image"
 }
 
 empty () {
-image=$(./utils.sh overlay "blank 0" 1 1 0
-./utils.sh overlay "blank 3 0" 56 1 0)
+image=$(./utils.sh overlay "blank 0" 1 1 0 0
+./utils.sh overlay "blank 3 0" 56 1 0 0)
 echo "$image"
 }
 
 graphpass(){
+#1 block | 2 cell | 3 color in | 4 color out | 5 dir bit
 if [[ $3 != 0 ]] ; then ./utils.sh colorset $3 ; fi
 block/$1/./graphics.sh $2
+./utils.sh overlay "blank 3 1" 56 1 0 $3
+./utils.sh overlay "sidebar $1 $2 $5" 56 4 0 $3
+
 if [[ $4 != 0 ]] ; then ./utils.sh colorset $4 ; fi
 }
 
@@ -45,7 +49,7 @@ echo '_______________________________________________________
 |                           | |              |        |
 |                                            |________|
 |_____________________________________________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 read -p "$image"
 }
 
@@ -73,7 +77,7 @@ echo '_______________________________________________________
 |                   \______    \               | |    |
 |                          \    \                     |
 |___________________________|___|_____________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -101,7 +105,7 @@ echo '_______________________________________________________
 |                   \______    \               | |    |
 |                          \    \                     |
 |___________________________|___|_____________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -129,7 +133,7 @@ echo '_______________________________________________________
 | / /  /    /   / / \_/___/_  /\   /      /  / | |    |
 |     /        /     /   / \    \ /      /  /         |
 |___________________________|___|_____________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -157,7 +161,7 @@ echo '_______________________________________________________
 |    |,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|
 |____|,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|
 |_____________________________________________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -185,7 +189,7 @@ echo '_______________________________________________________
 |  /                 ***************               \  |
 | /                                                 \ |
 |/___________________________________________________\|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -213,7 +217,7 @@ echo '_______________________________________________________
 |,,,,,,,,,,,,,,,,,,,,,,***************,,,,,,,,,,,,,,,,|
 |,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|
 |_____________________________________________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -241,7 +245,7 @@ echo '_______________________________________________________
 |  /                 ###############               \  |
 | /                                                 \ |
 |/___________________________________________________\|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -269,7 +273,7 @@ echo '_______________________________________________________
 |,,,,,,,,,,,,,,,,,,,,,,###############,,,,,,,,,,,,,,,,|
 |,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,|
 |_____________________________________________________|'
-./utils.sh overlay "blank 3 1" 56 1 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 }
 
@@ -768,7 +772,9 @@ if [[ $1 == chimney2 ]] ; then object=("there is a hole in the chimney.") ; fi
 if [[ $1 == drive ]] ; then object=("the driveway is concrete.") ; fi
 if [[ $1 == door1 ]] ; then object=("the door is boarded and nailed shut.") ; fi
 if [[ $1 == door2 ]] ; then object=("the door is unlocked and leads into the house") ; fi
-if [[ $1 == door3 ]] ; then object=("the door is made of a sturdy corrugated steel sheet.") ; fi 
+if [[ $1 == door3 ]] ; then object=("the door is made of a sturdy corrugated steel sheet.") ; fi
+if [[ $1 == eyes1 ]] ; then object=("you see a pair of red eyes glaring at you
+from the tree line.") ; fi
 if [[ $1 == floor ]] ; then object=("the grass is still damp from the rain.") ; fi
 if [[ $1 == forest ]] ; then object=("the forest is nearly impenetrable.") ; fi
 if [[ $1 == forest1 ]] ; then object=("An impenetrable forest is to the north.") ; fi
@@ -984,6 +990,7 @@ if [[ $1 == armoire1 ]] ; then libindex=("The armoire is empty.") ; fi
 if [[ $1 == ashes1 ]] ; then libindex=("You eagerly scoop up the ashes and put them in your
 pocket.  You very quickly regret this decision and promptly remove
 as many as you can.") ; fi
+if [[ $1 == ashes2 ]] ; then libindex=("They are ashes from a long forgotten fire.") ; fi
 if [[ $1 == bed1 ]] ; then libindex=("The four post bed is immaculately maintained, and made.") ; fi
 if [[ $1 == body1 ]] ; then libindex=("It has been here for a long
 time.  It is clear that the body of a man has been severally
@@ -1603,6 +1610,7 @@ you must exit to the main menu first.") ; fi
 if [[ $1 == look ]] ; then object=("that can not be seen.") ; fi
 if [[ $1 == place ]] ; then object=("you can not place that there.") ; fi
 if [[ $1 == place2 ]] ; then object=("You dont have that to place.") ; fi
+if [[ $1 == pass1 ]] ; then object=("You Pass this Turn.") ;fi
 if [[ $1 == open ]] ; then object=("you can not open that.") ; fi
 if [[ $1 == openwin ]] ; then object=("the window is nailed shut.") ; fi
 if [[ $1 == read ]] ; then object=("you have no such book.") ; fi
@@ -1772,8 +1780,6 @@ echo "Just type to enter data into your Journal.  When you reach the
 end of a line it will enter it into the journal.  if you want to end
 early, then you can press enter.  Once you enter a line, you can no
 longer remove it.  Remember, you are using a pen."
-
-
 }
 
 universalana(){
@@ -2497,13 +2503,13 @@ exists=1"
 }
 
 key1a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key3 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key3 62 12 0 0
 }
 
 key1b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key3 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key3 62 8 0 0
 }
 
 key2 () {
@@ -2517,13 +2523,13 @@ exists=1"
 }
 
 key2a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key4 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key4 62 12 0 0
 }
 
 key2b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key4 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key4 62 8 0 0
 }
 
 key3 () {
@@ -2537,13 +2543,13 @@ exists=1"
 }
 
 key3a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key5 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key5 62 12 0 0
 }
 
 key3b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key5 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key5 62 8 0 0
 }
 
 key4 () {
@@ -2557,13 +2563,13 @@ exists=1"
 }
 
 key4a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key6 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key6 62 12 0 0
 }
 
 key4b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key6 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key6 62 8 0 0
 }
 
 key5 () {
@@ -2577,13 +2583,13 @@ exists=1"
 }
 
 key5a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key7 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key7 62 12 0 0
 }
 
 key5b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key7 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key7 62 8 0 0
 }
 
 key6 () {
@@ -2597,13 +2603,13 @@ exists=1"
 }
 
 key6a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key8 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key8 62 12 0 0
 }
 
 key6b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key8 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key8 62 8 0 0
 }
 
 key7 () {
@@ -2617,13 +2623,13 @@ exists=1"
 }
 
 key7a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key9 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key9 62 12 0 0
 }
 
 key7b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key9 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key9 62 8 0 0
 }
 
 key8 () {
@@ -2637,13 +2643,13 @@ exists=1"
 }
 
 key8a() {
-./utils.sh overlay keyp 56 8 0
-./utils.sh overlay key10 62 12 0
+./utils.sh overlay keyp 56 8 0 0
+./utils.sh overlay key10 62 12 0 0
 }
 
 key8b() {
-./utils.sh overlay lockp 56 8 0
-./utils.sh overlay key10 62 8 0
+./utils.sh overlay lockp 56 8 0 0
+./utils.sh overlay key10 62 8 0 0
 }
 
 clockkey () {
@@ -2657,7 +2663,7 @@ exists=1"
 }
 
 clockkeyg () {
-./utils.sh overlay keyc 56 8 0
+./utils.sh overlay keyc 56 8 0 0
 }
 
 cog () {

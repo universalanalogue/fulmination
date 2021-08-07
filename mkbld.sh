@@ -32,7 +32,7 @@ then\
 if [ $block == i ]\
 then\
 ./utils.sh colorset 2\
-./utils.sh cutscene burnhouse2 Death frontb\
+./utils.sh cutscene burnhouse1 Death frontb\
 ./utils.sh setdeath\
 break\
 fi\
@@ -143,7 +143,7 @@ then\
 sed -i "/cella=/c\\cella=$debug3" status \
 debug3=ulc1\
 fi\
-if [[ $debug2 == i ]] && [[ "$debug3" =~ ^(33|34|35|36|39|40|42)$ ]]\
+if [[ $debug2 == i ]] && [[ "$debug3" =~ ^(13|14|15|16|17|18|20|21|33|34|35|36|39|40|42)$ ]]\
 then\
 sed -i "/cella=/c\\cella=$debug3" status \
 debug3=ulc1\
@@ -167,6 +167,8 @@ debug1=$(sed "s/global//" <<< "$debug1")\
 debug2=$(cut -d "=" -f1 <<< "$debug1")\
 debug3=$(cut -d "=" -f2 <<< "$debug1")\
 sed -i "/$debug2=/c\\\\$debug2=$debug3" status ;;\
+\
+[p][a][s][s]) output=$(./utils.sh form uni pass1) ;;\
 \
 *) helpcount=$(( $helpcount + 1 ))\
 if [ $helpcount -gt 5 ]\
@@ -266,8 +268,9 @@ count3=$((count2 - 2))
 ./utils.sh clear
 
 output=$(./utils.sh form installer1 1)
-image=$(./utils.sh cutscene2 "graphpass i 02pic2b 4 4" Installing "$output"
-./utils.sh overlay "blank 3 1" 56 1 0)
+image=$(./utils.sh cutscene2 "graphpass i 02pic2 4 4 3" Installing "$output"
+./utils.sh overlay rain2 3 3 1 0
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 sleep $sdelay
 bar2=$(./utils.sh posbar 1 4 20)
@@ -296,8 +299,8 @@ done
 printf "\e[0;0H"
 
 output=$(./utils.sh form installer1 2)
-image=$(./utils.sh cutscene2 "graphpass i 38pic2a 4 4" Installing "$output"
-./utils.sh overlay "blank 3 1" 56 1 0)
+image=$(./utils.sh cutscene2 "graphpass i 38pic2a 4 4 1" Installing "$output"
+./utils.sh overlay "blank 3 1" 56 1 0 0)
 echo "$image"
 
 sleep $sdelay
@@ -327,9 +330,10 @@ mod4count=0
 printf "\e[0;0H"
 
 output=$(./utils.sh form installer1 3)
-image=$(./utils.sh cutscene2 "graphpass i 05pic2b 4 4" Installing "$output"
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay spec1 16 5 0 )
+image=$(./utils.sh cutscene2 "graphpass i 05pic2 4 4 2" Installing "$output"
+./utils.sh overlay rain1 3 3 1 0
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay spec1 16 5 0 0)
 echo "$image"
 
 sleep $sdelay

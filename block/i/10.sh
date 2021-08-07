@@ -7,8 +7,8 @@ if [ $focus -eq 0 ] ; then ./utils.sh colorset 6 ; comp=1 ; pic=pic1a ; fi
 if [ $focus -eq 1 ] ; then ./utils.sh colorset 4 ; comp=3 ; pic=pic2a ; fi
 
 image=$(block/$block/./graphics.sh ${cell}$pic
-./utils.sh overlay "blank 3 1" 56 1 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0)
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0)
 echo "$image"
 
 }
@@ -86,7 +86,7 @@ fi ;;
 [g][o][s][o][u][t][h]) output=$(./utils.sh form looki null door25 0) ;;
 
 [g][o][w][e][s][t]) sed -i '/cell=/c\cell=10a' status
-./utils.sh cutscene "ghost1 returnwest" Intermission "graphpass i 10pic3a 6 6"
+./utils.sh cutscene "ghost1 returnwest" Intermission "graphpass i 10pic3a 6 6 3"
 break ;;
 
 [l][o][o][k]) output=$(./utils.sh form looki i10) ;;
@@ -102,7 +102,7 @@ fi ;;
 
 [l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor4 0) ;;
 
-[l][o][o][k][f][i][r][e][p][l][a][c][e]) output=$(./utils.sh form looki fireplace5 null 0) ;;
+[l][o][o][k][f][i][r][e][p][l][a][c][e]) output=$(./utils.sh form looki null fireplace5 0) ;;
 
 [l][o][o][k][h][o][b]) output=$(./utils.sh form looki null hob1 0) ;;
 
@@ -199,7 +199,7 @@ then
 case $case1 in
 
 [g][o][w][e][s][t]) sed -i '/cell=/c\cell=10a' status
-./utils.sh cutscene "ghost1 returnwest" Intermission "graphpass i 10pic3a 5 5"
+./utils.sh cutscene "ghost1 returnwest" Intermission "graphpass i 10pic3a 5 5 0"
 break ;;
 
 [l][o][o][k]) output=$(./utils.sh form looki null window13 0) ;;

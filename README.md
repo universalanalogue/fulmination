@@ -1,44 +1,40 @@
 # Fulmination
 Scriptures of Fulmination, or how I learned to stop worrying, and just love urxvt.
 
-# Requirements
+## Requirements
 1) Bash -ge 4
 2) gnu-coreutils
 3) sed (of the gsed variety, default in linux)
 4) git (ease of downloading the game)
-5) moc/mocp/music on console player. (only for music and there currently
-   isn't any, so its not really needed yet)
-6) 74x42 monospace characters terminal (would probably have it be atleast 75x43 in case of
+5) 74x42 monospace characters terminal (would probably have it be atleast 75x43 in case of
    overrun in proccessing)
-7) an ssh client if playing over ssh.
+6) an ssh client if playing over ssh.
 
-8) a serial terminal client if playing over serial -ge 9600buad.
+7) a serial terminal client if playing over serial -ge 9600buad.
 
-9) a terminal emulator if playing in a gui.
+8) a terminal emulator if playing in a gui.
 
-10) a monitor and keyboard if playing on local console.
+9) a monitor and keyboard if playing on local console.
 
-11) some storage medium to store the game.  game will fit and run on a 1.44mb floppy,
+10) some storage medium to store the game.  game will fit and run on a 1.44mb floppy,
 you have to move the game without gitfiles for it to fit. floppy must be ext2
 
-12) At least a 40MHz processor, with at least 128mb of system ram (Min Req for Linux/ tested)
+11) At least a 40MHz processor, with at least 128mb of system ram (Min Req for Linux/ tested)
 ##### As a note, when running down at 40mhz, the game will allow you to cache commands while it loads, which is an interesting thing, as that shouldn't be even possible
 
-# Installation
+## Installation
 >LINUX
 1) git clone https://github.com/universalanalogue/fulmination.git
 
 2) chmod +x -R fulmination ; cd fulmination
 
-3) run ./mkbld.sh to install the program.
+3) run ./start.sh to play the game.
 
-4) run ./start.sh to play the game.
+4) Enjoy
 
-5) Enjoy
+5) if you dont enjoy, please give feedback so I know what doesn't work for the next game.
 
-6) if you dont enjoy, please give feedback so I know what doesn't work for the next game.
-
-7) report bugs so I can fix them.
+6) report bugs so I can fix them.
 
 >FREEBSD
 1) Have bash, gsed, gawk, and coreutils installed
@@ -67,37 +63,22 @@ This is ill advised as performance is very slow
 
 3) Rest the same as Linux
 
-#Update
-If a new release is released, ou can now do an inplace update of the files.  The updates can be done by running ```
-reffles/./update.sh update ```
-It also has the ability to patch saved games.  Please note this function might cause unintened consiquences, so patch the save the games at your own risk.
+## Walkthrough
+A rough walkthrough can be found in reffiles/cellplot.txt.  It is a design document so it really isn't
+layed out like a walkthough, but it has the maps, the item locations, and all the item dependacies.
 
-# ToDo
+## ToDo
 
 ## Music
 Whenever I either get talented enough to make music, or
 happen to aquire some music, I will finish setting up the music subsystem
 
-# License: MIT
+## get update working
+currently update function does not work at all.  this should now be less of an issue with the way the game
+works and installs.  You should just be able to download the new version and hand copy over your save games.
+this could run the risk of not having a properly patched saved game so I am working on this.
 
-Copyright 2019 Universal Analogue
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
-associated documentation files (the "Software"), to deal in the Software without restriction,
-including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
-and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or
-substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
-LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-# Credits
+## Credits
 
 Riddles by fantasynamegenerators.com
 

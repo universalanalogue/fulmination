@@ -23,12 +23,12 @@ fi
 if [ $1 -eq 2 ] ; then
 newvb=$((10#$oldvb+1))
 if [ $(($(wc -c <<< "$newvb")-1)) -eq 1 ] ; then newvb=("0$newvb") ; fi
-newv=("${oldva}.${newvb}.01")
+newv=("${oldva}.${newvb}.00")
 fi
 
 if [ $1 -eq 3 ] ; then
 newva=$((10#$oldva+1))
-newv=("${newva}.01.01")
+newv=("${newva}.00.00")
 fi
 
 sed -i "/revver=/c\revver=$newv" lib.sh

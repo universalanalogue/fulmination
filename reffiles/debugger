@@ -1,0 +1,39 @@
+above main run if [[ "$1" != "debug" ]] ; then 
+
+below main run fi
+if [[ "$1" == "debug" ]] ; then ./utils.sh debugmode 1 e 08 pic1a 0 0 ; exit ; fi
+
+
+in utils
+debugmode(){
+# 1 color | 2 block | 3 cell | 4 picture | 5 comp | 6 tint
+./utils.sh colorset $1
+block/$2/./graphics.sh "${3}${4}"
+./utils.sh overlay "blank 3 1" 56 1 0 "$6"
+./utils.sh overlay "sidebar $2 $3 $5" 56 4 0 "$6"
+./utils.sh cutscene 1 "debuglist ${2}${3}" DEBUGTEST null
+
+
+}
+
+in start
+[d][e][b][u][g])./utils.sh clear
+sed -i '/block=/c\block=test' status
+sed -i '/cell=/c\cell=test' status
+
+
+#have it do a test run of each thing in utils.
+#then have it run each cell with an argument "debug" to have it draw the screen.
+list=$(find block | grep -v graphics.sh | grep -v blank.sh | grep -v overlay.sh | grep -v lib.sh | grep -vx block/e | grep -vx block/i | grep -vx block | sort -n)
+for i in $list ; do
+"$i" debug
+done
+./utils.sh clear
+intro=1
+;;
+
+in lib
+
+debuglist(){
+echo "$1 test complete, look for errors or discrepancies"
+}

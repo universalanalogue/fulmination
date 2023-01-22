@@ -7,13 +7,16 @@ if [ $focus -eq 0 ] ; then comp=1 ; pic=10pic3a ; fi
 if [ $focus -eq 1 ] ; then comp=3 ; pic=10pic4a ; fi
 
 image=$(block/$block/./graphics.sh $pic
-./utils.sh overlay "blank 3 1" 56 1 0 0
-./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0)
+sidebar)
 echo "$image"
 }
 
-vars() {
+sidebar(){
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell $comp" 56 4 0 0
+}
 
+vars() {
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)
 gun=$(grep 'gun=' status | cut -d "=" -f2)
@@ -74,35 +77,17 @@ book37=$(grep 'book37=' status | cut -d "=" -f2)
 book38=$(grep 'book38=' status | cut -d "=" -f2)
 
 
-sleepnum=$(grep "sleepnum=" status | cut -d "=" -f2)
+./utils.sh events
+cell=$(grep "cell=" status | cut -d "=" -f2)
+if [[ $cell == null ]] ; then exit ; fi
 sleep=$(grep "sleep=" status | cut -d "=" -f2)
-sleep=$(( "$sleep" - 1 ))
-sed -i "/sleep=/c\\sleep=$sleep" status
-if [ $sleepnum -eq 1 ] ; then sleepthreshold=200 ; fi
-if [ $sleepnum -eq 2 ] ; then sleepthreshold=100 ; fi
-if [ $sleepnum -eq 3 ] ; then sleepthreshold=75 ; fi
-if [ $sleepnum -eq 4 ] ; then sleepthreshold=50 ; fi
-if [ $sleepnum -eq 5 ] ; then sleepthreshold=10 ; fi
-
-sleepthresh50=$(( $sleepthreshold / 2 ))
-sleepthresh20=$(( $sleepthreshold / 5 ))
-sleepthresh10=$(( $sleepthreshold / 10 ))
-if [[ $sleep -eq $sleepthresh50 ]] ; then ./utils.sh cutscene sleepwarn1 Fatigue logo ; fi
-if [[ $sleep -eq $sleepthresh20 ]] ; then ./utils.sh cutscene sleepwarn2 Fatigue logo ; fi
-if [[ $sleep -eq $sleepthresh10 ]] ; then ./utils.sh cutscene sleepwarn3 Fatigue logo ; fi
-if [ $sleep -eq 0 ]
-then
-./utils.sh colorset 2
-./utils.sh cutscene sleepdeath1 Death logo
-./utils.sh setdeath
-exit
-fi
+sleepthreshold=$(grep "sleepthreshold=" status | cut -d "=" -f2)
 bar=$(./utils.sh posbar $sleep $sleepthreshold 20)
 
 pendant=$(grep 'pendant=' status | cut -d "=" -f2)
 if [ $pendant -eq 1 ]
 then
-./utils.sh cutscene "ghost1 pendant" Death "graphpass i 10pic3a 2 2 1"
+./utils.sh cutscene i "ghost1 pendant" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 exit
 fi
@@ -111,18 +96,14 @@ while true ; do
 
 if [ $intro -eq 2 ] ; then vars ; fi
 
-./utils.sh events
-cell=$(grep "cell=" status | cut -d "=" -f2)
-if [[ $cell == null ]] ; then break ; fi
-
-
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form 1) ; fi
 vars
 printf "\e[0;0H"
 background
 intro=2
+sed -i "/intro=/c\intro=2" status
 fi
 ./utils.sh prompt "$last" "$bar" "$output" 6
 read case1
@@ -137,182 +118,77 @@ case $case1 in
 
 [b][u][r][n][g][h][o][s][t]) if [ $lighter -eq 1 ]
 then
-./utils.sh cutscene "ghost1 burn" Death "graphpass i 10pic3a 2 2 1"
+./utils.sh cutscene i "ghost1 burn" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break 
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
-[g][o][w][e][s][t]) ./utils.sh cutscene "ghost1 walk" Death "graphpass i 10pic3a 2 2 1"
+[g][o][w][e][s][t]) ./utils.sh cutscene i "ghost1 walk" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break ;;
 
-[l][o][o][k]) output=$(./utils.sh form looki i10a) ;;
+[l][o][o][k]) output=$(./utils.sh form 1 looki i10a) ;;
 
-[l][o][o][k][g][h][o][s][t]) output=$(./utils.sh form ghost1 look) ;;
+[l][o][o][k][g][h][o][s][t]) output=$(./utils.sh form i ghost1 look) ;;
 
 [l][o][o][k][f][i][r][e][p][l][a][c][e]) sed -i '/focus=/c\focus=1' status
 intro=1
-output=$(./utils.sh form looki null fireplace1 0) ;;
+output=$(./utils.sh form 1 looki null fireplace1 0) ;;
 
 [s][h][o][o][t][g][h][o][s][t]) if [ $gun -eq 1 ]
 then
 if [ $ammo -gt 0 ]
 then
-./utils.sh cutscene "ghost1 shoot1" Death "graphpass i 10pic3a 2 2 1"
+./utils.sh score -2
+sidebar
+./utils.sh cutscene i "ghost1 shoot1" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 else
-./utils.sh cutscene "ghost1 shoot2" Death "graphpass i 10pic3a 2 2 1"
+./utils.sh cutscene i "ghost1 shoot2" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 fi 
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
-[s][m][a][s][h][g][h][o][s][t]) ./utils.sh cutscene "ghost1 smash" Death "graphpass i 10pic3a 2 2 1"
+[s][m][a][s][h][g][h][o][s][t]) ./utils.sh cutscene i "ghost1 smash" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break ;;
 
 #olfactory
 
-[l][i][c][k][g][h][o][s][t]) ./utils.sh cutscene "ghost1 lick1" Victory "graphpass i 10pic3a 4 4 1"
-./utils.sh cutscene victory Victory front
+[l][i][c][k][g][h][o][s][t]) ./utils.sh score -800
+sidebar
+./utils.sh cutscene i "ghost1 lick1" Victory "graphpass i 10pic3a 4 4 1"
+./utils.sh cutscene 1 victory Victory front
 ./utils.sh setdeath
 break ;;
 
-[s][m][e][l][l]) output=$(./utils.sh form smell i10) ;;
+[s][m][e][l][l]) output=$(./utils.sh form 1 smell i10) ;;
 
-[s][m][e][l][l][g][h][o][s][t]) output=$(./utils.sh form ghost1 smell) ;;
-
-#constants
-
-[b][u][r][n][h][o][u][s][e]) if [ $lighter -eq 1 ]
-then
-if [ $block == i ]
-then
-./utils.sh colorset 2
-./utils.sh cutscene burnhouse2 Death frontb
-./utils.sh setdeath
-break
-fi
-else
-output=$(./utils.sh form uni ic)
-fi ;;
-
-[h][e][l][p]) ./utils.sh reader help1
-intro=0 ;;
-
-[l][i][c][k][m][e]) if [ $lickme -lt 2 ]
-then
-./utils.sh cutscene "ghost1 lick2" Death "graphpass i 10pic3a 2 2 1"
-./utils.sh setdeath
-break
-fi ;;
-
-[l][o][a][d]) output=$(./utils.sh form uni loadfail) ;;
-
-[s][a][v][e]) ./utils.sh save
-intro=0 ;;
-
-[e][x][i][t]) ./utils.sh setdeath
-break ;;
-
-[s][m][e][l][l][m][e]) output=$(./utils.sh form uni smellme) ;;
-
-[w][h][o][a][m][i]) output=$(./utils.sh form uni whoami) ;;
-
-[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh form uni whoareyou) ;;
-
-[b][u][r][n]*) if [ $lighter -eq 1 ]
-then
-burnie=$(( $burnie + 1 ))
-sed -i "/burnie=/c\\burnie=$burnie" status
-output=$(./utils.sh form uni burn)
-else
-output=$(./utils.sh form uni ic)
-fi ;;
-
-[g][e][t]*) greed=$(( $greed + 1 ))
-sed -i "/greed=/c\\greed=$greed" status
-output=$(./utils.sh form uni get1) ;;
-
-[g][o]*) output=$(./utils.sh form uni go) ;;
-
-[l][o][o][k]*) output=$(./utils.sh form ghost1 look2) ;;
-
-[l][i][c][k]*) output=$(./utils.sh form ghost1 lick3) ;;
-
-[p][l][a][c][e]*) output=$(./utils.sh form uni place) ;;
-
-[o][p][e][n]*) output=$(./utils.sh form uni open) ;;
-
-[r][e][a][d]*) output=$(./utils.sh form uni read) ;;
-
-[s][i][t]*) output=$(./utils.sh form uni sit) ;;
+[s][m][e][l][l][g][h][o][s][t]) output=$(./utils.sh form 1 ghost1 smell) ;;
 
 [s][h][o][o][t]*) if [ $gun -eq 1 ]
 then
 if [ $ammo -gt 0 ]
 then
-output=$(./utils.sh form uni shoot1)
+./utils.sh score -2
+sidebar
+output=$(./utils.sh form 1 uni shoot1)
 ammo=$(( $ammo - 1 ))
 sed -i "/ammo=/c\\ammo=$ammo" status
 else
-output=$(./utils.sh form uni shoot2)
+output=$(./utils.sh form 1 uni shoot2)
 fi
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
-[s][l][e][e][p]*) output=$(./utils.sh form uni sleep) ;;
-
-[s][m][a][s][h]*) output=$(./utils.sh form uni smash) ;;
-
-[s][m][e][l][l]*) output=$(./utils.sh form ghost1 smell2) ;;
-
-[w][i][n][d]*) output=$(./utils.sh form uni wind) ;;
-
-#debug
-[i][d][k][f][a]) inv=$(sed -n "/^#inveta/,/^#invetb/p;/^#invetb/q" status | sed "/#/d" | sed "/^[[:space:]]*$/d" | cut -d "=" -f1)
-for i in $inv ; do sed -i "/$i=/c\\\\$i=1" status ; done
-output=$(./utils.sh form debugfill);;
-
-[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh form debughelp) ;;
-
-[m][o][v][e]*) debug1=$(echo "$case1" | sed "s/move//")
-debug2=$(echo "$debug1" | cut -d "-" -f1)
-debug3=$(echo "$debug1" | cut -d "-" -f2)
-if [[ -f "block//$debug2//$debug3.sh" ]]
-then
-sed -i "/cell=/c\\cell=$debug3" status
-sed -i "/block=/c\\block=$debug2" status
-break
-else
-output=$(./utils.sh form debugmove)
-fi ;;
-
-[s][t][a][t][e]*) debug1=$(echo "$case1" | sed "s/state//")
-debug2=$(cat status | grep "$debug1=" | cut -d "=" -f2)
-debug3=$(eval "echo \$${debug1}")
-output=$(./utils.sh form debugstate $debug1 $debug2 $debug3) ;;
-
-[s][e][t][g][l][o][b][a][l]*) debug1=$(echo "$case1" | sed "s/set//")
-debug1=$(echo "$debug1" | sed "s/global//")
-debug2=$(echo "$debug1" | cut -d "=" -f1)
-debug3=$(echo "$debug1" | cut -d "=" -f2)
-sed -i "/$debug2=/c\\\\$debug2=$debug3" status ;;
-
-*) helpcount=$(( $helpcount + 1 ))
-if [ $helpcount -gt 5 ]
-then
-output=$(./utils.sh form uni help2)
-helpcount=0
-else
-output=$(./utils.sh form uni ic)
-fi ;;
+*) case1=(system${case1}) ;;
 
 esac
 fi
@@ -321,7 +197,7 @@ if [ $focus -eq 1 ]
 then
 case $case1 in
 
-[l][o][o][k]) output=$(./utils.sh form looki null fireplace8 0) ;;
+[l][o][o][k]) output=$(./utils.sh form 1 looki null fireplace8 0) ;;
 
 [b][u][r][n][b][o][o][k]) if [ $lighter -eq 1 ]
 then
@@ -333,32 +209,59 @@ if [ $book11 -eq 1 ] && [ $book12 -eq 1 ] && [ $book13 -eq 1 ] && [ $book14 -eq 
 && [ $book28 -eq 1 ] && [ $book31 -eq 1 ] && [ $book32 -eq 1 ] && [ $book33 -eq 1 ] \
 && [ $book35 -eq 1 ] && [ $book36 -eq 1 ] && [ $book37 -eq 1 ] && [ $book38 -eq 1 ]
 then
-./utils.sh cutscene burnbooks3 Victory "graphpass i 10pic3a 4 4 1"
-./utils.sh cutscene victory Victory front
+./utils.sh score 20
+sidebar
+./utils.sh cutscene i burnbooks3 Victory "graphpass i 10pic3a 4 4 1"
+./utils.sh cutscene 1 victory Victory front
 ./utils.sh setdeath
 break
 else
-./utils.sh cutscene burnbooks2 Death "graphpass i 10pic3a 2 2 1"
+./utils.sh cutscene i burnbooks2 Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break
 fi
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
-#constants
+[s][h][o][o][t]*) if [ $gun -eq 1 ]
+then
+if [ $ammo -gt 0 ]
+then
+./utils.sh score -2
+sidebar
+output=$(./utils.sh form 1 uni shoot1)
+ammo=$(( $ammo - 1 ))
+sed -i "/ammo=/c\\ammo=$ammo" status
+else
+output=$(./utils.sh form 1 uni shoot2)
+fi
+else
+output=$(./utils.sh form 1 uni ic)
+fi ;;
+
+
+
+*) case1=(system${case1}) ;;
+esac
+fi
+
+if [[ $case1 == *"system"*  ]]
+then
+case1=$(sed "s/system//" <<< $case1)
+case $case1 in
 
 [b][u][r][n][h][o][u][s][e]) if [ $lighter -eq 1 ]
 then
 if [ $block == i ]
 then
 ./utils.sh colorset 2
-./utils.sh cutscene burnhouse2 Death frontb
+./utils.sh cutscene i burnhouse2 Death frontb
 ./utils.sh setdeath
 break
 fi
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
 [h][e][l][p]) ./utils.sh reader help1
@@ -367,11 +270,11 @@ intro=0 ;;
 [i][n][v][e][n][t][o][r][y]) ./utils.sh inventory
 intro=0 ;;
 
-[l][i][c][k][m][e]) ./utils.sh cutscene "ghost1 lick2" Death "graphpass i 10pic3a 2 2 1"
+[l][i][c][k][m][e]) ./utils.sh cutscene i "ghost1 lick2" Death "graphpass i 10pic3a 2 2 1"
 ./utils.sh setdeath
 break ;;
 
-[l][o][a][d]) output=$(./utils.sh form uni loadfail) ;;
+[l][o][a][d]) output=$(./utils.sh form 1 uni loadfail) ;;
 
 [s][a][v][e]) ./utils.sh save
 intro=0 ;;
@@ -379,103 +282,86 @@ intro=0 ;;
 [e][x][i][t]) ./utils.sh setdeath
 break ;;
 
-[s][m][e][l][l][m][e]) output=$(./utils.sh form uni smellme) ;;
+[s][m][e][l][l][m][e]) output=$(./utils.sh form 1 uni smellme) ;;
 
-[w][h][o][a][m][i]) output=$(./utils.sh form uni whoami) ;;
+[w][h][o][a][m][i]) output=$(./utils.sh form 1 uni whoami) ;;
 
-[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh form uni whoareyou) ;;
+[w][h][o][a][r][e][y][o][u]) output=$(./utils.sh form 1 uni whoareyou) ;;
 
 [b][u][r][n]*) if [ $lighter -eq 1 ]
 then
 burnie=$(( $burnie + 1 ))
-sed -i "/burnie=/c\\burnie=$burnie" status
-output=$(./utils.sh form uni burn)
+sed -i "/burnie=/c\burnie=$burnie" status
+output=$(./utils.sh form 1 uni burn)
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
 [g][e][t]*) greed=$(( $greed + 1 ))
-sed -i "/greed=/c\\greed=$greed" status
-output=$(./utils.sh form uni get1) ;;
+sed -i "/greed=/c\greed=$greed" status
+output=$(./utils.sh form 1 uni get1) ;;
 
-[g][o]*) output=$(./utils.sh form uni go) ;;
+[g][o]*) output=$(./utils.sh form 1 uni go) ;;
 
-[l][o][o][k]*) output=$(./utils.sh form ghost1 look2) ;;
+[l][o][o][k]*) output=$(./utils.sh form 2 ghost1 look2) ;;
 
-[l][i][c][k]*) output=$(./utils.sh form ghost1 lick3) ;;
+[l][i][c][k]*) output=$(./utils.sh form 2 ghost1 lick3) ;;
 
-[p][l][a][c][e]*) output=$(./utils.sh form uni place) ;;
+[p][l][a][c][e]*) output=$(./utils.sh form 2 uni place) ;;
 
-[o][p][e][n]*) output=$(./utils.sh form uni open) ;;
+[o][p][e][n]*) output=$(./utils.sh form 2 uni open) ;;
 
-[r][e][a][d]*) output=$(./utils.sh form uni read) ;;
+[r][e][a][d]*) output=$(./utils.sh form 2 uni read) ;;
 
-[s][i][t]*) output=$(./utils.sh form uni sit) ;;
+[s][i][t]*) output=$(./utils.sh form 2 uni sit) ;;
 
-[s][h][o][o][t]*) if [ $gun -eq 1 ]
-then
-if [ $ammo -gt 0 ]
-then
-output=$(./utils.sh form uni shoot1)
-ammo=$(( $ammo - 1 ))
-sed -i "/ammo=/c\\ammo=$ammo" status
-else
-output=$(./utils.sh form uni shoot2)
-fi
-else
-output=$(./utils.sh form uni ic)
-fi ;;
+[s][l][e][e][p]*) output=$(./utils.sh form 2 uni sleep) ;;
 
-[s][l][e][e][p]*) output=$(./utils.sh form uni sleep) ;;
+[s][m][a][s][h]*) output=$(./utils.sh form 2 uni smash) ;;
 
-[s][m][a][s][h]*) output=$(./utils.sh form uni smash) ;;
+[s][m][e][l][l]*) output=$(./utils.sh form 2 ghost1 smell2) ;;
 
-[s][m][e][l][l]*) output=$(./utils.sh form ghost1 smell2) ;;
-
-[w][i][n][d]*) output=$(./utils.sh form uni wind) ;;
+[w][i][n][d]*) output=$(./utils.sh form 2 uni wind) ;;
 
 #debug
 [i][d][k][f][a]) inv=$(sed -n "/^#inveta/,/^#invetb/p;/^#invetb/q" status | sed "/#/d" | sed "/^[[:space:]]*$/d" | cut -d "=" -f1)
-for i in $inv ; do sed -i "/$i=/c\\\\$i=1" status ; done
-output=$(./utils.sh form debugfill);;
+for i in $inv ; do sed -i "/$i=/c\\$i=1" status ; done
+output=$(./utils.sh form 1 debugfill);;
 
-[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh form debughelp) ;;
+[d][e][b][u][g][h][e][l][p]) output=$(./utils.sh form 1 debughelp) ;;
 
 [m][o][v][e]*) debug1=$(echo "$case1" | sed "s/move//")
 debug2=$(echo "$debug1" | cut -d "-" -f1)
 debug3=$(echo "$debug1" | cut -d "-" -f2)
 if [[ -f "block//$debug2//$debug3.sh" ]]
 then
-sed -i "/cell=/c\\cell=$debug3" status
-sed -i "/block=/c\\block=$debug2" status
+sed -i "/cell=/c\cell=$debug3" status
+sed -i "/block=/c\block=$debug2" status
 break
 else
-output=$(./utils.sh form debugmove)
+output=$(./utils.sh form 1 debugmove)
 fi ;;
 
-[s][t][a][t][e]*) debug1=$(echo "$case1" | sed "s/state//")
-debug2=$(cat status | grep "$debug1=" | cut -d "=" -f2)
-debug3=$(eval "echo \$${debug1}")
-output=$(./utils.sh form debugstate $debug1 $debug2 $debug3) ;;
+[s][t][a][t][e]*) debug1=$(sed "s/state//" <<< "$case1")
+debug2=$(grep "$debug1=" status | cut -d "=" -f2)
+output=$(./utils.sh form 1 debugstate $debug1 $debug2) ;;
 
-[s][e][t][g][l][o][b][a][l]*) debug1=$(echo "$case1" | sed "s/set//")
-debug1=$(echo "$debug1" | sed "s/global//")
+[s][e][t]*) debug1=$(echo "$case1" | sed "s/set//")
 debug2=$(echo "$debug1" | cut -d "=" -f1)
 debug3=$(echo "$debug1" | cut -d "=" -f2)
-sed -i "/$debug2=/c\\\\$debug2=$debug3" status ;;
+sed -i "/$debug2=/c\\$debug2=$debug3" status ;;
 
 *) helpcount=$(( $helpcount + 1 ))
 if [ $helpcount -gt 5 ]
 then
-output=$(./utils.sh form uni help2)
+output=$(./utils.sh form 1 uni help2)
 helpcount=0
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
 
 esac
 fi
-
 
 done

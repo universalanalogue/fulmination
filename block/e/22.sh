@@ -9,18 +9,21 @@ aux1=$(./utils.sh overlay tree4 9 8 0 0) ; fi
 if [ $focus -eq 1 ]
 then
 aux1=
-if [ $mellon -eq 0 ] ; then pic=${cell}pic2a ; else ${cell}pic2b ; fi
+if [ $mellon -eq 0 ] ; then pic=${cell}pic2a ; else pic=${cell}pic2b ; fi
 fi
 
 image=$(block/$block/./graphics.sh $pic
-./utils.sh overlay "blank 3 1" 56 1 0 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+sidebar
 echo "$aux1")
 echo "$image"
 }
 
-vars() {
+sidebar(){
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+}
 
+vars() {
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)
 book111=$(grep 'book111=' status | cut -d "=" -f2)
@@ -58,26 +61,25 @@ else
 sed -i '/mvnt2=/c\mvnt2=0' status
 fi
 
-#sleep
-
-
+./utils.sh events
+cell=$(grep "cell=" status | cut -d "=" -f2)
+if [[ $cell == null ]] ; then exit ; fi
+sleep=$(grep "sleep=" status | cut -d "=" -f2)
+sleepthreshold=$(grep "sleepthreshold=" status | cut -d "=" -f2)
+bar=$(./utils.sh posbar $sleep $sleepthreshold 20)
 
 while true ; do
 
 if [ $intro -eq 2 ] ; then vars ; fi
 
-./utils.sh events
-cell=$(grep "cell=" status | cut -d "=" -f2)
-if [[ $cell == null ]] ; then break ; fi
-
-
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form 1) ; fi
 vars
 printf "\e[0;0H"
 background
 intro=2
+sed -i "/intro=/c\intro=2" status
 fi
 ./utils.sh prompt "$last" "$bar" "$output" 1
 read case1
@@ -92,59 +94,62 @@ case $case1 in
 
 [g][o][e][a][s][t]) if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
+./utils.sh cutscene e "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
 sed -i '/cella=/c\cella=23' status
 sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][n][o][r][t][h]) if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
+./utils.sh cutscene e "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
 sed -i '/cella=/c\cella=29' status
 sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][s][o][u][t][h]) if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
+./utils.sh cutscene e "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
 sed -i '/cella=/c\cella=18' status
 sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
 [g][o][w][e][s][t])if [ $mellon -eq 1 ]
 then
-./utils.sh cutscene "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
+./utils.sh cutscene e "greyrootmisc slump" Go "graphpass e 22pic2a 1 1 0"
 fi
- sed -i '/cell=/c\cell=21' status ; break ;;
+sed -i '/cella=/c\cella=21' status
+sed -i '/cell=/c\cell=ulc1' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh form elook 22) ;;
+[l][o][o][k]) output=$(./utils.sh form 1 elook 22) ;;
 
-[l][o][o][k][e][a][s][t]) output=$(./utils.sh form elookdir east $e23 9) ;;
+[l][o][o][k][e][a][s][t]) output=$(./utils.sh form 1 elookdir east $e23 9) ;;
 
-[l][o][o][k][n][o][r][t][h]) output=$(./utils.sh form elookdir north $e29 1) ;;
+[l][o][o][k][n][o][r][t][h]) output=$(./utils.sh form 1 elookdir north $e29 1) ;;
 
-[l][o][o][k][s][o][u][t][h]) output=$(./utils.sh form elookdir south $e18 1) ;;
+[l][o][o][k][s][o][u][t][h]) output=$(./utils.sh form 1 elookdir south $e18 1) ;;
 
-[l][o][o][k][w][e][s][t]) output=$(./utils.sh form elookdir west $e21 5) ;;
+[l][o][o][k][w][e][s][t]) output=$(./utils.sh form 1 elookdir west $e21 5) ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book111 -eq 1 ]
 then
-output=$(./utils.sh form uni book)
+sidebar
+./lib.sh bookg
+output=$(./utils.sh form 1 uni book)
 else
-output=$(./utils.sh form uni look)
+output=$(./utils.sh form 1 uni look)
 fi ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form elooka floor) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form 1 elooka floor) ;;
 
-[l][o][o][k][h][o][u][s][e]) output=$(./utils.sh form elooka house west) ;;
+[l][o][o][k][h][o][u][s][e]) output=$(./utils.sh form 1 elooka house west) ;;
 
 [l][o][o][k][t][r][e][e]) sed -i '/focus=/c\focus=1' status
 intro=1
 if [ $mellon -eq 0 ]
 then
-output=$(./utils.sh form greyrootmisc tree1)
+output=$(./utils.sh form e greyrootmisc tree1)
 else
-output=$(./utils.sh form greyrootmisc tree2)
+output=$(./utils.sh form e greyrootmisc tree2)
 fi ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book111 -eq 1 ]
@@ -152,17 +157,17 @@ then
 ./utils.sh reader book111r
 intro=0
 else
-output=$(./utils.sh form uni read)
+output=$(./utils.sh form 1 uni read)
 fi ;;
 
 [s][m][a][s][h][t][r][e][e]) if [ $hammer -eq 1 ]
 then
-./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2 0"
+./utils.sh cutscene e smashent Go "graphpass e 22pic2b 2 2 0"
 ./utils.sh setdeath
 sed -i '/cell=/c\cell=null' status
 break
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
 
@@ -170,39 +175,39 @@ fi ;;
 
 [l][i][c][k][b][o][o][k]) if [ $book111 -eq 1 ] 
 then
-output=$(./utils.sh form lick book)
+output=$(./utils.sh form 1 lick book)
 else
-output=$(./utils.sh form uni lick1)
+output=$(./utils.sh form 1 uni lick1)
 fi ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form 1 lick floor) ;;
 
 [l][i][c][k][t][r][e][e]) if [ $mellon -eq 1 ]
 then
-output=$(./utils.sh form greyrootmisc lick)
+output=$(./utils.sh form e greyrootmisc lick)
 else
-output=$(./utils.sh form lick tree)
+output=$(./utils.sh form 1 lick tree)
 fi ;;
 
-[s][m][e][l][l]) output=$(./utils.sh form smell e) ;;
+[s][m][e][l][l]) output=$(./utils.sh form 1 smell e) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book111 -eq 1 ]
 then
-output=$(./utils.sh form smell book)
+output=$(./utils.sh form 1 smell book)
 else
-output=$(./utils.sh form uni smell)
+output=$(./utils.sh form 1 uni smell)
 fi ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floore) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form 1 smell floore) ;;
 
 [s][m][e][l][l][t][r][e][e]) if [ $mellon -eq 1 ]
 then
-output=$(./utils.sh form greyrootmisc smell)
+output=$(./utils.sh form e greyrootmisc smell)
 else
-output=$(./utils.sh form smell treee)
+output=$(./utils.sh form 1 smell treee)
 fi ;;
 
-#constantcomm
+*) case1=(system${case1}) ;;
 
 esac
 fi
@@ -211,107 +216,131 @@ if [ $focus -eq 1 ]
 then
 case $case1 in
 
-[f][r][i][e][n][d]) ./utils.sh cutscene "entfriend 1" Mellon "graphpass e 22pic2b 1 1 0"
+[f][r][i][e][n][d])
+./utils.sh cutscene e "entfriend 1" Mellon "graphpass e 22pic2b 1 1 0"
 mellon=1
-if [ $riddle -eq 1 ] || [ $riddle -eq 2 ] || [ $riddle -eq 3 ]
-then
-./utils.sh cutscene "entfriend 2" Mellon "graphpass e 22pic2b 1 1 0"
-fi
+
+if [[ "$riddle" =~ ^(1|2|3)$ ]] ; then ./utils.sh cutscene e "entfriend 2" Mellon null ; fi
+
+
 if [ $riddle -eq 0 ]
 then
-if [ $wolflick -eq 0 ]
-then
-./utils.sh cutscene "entfriend 3" Mellon "graphpass e 22pic2b 1 1 0 "
-fi
-if [ $wolflick -eq 1 ]
-then
-./utils.sh cutscene "entfriend 4" Mellon "graphpass e 22pic2b 1 1 0"
-fi 
+if [ $wolflick -eq 0 ] ; then ./utils.sh cutscene e "entfriend 3" Mellon null ; fi
+if [ $wolflick -eq 1 ] ; then ./utils.sh cutscene e "entfriend 4" Mellon null ; fi 
+
 sed -i "/riddle=/c\riddle=1" status
 vars
-./utils.sh cutscene "entfriend 5" Mellon "graphpass e 22pic2b 1 1 0"
+./utils.sh cutscene e "entfriend 5" Mellon null
 fi
+
+
+
 if [ $riddle -eq 1 ]
 then 
 while true ; do
-output=$(./utils.sh form entfriend 6) 
+output=$(./utils.sh form e entfriend 6) 
 ./utils.sh menu "$output" Mellon
 read case2
 case $case2 in 
 [h][o][l][e]) sed -i "/riddle=/c\riddle=2" status
 vars
-./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1 0"
+./utils.sh cutscene e "greyrootmisc correct" Mellon null
+./utils.sh score 2
+sidebar
 break ;;
-*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1 0"
+[b][a][c][k]) 
+./utils.sh cutscene e "greyrootmisc unknown" Mellon null
+intro=0
 break ;;
+
+*) ./utils.sh cutscene e "greyrootmisc incorrect" Mellon null ;;
 esac
 done
 fi
+
 if [ $riddle -eq 2 ]
 then
 while true ; do
-output=$(./utils.sh form entfriend 7) 
+output=$(./utils.sh form e entfriend 7) 
 ./utils.sh menu "$output" Mellon
 read case2
 case $case2 in 
 [t][i][m][e]) sed -i "/riddle=/c\riddle=3" status
 vars
-./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1 0"
+./utils.sh cutscene e "greyrootmisc correct" Mellon null
+./utils.sh score 2
+sidebar
 break ;;
-*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1 0"
+[b][a][c][k]) 
+./utils.sh cutscene e "greyrootmisc unknown" Mellon null
+intro=0
 break ;;
+
+*) ./utils.sh cutscene e "greyrootmisc incorrect" Mellon null ;;
 esac
 done
 fi
+
 if [ $riddle -eq 3 ]
 then
 while true ; do
-output=$(./utils.sh form entfriend 8) 
+output=$(./utils.sh form e entfriend 8) 
 ./utils.sh menu "$output" Mellon
 read case2
 case $case2 in 
 [s][e][c][r][e][t]) sed -i "/riddle=/c\riddle=4" status
 vars
-./utils.sh cutscene "greyrootmisc correct" Mellon "graphpass e 22pic2b 1 1 0"
+./utils.sh cutscene e "greyrootmisc correct" Mellon null
+./utils.sh score 2
+sidebar
 break ;;
-*) ./utils.sh cutscene "greyrootmisc incorrect" Mellon "graphpass e 22pic2b 1 1 0"
+[b][a][c][k]) 
+./utils.sh cutscene e "greyrootmisc unknown" Mellon null
+intro=0
 break ;;
+
+*) ./utils.sh cutscene e "greyrootmisc incorrect" Mellon null ;;
 esac
 done
 fi
 if [ $riddle -eq 4 ]
 then
+./utils.sh score 10
+sidebar
 sed -i "/riddle=/c\riddle=5" status
 sed -i "/book111=/c\book111=1" status
 ./lib.sh journal1 7
 vars
-./utils.sh cutscene "entfriend 9" Mellon "graphpass e 22pic2b 1 1 0"
+./utils.sh cutscene e "entfriend 9" Mellon null
 fi
 if [ $riddle -eq 5 ]
 then
-output=$(./utils.sh form entfriend 10) 
-./utils.sh cutscene "entfriend 10" Mellon "graphpass e 22pic2b 1 1 0"
-fi ;;
+output=$(./utils.sh form e entfriend 10) 
+./utils.sh cutscene e "entfriend 10" Mellon null
+fi
+;;
 
 [l][o][o][k]) if [ $mellon -eq 0 ]
 then
-output=$(./utils.sh form greyrootmisc tree1)
+output=$(./utils.sh form e greyrootmisc tree1)
 else
-output=$(./utils.sh form greyrootmisc tree2)
+output=$(./utils.sh form e greyrootmisc tree2)
 fi ;;
 
 [l][o][o][k][b][o][o][k]) if [ $book111 -eq 1 ]
 then
-output=$(./utils.sh form uni book)
+sidebar
+./lib.sh bookg
+output=$(./utils.sh form 1 uni book)
 else
-output=$(./utils.sh form uni look)
+output=$(./utils.sh form 1 uni look)
 fi ;;
 
 [l][o][o][k][t][r][e][e]) if [ $mellon -eq 0 ]
 then
-output=$(./utils.sh form greyrootmisc tree1)
+output=$(./utils.sh form e greyrootmisc tree1)
 else
-output=$(./utils.sh form greyrootmisc tree2)
+output=$(./utils.sh form e greyrootmisc tree2)
 fi ;;
 
 [r][e][a][d][b][o][o][k]) if [ $book111 -eq 1 ]
@@ -319,60 +348,79 @@ then
 ./utils.sh reader book111r
 intro=0
 else
-output=$(./utils.sh form uni read)
+output=$(./utils.sh form 1 uni read)
 fi ;;
 
 [s][m][a][s][h][t][r][e][e]) if [ $hammer -eq 1 ]
 then 
-./utils.sh cutscene smashent Go "graphpass e 22pic2b 2 2 0"
+./utils.sh cutscene e smashent Go "graphpass e 22pic2b 2 2 0"
 ./utils.sh setdeath
 sed -i '/cell=/c\cell=null' status
 break
 else
-output=$(./utils.sh form uni ic)
+output=$(./utils.sh form 1 uni ic)
 fi ;;
 
 #olfactory
 
 [l][i][c][k][b][o][o][k]) if [ $book111 -eq 1 ] 
 then
-output=$(./utils.sh form lick book)
+output=$(./utils.sh form 1 lick book)
 else
-output=$(./utils.sh form uni lick1)
+output=$(./utils.sh form 1 uni lick1)
 fi ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floor) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form 1 lick floor) ;;
 
 [l][i][c][k][t][r][e][e]) if [ $mellon -eq 1 ]
 then
-output=$(./utils.sh form greyrootmisc lick)
+output=$(./utils.sh form e greyrootmisc lick)
 else
-output=$(./utils.sh form lick tree)
+output=$(./utils.sh form 1 lick tree)
 fi ;;
 
-[s][m][e][l][l]) output=$(./utils.sh form smell e) ;;
+[s][m][e][l][l]) output=$(./utils.sh form 1 smell e) ;;
 
 [s][m][e][l][l][b][o][o][k]) if [ $book111 -eq 1 ]
 then
-output=$(./utils.sh form smell book)
+output=$(./utils.sh form 1 smell book)
 else
-output=$(./utils.sh form uni smell)
+output=$(./utils.sh form 1 uni smell)
 fi ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floore) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form 1 smell floore) ;;
 
 [s][m][e][l][l][t][r][e][e]) if [ $mellon -eq 1 ]
 then
-output=$(./utils.sh form greyrootmisc smell)
+output=$(./utils.sh form e greyrootmisc smell)
 else
-output=$(./utils.sh form smell treee)
+output=$(./utils.sh form 1 smell treee)
 fi ;;
 
-#constantcomm
-
+*) case1=(system${case1}) ;;
 esac
 fi
 
+if [[ "$case1" == *"system"* ]]
+then
+case1=$(sed "s/system//" <<< $case1)
 
+./utils.sh evecom "$case1"
+cell=$(grep "cell=" status | cut -d "=" -f2)
+intro=$(grep "intro=" status | cut -d "=" -f2)
+if [[ "$cell" == null ]] ; then break ; fi
+if [[ "$cell" != null ]] && [[ "$intro" != 0 ]] ; then case1=(system${case1}) ; fi
+fi
+
+if [[ "$case1" == *"system"* ]]
+then
+
+case1=$(sed "s/system//" <<< $case1)
+concom=$(./utils.sh concom "$case1")
+state=$(sed "1q;d" <<< "$concom")
+intro=$(sed "2q;d" <<< "$concom")
+output=$(tail -n 12 <<< "$concom")
+cell=$(grep "cell=" status | cut -d "=" -f2)
+if [[ "$state" == 2 ]] || [[ "$cell" == null ]] ; then break ; fi
+fi
 done
-

@@ -4,14 +4,17 @@
 background() {
 ./utils.sh colorset 4
 image=$(block/$block/./graphics.sh ${cell}pic1a
-./utils.sh overlay "blank 3 1" 56 1 0 0
-./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0)
+sidebar)
 echo "$image"
 if [ $book11 -eq 0 ] ; then ./utils.sh overlay book12 40 13 0 0 ; fi
 }
 
-vars () {
+sidebar(){
+./utils.sh overlay "blank 3 1" 56 1 0 0
+./utils.sh overlay "sidebar $block $cell 0" 56 4 0 0
+}
 
+vars () {
 #inventory
 ammo=$(grep 'ammo=' status | cut -d "=" -f2)
 book11=$(grep 'book11=' status | cut -d "=" -f2)
@@ -45,26 +48,26 @@ else
 sed -i '/mvnt2=/c\mvnt2=0' status
 fi
 
-#sleep
-
+./utils.sh events
+cell=$(grep "cell=" status | cut -d "=" -f2)
+if [[ $cell == null ]] ; then exit ; fi
+sleep=$(grep "sleep=" status | cut -d "=" -f2)
+sleepthreshold=$(grep "sleepthreshold=" status | cut -d "=" -f2)
+bar=$(./utils.sh posbar $sleep $sleepthreshold 20)
 
 
 while true ; do
 
 if [ $intro -eq 2 ] ; then vars ; fi
 
-./utils.sh events
-cell=$(grep "cell=" status | cut -d "=" -f2)
-if [[ $cell == null ]] ; then break ; fi
-
-
 if [ $intro -lt 2 ]
 then
-if [ $intro -eq 0 ] ; then output=$(./utils.sh form) ; fi
+if [ $intro -eq 0 ] ; then output=$(./utils.sh form 1) ; fi
 vars
 printf "\e[0;0H"
 background
 intro=2
+sed -i "/intro=/c\intro=2" status
 fi
 ./utils.sh prompt "$last" "$bar" "$output" 4
 read case1
@@ -75,14 +78,10 @@ case $case1 in
 
 #room commands
 
-[g][e][t][b][o][o][k]) if [ $book11 -eq 0 ]
-then
-sed -i '/book11=/c\book11=1' status
-output=$(./utils.sh form uni get2 book)
-intro=1
-else
-output=$(./utils.sh form uni get1)
-fi ;;
+[g][e][t][b][o][o][k])
+get=$(./utils.sh get book11 book $book11)
+intro=$(sed "1q;d" <<< "$get")
+output=$(tail -n 12 <<< "$get") ;;
 
 [g][o][e][a][s][t]) if [ $key2 -eq 1 ]
 then
@@ -90,105 +89,130 @@ sed -i '/color=/c\color=1' status
 sed -i '/cell=/c\cell=09' status
 break 
 else
-output=$(./utils.sh form uni doorlock)
+output=$(./utils.sh form 1 uni doorlock)
 fi  ;;
 
 [g][o][n][o][r][t][h]) sed -i '/cell=/c\cell=04' status ; break ;;
 
 [g][o][s][o][u][t][h]) sed -i '/cell=/c\cell=02' status ; break ;;
 
-[l][o][o][k]) output=$(./utils.sh form looki i03) ;;
+[l][o][o][k]) output=$(./utils.sh form 1 looki i03) ;;
 
-[l][o][o][k][b][o][o][k]) if [ $book11 -eq 0 ] || [ $book11 -eq 1 ] 
+[l][o][o][k][b][o][o][k]) if [ $book11 -ne 2 ] 
 then
-output=$(./utils.sh form uni book)
+sidebar
+./lib.sh bookg
+output=$(./utils.sh form 1 uni book)
 else 
-output=$(./utils.sh form uni look)
+output=$(./utils.sh form 1 uni look)
 fi ;;
 
-[l][o][o][k][b][o][x]) output=$(./utils.sh form looki null box13 0 book15 $book11) ;;
+[l][o][o][k][b][o][x]) output=$(./utils.sh form 1 looki null box13 0 book15 $book11) ;;
 
 [l][o][o][k][e][a][s][t][d][o][o][r]) 
-output=$(./utils.sh form lookdoor door1 door5 $i09 $key2) ;;
+output=$(./utils.sh form 1 lookdoor door1 door5 $i09 $key2) ;;
 
 [l][o][o][k][n][o][r][t][h][d][o][o][r]) 
-output=$(./utils.sh form lookdoor door1 door6 $i04 1) ;;
+output=$(./utils.sh form 1 lookdoor door1 door6 $i04 1) ;;
 
 [l][o][o][k][s][o][u][t][h][d][o][o][r]) 
-output=$(./utils.sh form lookdoor door1 door2 $i02 1) ;;
+output=$(./utils.sh form 1 lookdoor door1 door2 $i02 1) ;;
 
-[l][o][o][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form looki null door22 0) ;;
+[l][o][o][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form 1 looki null door22 0) ;;
 
-[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form looki null floor1 0) ;;
+[l][o][o][k][f][l][o][o][r]) output=$(./utils.sh form 1 looki null floor1 0) ;;
 
-[l][o][o][k][l][o][c][k])./lib.sh key2b
+[l][o][o][k][l][o][c][k])./lib.sh keyb key4
 if [ $key2 -eq 0 ]
 then
-output=$(./utils.sh form uni doorlock)
+output=$(./utils.sh form 1 uni doorlock)
 else
-output=$(./utils.sh form uni doorunlock)
+output=$(./utils.sh form 1 uni doorunlock)
 fi ;;
 
-[l][o][o][k][w][a][l][l]) output=$(./utils.sh form looki null wall1 0) ;;
+[l][o][o][k][w][a][l][l]) output=$(./utils.sh form 1 looki null wall1 0) ;;
 
-[o][p][e][n][b][o][x]) output=$(./utils.sh form looki null box5 0) ;;
+[o][p][e][n][b][o][x]) output=$(./utils.sh form 1 looki null box5 0) ;;
 
-[r][e][a][d][b][o][o][k]) if [ $book11 -eq 0 ] || [ $book11 -eq 1 ]
+[r][e][a][d][b][o][o][k]) if [ $book11 -ne 2 ]
 then
 ./utils.sh reader book11r
 intro=0
 else
-output=$(./utils.sh form uni read)
+output=$(./utils.sh form 1 uni read)
 fi ;;
 
 #olfactory
 
-[l][i][c][k][b][o][o][k]) if [ $book11 -eq 0 ] || [ $book11 -eq 1 ]
+[l][i][c][k][b][o][o][k]) if [ $book11 -ne 2 ]
 then
-output=$(./utils.sh form lick book)
+output=$(./utils.sh form 1 lick book)
 else
-output=$(./utils.sh form uni lick1)
+output=$(./utils.sh form 1 uni lick1)
 fi ;;
 
-[l][i][c][k][b][o][x]) output=$(./utils.sh form lick box1) ;;
+[l][i][c][k][b][o][x]) output=$(./utils.sh form 1 lick box1) ;;
 
-[l][i][c][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
+[l][i][c][k][e][a][s][t][d][o][o][r]) output=$(./utils.sh form 1 lick door) ;;
 
-[l][i][c][k][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form lick door) ;;
+[l][i][c][k][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form 1 lick door) ;;
 
-[l][i][c][k][s][o][u][t][d][o][o][r]) output=$(./utils.sh form lick door) ;;
+[l][i][c][k][s][o][u][t][d][o][o][r]) output=$(./utils.sh form 1 lick door) ;;
 
-[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form lick door4) ;;
+[l][i][c][k][w][e][s][t][d][o][o][r]) output=$(./utils.sh form 1 lick door4) ;;
 
-[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form lick floori) ;;
+[l][i][c][k][f][l][o][o][r]) output=$(./utils.sh form 1 lick floori) ;;
 
-[l][i][c][k][w][a][l][l]) output=$(./utils.sh form lick wall) ;;
+[l][i][c][k][w][a][l][l]) output=$(./utils.sh form 1 lick wall) ;;
 
-[s][m][e][l][l]) output=$(./utils.sh form smell i01) ;;
+[s][m][e][l][l]) output=$(./utils.sh form 1 smell i01) ;;
 
-[s][m][e][l][l][b][o][o][k]) if [ $book11 -eq 0 ] || [ $book11 -eq 1 ]
+[s][m][e][l][l][b][o][o][k]) if [ $book11 -ne 2 ]
 then
-output=$(./utils.sh form smell book)
+output=$(./utils.sh form 1 smell book)
 else
-output=$(./utils.sh form uni smell)
+output=$(./utils.sh form 1 uni smell)
 fi ;;
 
-[s][m][e][l][l][b][o][x]) output=$(./utils.sh form smell box1) ;;
+[s][m][e][l][l][b][o][x]) output=$(./utils.sh form 1 smell box1) ;;
 
-[s][m][e][l][l][e][a][s][t][d][o][o][r]) output=$(./utils.sh form smell door) ;;
+[s][m][e][l][l][e][a][s][t][d][o][o][r]) output=$(./utils.sh form 1 smell door) ;;
 
-[s][m][e][l][l][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form smell door) ;;
+[s][m][e][l][l][n][o][r][t][h][d][o][o][r]) output=$(./utils.sh form 1 smell door) ;;
 
-[s][m][e][l][l][s][o][u][t][d][o][o][r]) output=$(./utils.sh form smell door) ;;
+[s][m][e][l][l][s][o][u][t][d][o][o][r]) output=$(./utils.sh form 1 smell door) ;;
 
-[s][m][e][l][l][w][e][s][t][d][o][o][r]) output=$(./utils.sh form smell door3) ;;
+[s][m][e][l][l][w][e][s][t][d][o][o][r]) output=$(./utils.sh form 1 smell door3) ;;
 
-[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form smell floori) ;;
+[s][m][e][l][l][f][l][o][o][r]) output=$(./utils.sh form 1 smell floori) ;;
 
-[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form smell wall) ;;
+[s][m][e][l][l][w][a][l][l]) output=$(./utils.sh form 1 smell wall) ;;
 
-#constantcomm
-
+*) case1=(system${case1}) ;;
 esac
+
+
+if [[ "$case1" == *"system"* ]]
+then
+case1=$(sed "s/system//" <<< $case1)
+
+./utils.sh evecom "$case1"
+cell=$(grep "cell=" status | cut -d "=" -f2)
+intro=$(grep "intro=" status | cut -d "=" -f2)
+if [[ "$cell" == null ]] ; then break ; fi
+if [[ "$cell" != null ]] && [[ "$intro" != 0 ]] ; then case1=(system${case1}) ; fi
+fi
+
+if [[ "$case1" == *"system"* ]]
+then
+
+case1=$(sed "s/system//" <<< $case1)
+concom=$(./utils.sh concom "$case1")
+state=$(sed "1q;d" <<< "$concom")
+intro=$(sed "2q;d" <<< "$concom")
+output=$(tail -n 12 <<< "$concom")
+cell=$(grep "cell=" status | cut -d "=" -f2)
+if [[ "$state" == 2 ]] || [[ "$cell" == null ]] ; then break ; fi
+fi
 done
 

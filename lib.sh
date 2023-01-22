@@ -50,7 +50,7 @@ echo '_______________________________________________________
 |                                            |________|
 |_____________________________________________________|'
 ./utils.sh overlay "blank 3 1" 56 1 0 0)
-read -p "$image"
+echo "$image"
 }
 
 front () {
@@ -278,9 +278,6 @@ echo "$image"
 }
 
 
-
-
-
 #cutscene---------------------------------------------------------------
 
 opening() {
@@ -307,58 +304,6 @@ echo "Main Menu
 e) Exit "
 }
 
-bathroom1() {
-echo "As you open the door and enter, you see a mirror.
-It is your reflection, but it isn't.  You cant seem to
-remember your gender or what you looked like, but it sure
-as hell isn't this.  Your face is worn, your eyes are heavy,
-and your hair is white and stringy." 
-}
-
-bathroom2(){
-echo "As one last crack of thunder bursts, shaking the
-house violently, the rain begins to subside.  
-As the walls creak and grown, your feeling of 
-uneasiness begins to ease into increasing worry and dread."
-}
-
-
-burnbooks2(){
-echo 'You toss every scrap of paper and your journal you have
-into the fireplace with your lighter.  The pages light up 
-instantaneously.  The apparition shrieks; "You think that is enough
-to stop me?" as she devours your soul.'
-}
-
-burnbooks3(){
-echo "you toss the papers into the fireplace with the lighter, and
-they burst up into a bright purple flame.  the ghost cries out in 
-agony and melts into the floor.  she is gone.  you crawl through
-the window and continue through the house.  the entire foreboding
-feeling of the house has disappeared.  you look though a window on
-the way out as you see the light of morning coming on.  you leave the
-building and walk to the gate.  as you touch it the gate swings open
-to the wide world.  you walk down the street towards
-your next adventure."
-}
-
-burnhouse1(){
-echo "You're the direct type arn't you? Well the house
-is gone, but so are you.  Turns out setting a house on fire,
-then standing in it with a dumb look on your face is not the
-best course of action, try a little harder next time.
-You are dead"
-}
-
-burnhouse2(){
-echo "You're the direct type arn't you? The house is set 
-ablaze, and with it, the ghost, and anything else which might
-be of harm to you.  Now the force keeping the gate closed is 
-gone, you are free to leave and go wherever you wish.
-Congratulations, you have survived the whole ordeal!
-You have won!"
-}
-
 victory(){
 echo "Congratulations, you have survived the whole ordeal!
 You have won!"
@@ -379,356 +324,7 @@ you and you see a massive specter who swallows you up
 You are Dead'
 }
 
-toiletlick3() {
-echo "Fine, I hope that feeling of independence is worth it,
-you now have the feeling of dysentery. The good news is you are 
-in a bathroom.  the bad news, the water isn't running.  Your 
-insides run away from you, and you eventually die of dehydration.
-You are Dead "
-}
 
-sit2(){
-echo 'As you sit in the chair your weight causes the chair to
-crumble. Unfortunately as you hit the ground, the back of the chair
-splinters and impales your chest.
-
-You Are Dead'
-}
-
-sleep1() {
-echo "you lie your head on the pillow for a well 
-deserved rest.  you hope that once you awake,
-this whole ordeal will be behind you. Morning has to come
-at some point, and when it does, you hope to awake in your 
-own bed.  As your eyes open once more, you feel well
-rested, but you are still where you fell asleep.
-In the dark...."
-}
-
-sleep2() {
-echo "the passage of time has not been kind, and you
-once again seek the warmth of a bed.  this time you
-have no high hopes as you did the last time.  this is your
-life, and you must now live it out.  you begin to reflect
-on the journals you have read.  you wonder what these people
-were really like.  as you once again arise,
-you hope to end this nightmare soon."
-}
-
-sleep3() {
-echo "you once again seek the seclusion and security of a
-warm bed.  your mind once again begins to wander.  why are all 
-these bedrooms so well furnished and maintained? Why are all
-the bookshelves burnt?  What does it mean.  What was Susan
-doing here, and what can you do against forces such
-as these.  as your mind clears, you eyes open, and you face
-this world once more."
-}
-
-sleep4() {
-echo "you are frightened. you have noticed that the time 
-you have been sleeping has been increasing, and likewise the 
-time you spend in the waking nightmare has been decreasing.
-you are unsure if you will be able to sleep again, let alone
-awake once more.  you have to end this soon, because you might
-not get another chance."
-}
-
-sleep5() {
-echo "you made it, but you don't know how.  you once again see
-your only friend in this waking hell.  as your knees hit the floor
-from exhaustion, you drag yourself into the bed.  you see the
-darkness come for you again, to consume you.  you hope the bed
-will shelter you, as it has so many times before.  the darkness
-crawls up the side of the bed after you as you cower beneath the
-covers.  death has come for you and you have no where left to hide.
-You have Died."
-}
-
-sleepdeath1() {
-echo "As you take a step, you feel your legs go out from
-under you, and you move no more. you here shrill laughter
-from far off as your vision fades to nothing.  time
-begins to blur as the laughter becomes louder and louder.
-Finally everything goes away to never return again.
-You have died."
-}
-
-sleepwarn1() {
-echo "your brow begins to feel heavy
-you start to wonder where there might be a bed"
-}
-
-sleepwarn2() {
-echo "your feet now start to drag.  you start
-to yearn for the warm embrace of a bed."
-}
-
-sleepwarn3() {
-echo "your whole body begins to wane.  your eyes
-find it hard to focus and your feet follow behind you
-you feel it is a terrible night for a curse."
-}
-
-windowfall() {
-echo "the fall safely.  unfortunately you have misjudged your own
-durability.  your knees shatter as your feet touch the ground.
-as your back reaches the ground, it shatters as well.  now begins
-the weighting game as hunger sets in.  no one is coming to save
-you, just as no one was before.  as the days pass by, you become
-weaker and weaker, just waiting for the inevitable. eventually
-it comes.
-You are Dead"
-}
-
-i1a() {
-echo "as you walk down the corridor, it is as if the darkness
-itself consumes your flesh, you try to scream out, but the
-darkness eats your cries.
-
-you have died..."
-}
-
-i8a() {
-echo "as you walk outside, you feel the sharp rain on your face.
-As you walk you begin to realize you cant see where you are going.
-you turn back to return where you came from, but you cant see
-the house anymore.  the rain starts to pour harder as you begin
-to hear steps behind you.  you call out for help, and the steps
-become a gallop.  the last thing you feel is the icy sharp fangs
-clamping around your neck.
-
-you have died..."
-}
-
-smellbody1 (){
-echo "the body clearly expired long ago, however it
-was fairly well preserved from the room being sealed,
-and all of the air cooked out."
-}
-
-#ghoststuff-------------------------------------------------------------
-
-ghost1(){
-
-if [[ $1 == burn ]] ; then libindex=('the apparition shrieks "Ghosts do not burn fool" as
-she descends upon you.
-You are dead') ; fi
-
-if [[ $1 == lick1 ]] ; then libindex=("Well I don't know what you were expecting.  Before you
-can even get close enough to reach her, the police descend upon you.
-They might not be sure of your age, or your gender, but they are
-sure you shouldn't have done that. You trade one prison for another.
-While your story doesn't end here, this one does.  The moral of the 
-story is; Don't go licking ancient spirits, especially if that one
-is female.") ; fi
-
-if [[ $1 == lick2 ]] ; then libindex=('you stick your tongue out to lick yourself, and 
-the ghost grimaces.  even though she is sickened, she
-still rips you to pieces and eats you.  after all
-you clearly showed her that you thought you tasted good
-You are dead') ; fi
-
-if [[ $1 == lick3 ]] ; then libindex=("You are not aware if such a thing exists to be licked,
-however you do not feel it is an appropriate juncture to lick that.") ; fi
-
-if [[ $1 == look ]] ; then libindex=("It is the ghost of a young girl.  She looks like she died
-an unpleasant death.") ; fi
-
-if [[ $1 == look2 ]] ; then libindex=("You do not notice if such a thing exists,
-as your attention is focused on the ghost in front of you") ; fi
-
-if [[ $1 == pendant ]] ; then libindex=('The specter suddenly shrieks out, "YOU STOLE MY AMULET!
-YOU SHALL NOT LEAVE HERE ALIVE, OR OTHERWISE." She then rips the
-amulet from your being, and kills you.
-You are Dead.') ; fi
-
-if [[ $1 == returnwest ]] ; then libindex=('as you turn to step out through the window once more
-an apparition appears.  the force of its presents pushes you back to
-the fireplace;  "so you have finally come to finish me" it states
-"you shall have no luck of it"') ; fi
-
-if [[ $1 == shoot1 ]] ; then libindex=('The bullet passes right through the apparition.
-She shrieks; "Your pathetic toys can not harm me!" she then 
-devours you whole.
-You are Dead') ; fi
-
-if [[ $1 == shoot2 ]] ; then libindex=('You pull the trigger to an unsatisfying click.
-A smile runs across her face. she then devours you whole.
-You are Dead') ; fi
-
-if [[ $1 == smash ]] ; then libindex=('The hammer passes right though the apparition.  As the hammer
-continues to fall, its arch takes it right to your knee, which is now 
-shattered.  Unable to move,the ghost eats you.
-You are dead') ; fi
-
-if [[ $1 == smell ]] ; then libindex=('Smells like a ghost.
-She responds "Did you really just smell me?" with a confused look
-on her face') ; fi
-
-if [[ $1 == smell2 ]] ; then libindex=("you are not aware if such exists to smell, however you do not feel
-it is appropriate at this juncture to smell that.") ; fi
-
-if [[ $1 == walk ]] ; then libindex=('you attempt to walk through the ghost to get to the
-window to escape your certain doom.  the ghost shrieks "You think
-you can ignore me?"  Then eats you.
-You are dead') ; fi
-
-echo "$libindex"
-}
-
-
-
-
-ghosttalk(){
-echo 'She Shrieks to you "I shall get you for what you did to me!"
-she then devours you
-You are dead'
-}
-
-
-#wolfstuff--------------------------------------------------------------
-
-
-wolf1(){
-if [[ $1 == 1 ]] ; then object=("as you run north towards the wolf") ; fi
-if [[ $1 == 2 ]] ; then object=("as you run south away from the wolf") ; fi
-if [[ $1 == 3 ]] ; then object=("as you run west away from the wolf") ; fi
-if [[ $1 == 4 ]] ; then object=("as you try to open the door") ; fi
-if [[ $1 == 5 ]] ; then object=("as you gaze around") ; fi
-if [[ $1 == 6 ]] ; then object=("as you marvel at the worksmanship of the door") ; fi
-if [[ $1 == 7 ]] ; then object=("as you look to the east") ; fi
-if [[ $1 == 8 ]] ; then object=("as you look to the north") ; fi
-if [[ $1 == 9 ]] ; then object=("as you look to the south") ; fi
-if [[ $1 == 10 ]] ; then object=("as you look to the west") ; fi
-if [[ $1 == 11 ]] ; then object=("as you look at the floor") ; fi
-if [[ $1 == 12 ]] ; then object=("as you look at the forest") ; fi
-if [[ $1 == 13 ]] ; then object=("as you look at the house") ; fi
-if [[ $1 == 14 ]] ; then object=("as you look at the shed") ; fi
-if [[ $1 == 15 ]] ; then object=("as you look at the wolf") ; fi
-if [[ $1 == 16 ]] ; then object=("as you pull the trigger, nothing happens") ; fi
-if [[ $1 == 17 ]] ; then object=("as you contemplate why you cant do that") ; fi
-if [[ $1 == 18 ]] ; then object=("as you try to lick the door") ; fi
-if [[ $1 == 19 ]] ; then object=("as you try to lick the floor") ; fi
-if [[ $1 == 20 ]] ; then object=("as you try to lick the forest") ; fi
-if [[ $1 == 21 ]] ; then object=("as you try to lick the shed") ; fi
-if [[ $1 == 22 ]] ; then object=("as you try to smell the door") ; fi
-if [[ $1 == 23 ]] ; then object=("as you try to smell the floor") ; fi
-if [[ $1 == 24 ]] ; then object=("as you try to smell the forest") ; fi
-if [[ $1 == 25 ]] ; then object=("as you try to smell the shed") ; fi
-if [[ $1 == 26 ]] ; then object=("as you try to smell the wolf") ; fi
-if [[ $1 == 27 ]] ; then object=("as you fumble through your pack") ; fi
-if [[ $1 == 28 ]] ; then object=("as you stick your tounge out to lick yourself") ; fi
-if [[ $1 == 29 ]] ; then object=("as you try to smell yourself") ; fi
-if [[ $1 == 30 ]] ; then object=("as you ponder the meaning of life") ; fi
-if [[ $1 == 31 ]] ; then object=("as you grip at the air") ; fi
-if [[ $1 == 32 ]] ; then object=("as you try to walk") ; fi
-if [[ $1 == 33 ]] ; then object=("as you try to gaze") ; fi
-if [[ $1 == 34 ]] ; then object=("as you ponder what it tastes like") ; fi
-if [[ $1 == 35 ]] ; then object=("as you pull the trigger, and nothing happens") ; fi
-if [[ $1 == 36 ]] ; then object=("as the bullet flies off into the great beyond") ; fi
-
-if [[ $1 == 37 ]] ; then object=("as you stick your nose in the air") ; fi
-
-if [[ $1 == 38 ]] ; then object=("as you try to walk") ; fi
-
-if [[ $1 == 39 ]] ; then object=("as you try to walk") ; fi
-
-if [[ $1 == 40 ]] ; then object=("as you try to walk") ; fi
-
-echo "$object, the wolf eats you" 
-}
-
-wolf2(){
-if [[ $1 == 1 ]] ; then object=("there is a wolf approaching you from the north") ; fi
-if [[ $1 == 2 ]] ; then object=("The silver bullet ripped into the the wolf.
-It slumpped over and disolved into the air.") ; fi
-if [[ $1 == 3 ]] ; then object=("you shoot at it and miss") ; fi
-if [[ $1 == 4 ]] ; then object=("you fumble through you pack, but you can't focus as
-the wolf impedes on you") ; fi
-
-echo "$object"
-}
-
-wolf3(){
-if [[ $1 == 1 ]] ; then object=("As you fumble through your pack unable to focus") ; fi
-if [[ $1 == 2 ]] ; then object=("You stop as you try to lick yourself,") ; fi
-
-echo "$object,
-the wolf impeades on you "
-}
-
-lickwolf1(){
-echo "Suddenly, the wolf stops in its tracks.  It says; 'Hello.
-My name is Hazzal.  I come from the hills of Caledonia.
-King Georges lobster backs destroyed my home. I came to these woods
-far off to avoid the humans, however they followed me even here.
-But the girl, the girl was different.  she didn't seek to destroy
-me, she just wanted to be my friend."
-}
-
-lickwolf2() {
-echo "Her mother though, was just like all the others.
-so I decided to play a little game.  I taught the girl to see the
-world for what it is, and how to use it.  of course the girl used
-that to try to kill that she witch.  Too bad the woman got her
-first.  Now the girl just continues to persist over this forsaken
-estate.  she truly learned the arts of writing, and has embedded
-herself into those scraps of paper you carry.  Perhaps if they
-ceased to exist, so would she.' Then the wolf disappears."
-}
-
-
-#greyroot----------------------------------------------------------------
-
-smashent(){
-echo 'the hammer makes contact with the large oak, and suddenly
-it springs to life.
-"YOU DARE STRIKE ME MORTAL?" the ent shouts.
-"I SHALL TEACH YOU A LESSON YOU WONT EVER FORGET."
-He then grabs you and puts you in his mouth.
-You are dead'
-}
-
-entfriend(){
-
-if [[ $1 == 1 ]] ; then object=("The tree's eyes open as its arms lower.  its eyes
-fall upon yoyu. Hello Friend, I am called Greyroot.") ; fi
-if [[ $1 == 2 ]] ; then object=("I shall give you another change at this one.") ; fi
-if [[ $1 == 3 ]] ; then object=("I see you have killed Hazzal.
-I have often told him he was too aggressive with humans") ; fi
-if [[ $1 == 4 ]] ; then object=("i see you have made friends with
-Hazzal.  beware, he is far to direct in
-his dealings with humans.  i would not trust him,
-for he lies, and he will take anything he sees fit.") ; fi
-if [[ $1 == 5 ]] ; then object=("i have been made the keeper of some
-knowledge by an angry spirit.  i will give you the knowledge if you
-can answer me, these riddles three.") ; fi
-if [[ $1 == 6 ]] ; then object=("The more you take away from it,
-the larger it becomes. What is it?") ; fi
-if [[ $1 == 7 ]] ; then object=("i last forever and you might have too much or
-too little of me, either way you will run out of me eventually.
-What am i?") ; fi
-if [[ $1 == 8 ]] ; then object=("if i have it, i shouldn't share it, because if
-i share it, i won't have it. What is it?") ; fi
-if [[ $1 == 9 ]] ; then object=("indeed secrets cease to be secrets
-once they have been shared, however i fear how things are
-progressing.  You must destroy all knowledge to escape this madness.") ; fi
-if [[ $1 == 10 ]] ; then object=("Go forth and stop this madness.") ; fi
-echo "$object"
-}
-
-greyrootmisc(){
-if [[ $1 == incorrect ]] ; then object=("You are incorrect") ; fi
-if [[ $1 == correct ]] ; then object=("You are correct") ; fi
-if [[ $1 == slump ]] ; then object=("Greyroot slumps back to his resting state") ; fi
-if [[ $1 == smell ]] ; then object=("Greyroot says: do not smell me") ; fi
-if [[ $1 == tree1 ]] ; then object=("It is a large oak tree, with words inscribed on it") ; fi
-if [[ $1 == tree2 ]] ; then object=("It is a large ent, it eagerly awaits your answers") ; fi
-if [[ $1 == lick ]] ; then object=("Greyroot says:'Do not lick me.'") ; fi
-
-echo "$object"
-}
 
 #cellcommands-----------------------------------------------------------
 
@@ -1618,6 +1214,7 @@ if [[ $1 == sit ]] ; then object=("you go to sit and you feel an overwhelming se
 urgency and you continue on your way.") ; fi
 if [[ $1 == shoot1 ]] ; then object=("you shoot at it, and accomplish nothing.") ; fi
 if [[ $1 == shoot2 ]] ; then object=("you are out of ammo.") ; fi
+if [[ $1 == sleep ]] ; then object=("you should not sleep here.") ; fi
 if [[ $1 == smash ]] ; then object=("that cannot /should not be smashed.") ; fi
 if [[ $1 == smashmir2 ]] ; then object=("the mirror is broken.") ; fi
 if [[ $1 == smashwin1 ]] ; then object=("the window is broken.") ; fi
@@ -1642,7 +1239,7 @@ echo "Inventory Filled"
 debughelp(){
 echo "type state <variable> to view the state of 
 a variable.
-type set <global/local> <variable> = <number> to
+type set <variable> = <number> to
 set the variable
 type move <block> - <cell> to change room
 debugreload > reloads the cell file"
@@ -1659,6 +1256,7 @@ debug3=("$3")
 echo "global: $debug1=$debug2
 local: $debug1=$debug3"
 }
+
 
 loadsave(){
 echo "which file to $1
@@ -1783,8 +1381,8 @@ longer remove it.  Remember, you are using a pen."
 }
 
 universalana(){
-revver=1.08.02
-read -p '##################################################
+revver=2.00.00
+read -p "##################################################
 #              ;;;;;;;;;;;;;;;;;;;;              #
 #            ;;;;;;;;;;;;;;;;;;;;;;;;            #
 #           ;;...........;;;;;;;;;;;;;           #
@@ -1815,9 +1413,9 @@ read -p '##################################################
 ###################################              #
 # Created by: Universal Analogue  #              #
 # License: MIT                    #              #
-# Makebuild Engine Version 1.9    #              #
+#                                 #              #
 # Fulmination Version $revver     #              #
-##################################################'
+##################################################"
 
 }
 
@@ -1843,7 +1441,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book11r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 1
 exists=1"
 }
@@ -1864,7 +1462,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book12r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 2
 exists=1"
 }
@@ -1883,7 +1481,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book13r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 3
 exists=1"
 }
@@ -1903,7 +1501,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book14r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 4
 exists=1"
 }
@@ -1925,7 +1523,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book153r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 5
 exists=1"
 }
@@ -1946,7 +1544,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book16r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 6
 exists=1"
 }
@@ -1966,7 +1564,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book17r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 7
 exists=1"
 }
@@ -1986,7 +1584,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book18r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 8
 exists=1"
 }
@@ -2008,7 +1606,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book19r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 9
 exists=1"
 }
@@ -2029,7 +1627,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book110r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 10
 exists=1"
 }
@@ -2047,7 +1645,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book111r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 11
 exists=1"
 }
@@ -2067,7 +1665,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book112r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 12
 exists=1"
 }
@@ -2089,7 +1687,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book113r
-graphics=null
+graphics=bookg
 givenname=Sue Journal 13
 exists=1"
 }
@@ -2111,7 +1709,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book21r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 1
 exists=1"
 }
@@ -2131,7 +1729,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book22r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 2
 exists=1"
 }
@@ -2150,7 +1748,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book23r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 3
 exists=1"
 }
@@ -2169,7 +1767,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book24r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 4
 exists=1"
 }
@@ -2188,7 +1786,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book25r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 5
 exists=1"
 }
@@ -2210,7 +1808,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book26r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 6
 exists=1"
 }
@@ -2232,7 +1830,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book27r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 7
 exists=1"
 }
@@ -2252,7 +1850,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book28r
-graphics=null
+graphics=bookg
 givenname=Stanley Journal 8
 exists=1"
 }
@@ -2274,7 +1872,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book31r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 1
 exists=1"
 }
@@ -2293,7 +1891,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book32r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 2
 exists=1"
 }
@@ -2315,7 +1913,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book33r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 3
 exists=1"
 }
@@ -2335,7 +1933,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book34r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 4
 exists=1"
 }
@@ -2356,7 +1954,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book35r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 5
 exists=1"
 }
@@ -2375,7 +1973,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book36r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 6
 exists=1"
 }
@@ -2394,7 +1992,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book37r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 7
 exists=1"
 }
@@ -2413,7 +2011,7 @@ echo "#looka
 It seems to be a page of a journal.
 #lookb
 read=book38r
-graphics=null
+graphics=bookg
 givenname=Caroline Journal 8
 exists=1"
 }
@@ -2430,14 +2028,22 @@ put mysel..in.....ook......
 Most of the page is burned away"
 }               
 
+bookg(){
+./utils.sh overlay book14 59 12 0 0 
+}
+
 ammo () {
 echo "#looka
 They are solid silver 38S&W.
 #lookb
 read=null
-graphics=null
+graphics=ammog
 givenname=Ammo
 exists=1"
+}
+
+ammog(){
+./utils.sh overlay ammo1 59 10 0 0 
 }
 
 gun () {
@@ -2445,9 +2051,13 @@ echo "#looka
 It is an Enfield NO2 revolver in 38S&W.
 #lookb
 read=null
-graphics=null
+graphics=gung
 givenname=Gun
 exists=1"
+}
+
+gung(){
+./utils.sh overlay gun1 56 10 0 0 
 }
 
 hammer () {
@@ -2455,9 +2065,13 @@ echo "#looka
 It is an old weathered ball peen hammer.
 #lookb
 read=null
-graphics=null
+graphics=hammerg
 givenname=Hammmer
 exists=1"
+}
+
+hammerg(){
+./utils.sh overlay hammer2 60 10 0 0 
 }
 
 light () {
@@ -2465,9 +2079,13 @@ echo "#looka
 It is a dynamo powered flashlight.
 #lookb
 read=null
-graphics=null
+graphics=lightd
 givenname=Light
 exists=1"
+}
+
+lightd(){
+./utils.sh overlay light1 58 11 0 0 
 }
 
 lighter () {
@@ -2475,9 +2093,13 @@ echo "#looka
 It is an old flip cap lighter
 #lookb
 read=null
-graphics=null
+graphics=lighterd
 givenname=Lighter
 exists=1"
+}
+
+lighterd(){
+./utils.sh overlay lighter1 60 9 0 0 
 }
 
 pendant () {
@@ -2487,9 +2109,13 @@ secret panel.  You do not know why, but you get
 the feeling you were better off never finding it.
 #lookb
 read=null
-graphics=null
+graphics=pendantd
 givenname=Pendant
 exists=1"
+}
+
+pendantd(){
+./utils.sh overlay pendant1 60 8 0 0 
 }
 
 key1 () {
@@ -2497,19 +2123,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key1a
+graphics=keya key3
 givenname=Key 1
 exists=1"
-}
-
-key1a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key3 62 12 0 0
-}
-
-key1b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key3 62 8 0 0
 }
 
 key2 () {
@@ -2517,19 +2133,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key2a
+graphics=keya key4
 givenname=Key 2
 exists=1"
-}
-
-key2a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key4 62 12 0 0
-}
-
-key2b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key4 62 8 0 0
 }
 
 key3 () {
@@ -2537,19 +2143,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key3a
+graphics=keya key5
 givenname=Key 3
 exists=1"
-}
-
-key3a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key5 62 12 0 0
-}
-
-key3b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key5 62 8 0 0
 }
 
 key4 () {
@@ -2557,19 +2153,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key4a
+graphics=keya key6
 givenname=Key 4
 exists=1"
-}
-
-key4a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key6 62 12 0 0
-}
-
-key4b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key6 62 8 0 0
 }
 
 key5 () {
@@ -2577,19 +2163,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key5a
+graphics=keya key7
 givenname=Key 5
 exists=1"
-}
-
-key5a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key7 62 12 0 0
-}
-
-key5b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key7 62 8 0 0
 }
 
 key6 () {
@@ -2597,19 +2173,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key6a
+graphics=keya key8
 givenname=Key 6
 exists=1"
-}
-
-key6a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key8 62 12 0 0
-}
-
-key6b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key8 62 8 0 0
 }
 
 key7 () {
@@ -2617,19 +2183,9 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key7a
+graphics=keya key9
 givenname=Key 7
 exists=1"
-}
-
-key7a() {
-./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key9 62 12 0 0
-}
-
-key7b() {
-./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key9 62 8 0 0
 }
 
 key8 () {
@@ -2637,19 +2193,19 @@ echo "#looka
 It is a small brass key.
 #lookb
 read=null
-graphics=key8a
+graphics=keya key10
 givenname=Key 8
 exists=1"
 }
 
-key8a() {
+keya() {
 ./utils.sh overlay keyp 56 8 0 0
-./utils.sh overlay key10 62 12 0 0
+./utils.sh overlay $1 62 12 0 0
 }
 
-key8b() {
+keyb() {
 ./utils.sh overlay lockp 56 8 0 0
-./utils.sh overlay key10 62 8 0 0
+./utils.sh overlay $1 62 8 0 0
 }
 
 clockkey () {
@@ -2671,7 +2227,7 @@ echo "#looka
 It is a small cog from a clock.
 #lookb
 read=null
-graphics=null
+graphics=cogg
 givenname=Cog
 exists=1"
 }
@@ -2681,9 +2237,13 @@ echo "#looka
 It is a small gear from a clock.
 #lookb
 read=null
-graphics=null
+graphics=cogg
 givenname=Gear
 exists=1"
+}
+
+cogg () {
+./utils.sh overlay cog1 60 10 0 0
 }
 
 mainspringbarrel () {
@@ -2691,9 +2251,13 @@ echo "#looka
 It is the mainspring barrel from a clock.
 #lookb
 read=null
-graphics=null
+graphics=mainspringbarrelg
 givenname=Main Spring Barrel
 exists=1"
+}
+
+mainspringbarrelg () {
+./utils.sh overlay mainspringbarrel1 60 10 0 0
 }
 
 sprocket () {
@@ -2701,9 +2265,13 @@ echo "#looka
 It is a small sprocket from a clock.
 #lookb
 read=null
-graphics=null
+graphics=sprocketg
 givenname=Sprocket
 exists=1"
+}
+
+sprocketg () {
+./utils.sh overlay sprocket1 57 10 0 0
 }
 
 journal () {
@@ -2711,20 +2279,32 @@ echo "#looka
 It is a tattered old journal that you write in.
 #lookb
 read=null
-graphics=null
+graphics=journalg
 givenname=Journal
 exists=1"
 }
 
+journalg(){
+./utils.sh overlay book15 57 8 0 0 
+}
+
 pen () {
 echo "#looka
-It is the pen you write with in the journal.
+It is an internal reservoir fountain pen.
 #lookb
 read=null
-graphics=null
+graphics=peng
 givenname=Pen
 exists=1"
 }
+
+peng(){
+./utils.sh overlay pen1 62 13 0 0 
+}
+
+
+
+
 
 
 

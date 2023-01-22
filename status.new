@@ -3,6 +3,7 @@
 cell=01
 cella=
 block=i
+intro=
 rain=1
 wolf=2
 wolflick=2
@@ -23,10 +24,13 @@ term=
 music1=
 music2=
 mupos=
+helpc1=0
+helpc2=0
+score=0
 
 #sleep
 sleep=200
-sleepnum=1
+sleepthreshold=200
 
 #roomwindows:
 i1window=0

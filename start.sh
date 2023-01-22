@@ -1,6 +1,8 @@
 #!/bin/bash
 #version=1.08.01
 
+if [ ! -f status ] ; then cp status.new status ; fi
+
 if [[ $(tty) == *"ttyS"* ]] || [[ $(tty) == *"ttyUSB"* ]]
 then
 sed -i "/term=/c\term=1" status
@@ -16,7 +18,7 @@ fi
 
 ./utils.sh colorset 4
 ./utils.sh clear
-output=$(./utils.sh form)
+output=$(./utils.sh form 1)
 ./utils.sh cutscene2 logo "Scriptures of Fulmination" "$output"
 if [[ $(tty) == *"ttyS"* ]] || [[ $(tty) == *"ttyUSB"* ]]
 then
@@ -38,7 +40,7 @@ printf "\e[0;0H"
 echo "$image"
 intro=2
 fi
-output=$(./utils.sh form openingui)
+output=$(./utils.sh form 1 openingui)
 ./utils.sh menu "$output" "Scriptures of Fulmination"
 read case1
 
@@ -57,7 +59,7 @@ block=i
 sed -i "/cell=/c\cell=01" status
 sed -i "/cella=/c\cella=01" status
 sed -i "/block=/c\block=i" status
-./utils.sh cutscene opening Begining logo
+./utils.sh cutscene 1 opening Begining logo
 fi
 
 #load game
@@ -67,7 +69,7 @@ a=$(grep "save.1" <<< "$load1") ; b=$(grep "save.2" <<< "$load1")
 c=$(grep "save.3" <<< "$load1") ; d=$(grep "save.4" <<< "$load1")
 e=$(grep "save.5" <<< "$load1")
 while true; do
-output=$(./utils.sh form loadsave load $a $b $c $d $e)
+output=$(./utils.sh form 1 loadsave load $a $b $c $d $e)
 ./utils.sh menu "$output" "Load"
 
 
@@ -108,7 +110,7 @@ intro=1 ;;
 intro=1 ;;
 
 [4]) while true ; do
-output=$(./utils.sh form options1)
+output=$(./utils.sh form 1 options1)
 ./utils.sh menu "$output" "Options 1"
 
 read case2
@@ -116,17 +118,17 @@ read case2
 case $case2 in
 
 [1]) while true ; do
-output=$(./utils.sh form options2)
+output=$(./utils.sh form 1 options2)
 ./utils.sh menu "$output" "Options 2"
 
 read case3
 case $case3 in
 
 [1]) sed -i '/mvnt1=/c\mvnt1=0' status
-./utils.sh cutscene options3 Options2 frontr ;;
+./utils.sh cutscene 1 options3 Options2 frontr ;;
 
 [2]) sed -i '/mvnt1=/c\mvnt1=1' status
-./utils.sh cutscene options4 Options2 frontr ;;
+./utils.sh cutscene 1 options4 Options2 frontr ;;
 
 [b]) break ;;
 
@@ -150,24 +152,7 @@ intro=1 ;;
 
 [e]) break ;;
 
-[b][u][r][n][t][e][s][t])./utils.sh clear
-cp status.new status
-sed -i '/block=/c\block=test' status
-sed -i '/cell=/c\cell=test' status
-for i in $( find block | grep -v graphics.sh | grep -v blank.sh | grep -v overlay.sh | sort -n )  ; do
-if [[ "$i" == "block" ]] ; then i=null ; fi
-if [[ "$i" == 'block/e' ]] ; then i=null ; fi
-if [[ "$i" == 'block/i' ]] ; then i=null ; fi
-if [[ "$i" != null ]]
-then
-read -p "$i"
-"$i"
-fi
-done
-read -p "press enter to continue"
-./utils.sh clear
-intro=1
-;;
+
 
 
 

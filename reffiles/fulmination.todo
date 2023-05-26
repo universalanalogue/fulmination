@@ -7,6 +7,7 @@ fix update
 	patch saved games
 
 
-
+Fix cutscene not using cell names in the top right hand corner
+but instead using image names
 
 

@@ -84,6 +84,19 @@ clamping around your neck.
 you have died..."
 }
 
+i19a(){
+echo "As you look up a the painting the necklace begins to glow.
+The faceless woman seems to get closer and closer to you.  You try to
+pull away, but its arms grasp your head and drags you in until you
+are just looking out into the room.  "
+}
+
+i19b(){
+echo "The necklace slides itself out of the room towards the stairs.
+Your flashlight begins to dim until all you see is a blackness that
+goes on forever"
+}
+
 smellbody1 (){
 echo "the body clearly expired long ago, however it
 was fairly well preserved from the room being sealed,

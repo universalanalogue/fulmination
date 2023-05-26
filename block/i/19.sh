@@ -48,6 +48,7 @@ gun=$(grep 'gun=' status | cut -d "=" -f2)
 hammer=$(grep 'hammer=' status | cut -d "=" -f2)
 key4=$(grep 'key4=' status | cut -d "=" -f2)
 lighter=$(grep 'lighter=' status | cut -d "=" -f2)
+pendant=$(grep 'pendant=' status | cut -d "=" -f2)
 
 #variables
 block=$(grep 'block=' status | cut -d "=" -f2)
@@ -148,9 +149,20 @@ fi ;;
 
 [l][o][o][k][p][a][i][n][t][i][n][g]) sed -i '/focus=/c\focus=1' status
 intro=1
-if [ $i19painting -eq 0 ]
+if [ $i19painting -eq 0 ] && [ $pendant -ne 1 ]
 then
 output=$(./utils.sh form 1 looki null painting1 0)
+fi
+if [ $i19painting -eq 0 ] && [ $pendant -eq 1 ]
+then
+./utils.sh cutscene 1 "looki null painting1 0" "Intermission" "graphpass i 19pic2a 7 7 0"
+./utils.sh score 50
+sidebar
+./utils.sh cutscene i i19a "Intermission" null
+./utils.sh overlay face1 13 4 0 0
+./utils.sh cutscene i i19b "Eternal Blackness" null
+./utils.sh setdeath
+break
 fi
 if [ $i19painting -eq 1 ] && [ $i19safe -eq 0 ]
 then
